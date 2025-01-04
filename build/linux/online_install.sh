@@ -95,8 +95,13 @@ Install_certutil() {
         # 判断包管理器
         if command -v apt &>/dev/null; then
             # 使用 apt (Debian/Ubuntu)
-            sudo apt update
-            sudo apt install -y libnss3-tools
+            if command -v oma &>/dev/null; then
+                # 使用 oma (AOSC OS)
+                sudo oma install -y nss
+            else
+                sudo apt update
+                sudo apt install -y libnss3-tools
+            fi
         elif command -v dnf &>/dev/null; then
             # 使用 dnf (Fedora)
             sudo dnf install -y nss-tools
@@ -137,8 +142,13 @@ Install_jq() {
         # Check the package manager
         if command -v apt &>/dev/null; then
             # Using apt (Debian/Ubuntu)
-            sudo apt update
-            sudo apt install -y jq
+            if command -v oma &>/dev/null; then
+                # Using oma (AOSC OS)
+                sudo oma install -y jq
+            else
+                sudo apt update
+                sudo apt install -y jq
+            fi
         elif command -v dnf &>/dev/null; then
             # Using dnf (Fedora)
             sudo dnf install -y jq
@@ -164,9 +174,13 @@ Install_zenity() {
         echo "安装过程需要 zenity 工具。"
         # 判断包管理器
         if command -v apt &>/dev/null; then
-            # 使用 apt (Debian/Ubuntu)
-            sudo apt update
-            sudo apt install -y zenity
+            if command -v oma &>/dev/null; then
+                # 使用 oma (AOSC OS)
+                sudo oma install -y zenity
+            else
+                sudo apt update
+                sudo apt install -y zenity
+            fi
         elif command -v dnf &>/dev/null; then
             # 使用 dnf (Fedora)
             sudo dnf install -y zenity
@@ -219,6 +233,9 @@ Get_NewVer() {
         ;;
     aarch64)
         architecture=3
+        ;;
+    loongarch64)
+        architecture=4
         ;;
     *)
         zenity --info --text="未知的设备架构:$arch!" --width=300
