@@ -13,8 +13,8 @@ English | [简体中文](./README.md)
 [![GitHub Fork](https://img.shields.io/github/forks/BeyondDimension/SteamTools?style=flat-square)](https://github.com/BeyondDimension/SteamTools/network/members)
 ![GitHub Repo size](https://img.shields.io/github/repo-size/BeyondDimension/SteamTools?style=flat-square&color=3cb371)
 [![GitHub Repo Languages](https://img.shields.io/github/languages/top/BeyondDimension/SteamTools?style=flat-square)](https://github.com/BeyondDimension/SteamTools/search?l=c%23)
-[![NET 7.0](https://img.shields.io/badge/dotnet-7.0-purple.svg?style=flat-square&color=512bd4)](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-7)
-[![C# 11](https://img.shields.io/badge/c%23-11-brightgreen.svg?style=flat-square&color=6da86a)](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-11)
+[![NET 9.0](https://img.shields.io/badge/.NET-9.0-purple.svg?style=flat-square&color=512bd4)](https://learn.microsoft.com/zh-cn/dotnet/core/whats-new/dotnet-9/overview)
+[![C# 13](https://img.shields.io/badge/C%23-13-brightgreen.svg?style=flat-square&color=6da86a)](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-13)
 
 [![Kofi](https://img.shields.io/badge/Kofi-RMBGAME-orange.svg?style=flat-square&logo=kofi)](https://ko-fi.com/rmbgame)
 [![Patreon](https://img.shields.io/badge/Patreon-RMBGAME-red.svg?style=flat-square&logo=patreon)](https://www.patreon.com/rmbgame)
@@ -50,7 +50,10 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 5. Game Tools <img src="./res/brands/windows.svg" width="16" height="16" />
 	- Force game windows to use borderless windowing
 
-## 🖥 Supported Operating Systems
+## 🖥️ Supported Operating Systems
+### The operating systems listed below are all x86-64 versions of the respective operating systems. Users of older Windows versions such as Windows 7, 8.1, or 32-bit operating systems are advised to download the older versions from the Release section for use.
+### ARM Processor users, please download the stable version from the Release section or build it yourself.
+### The LoongArch64 version is currently in the dev build stage, and stable software packages have not yet been built. Please wait.
 - Windows 11
 - Windows 10 version 1809(OS internal version 17763) or higher is required
 - macOS 10.15 or higher is required
@@ -60,6 +63,15 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 - Deepin(UOS) 20 or higher is required
 - ~~iOS 11 or higher is required~~(In development…)
 - Android 5.0(API 21) or higher is required
+- AOSC OS 12(Localhost) or higher is required
+
+## 🔲 Supported Processors
+### X86 Processor
+- An x86-64 CPU that meets or exceeds the minimum requirements for the installation of the aforementioned operating system
+### ARM Processor
+- CPUs supporting ARM V8 (aarch64) or above
+### Loongson Processor
+- LoongArch64 CPUs with LSX extension instructions, such as 3A5000 and above. MIPS (LoongISA), LoongArch32, or CPUs without LSX extension instructions, such as 3A4000 and 2K0300, are not supported.
 
 ## 🧩 Screenshots
 <img src="./res/screenshots/screenshot-windows-accelerator.webp" width="800" />
@@ -71,6 +83,7 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 Read what we [milestones](https://github.com/BeyondDimension/SteamTools/milestones), and feel free to ask questions.
 
 ## ⌨️ Development Environment
+### Windows and Mac
 [Visual Studio 2022](https://visualstudio.microsoft.com/vs)  
 [Visual Studio 2022 for Mac](https://visualstudio.microsoft.com/vs/mac)  
 [JetBrains Rider](https://www.jetbrains.com/rider)  
@@ -78,6 +91,29 @@ Read what we [milestones](https://github.com/BeyondDimension/SteamTools/mileston
 [OpenJDK 17](https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-17)  
 [Android Studio Electric Eel Or Higher](https://developer.android.com/studio)  
 [Xcode 14 Or Higher](https://developer.apple.com/xcode)  
+
+### Special Requirements for Building LoongArch64 Version
+The LoongArch64 version of Watt Toolkit only supports building on LoongArch64 physical machines with LSX, such as Loongson 3A5000 and above; or using X86 Linux to cross compilated dotnet 9. The building principles follow the [Software Development and Build Convention for LoongArch™ Architectures](https://github.com/loongson/la-softdev-convention).
+The LoongArch64 version only builds the New World version.
+- System requirements
+	- [AOSC OS 12 or higher is required](https://aosc.io/download)
+	- loongnix 25 or higher is required
+	- [Deepin 25 or higher is required](https://www.deepin.org/zh/download/)
+	- Yongbao 2.9 or higher is required
+	- [Alpine Linux 3.21.0 or higher is required](https://alpinelinux.org/downloads/)
+	- [GXDE OS 15.14.2 or higher is required](https://www.gxde.top/)
+	- [Debian 13 or higher is required](https://www.debian.org/)
+- Work load
+	- .NET version
+		- [.NET 9.0 and above](https://github.com/loongson-community/dotnet-unofficial-build)
+	- vscodium
+		- [vscodium 1.96.2.24355 and above](https://github.com/VSCodium/vscodium)
+	- Web and Cloud
+		- ASP.NET and Web Development
+	- Desktop applications
+		- .NET desktop development
+
+[SkiaSharp](https://github.com/mono/SkiaSharp)
 
 ## 🏗️ Project Structure
 See details&nbsp;&nbsp;[./src/README.md](./src/README.md) 
