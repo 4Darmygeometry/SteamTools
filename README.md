@@ -13,8 +13,8 @@
 [![GitHub Fork](https://img.shields.io/github/forks/BeyondDimension/SteamTools?style=flat-square)](https://github.com/BeyondDimension/SteamTools/network/members)
 ![GitHub Repo size](https://img.shields.io/github/repo-size/BeyondDimension/SteamTools?style=flat-square&color=3cb371)
 [![GitHub Repo Languages](https://img.shields.io/github/languages/top/BeyondDimension/SteamTools?style=flat-square)](https://github.com/BeyondDimension/SteamTools/search?l=c%23)
-[![NET 7.0](https://img.shields.io/badge/dotnet-7.0-purple.svg?style=flat-square&color=512bd4)](https://learn.microsoft.com/zh-cn/dotnet/core/whats-new/dotnet-7)
-[![C# 11](https://img.shields.io/badge/c%23-11-brightgreen.svg?style=flat-square&color=6da86a)](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-11)
+[![NET 9.0](https://img.shields.io/badge/.NET-9.0-purple.svg?style=flat-square&color=512bd4)](https://learn.microsoft.com/zh-cn/dotnet/core/whats-new/dotnet-9/overview)
+[![C# 13](https://img.shields.io/badge/C%23-13-brightgreen.svg?style=flat-square&color=6da86a)](https://learn.microsoft.com/zh-cn/dotnet/csharp/whats-new/csharp-13)
 
 [![爱发电](https://img.shields.io/badge/爱发电-软妹币玩家-blue.svg?style=flat-square&color=ea4aaa&logo=github-sponsors)](https://afdian.com/@rmbgame)
 [![Kofi](https://img.shields.io/badge/Kofi-RMBGAME-orange.svg?style=flat-square&logo=kofi)](https://ko-fi.com/rmbgame)
@@ -62,7 +62,10 @@
 7. 游戏工具 <img src="./res/brands/windows.svg" width="16" height="16" />
 	- 强制游戏窗口使用无边框窗口化、更多功能待开发。
 
-## 🖥 支持的操作系统
+## 🖥️ 支持的操作系统
+### 下面所列操作系统均为该操作系统的x86-64版本。Windows 7、8.1等旧版Windows用户或32位操作系统用户请在Release中下载旧版使用。
+### ARM用户请下载Release中的稳定版或自行构建。
+### 龙芯版目前仍处于dev构建阶段，尚未构建出稳定软件包，还望等待。
 - Windows 11
 - Windows 10 版本 1809（OS 内部版本 17763）或更高版本
 - macOS 10.15 或更高版本
@@ -73,6 +76,14 @@
 - ~~iOS 11 或更高版本~~（开发中…）
 - Android 5.0(API 21) 或更高版本
 - AOSC OS 12(Localhost) 或更高版本
+
+## 🔲 支持的处理器
+### X86处理器
+- 满足上述操作系统安装最低要求及以上的的x86-64 CPU
+### ARM处理器
+- ARM V8(aarch64)及以上CPU
+### 龙芯
+- 3A5000及以上含有LSX扩展指令的LoongArch64 CPU。MIPS(LoongISA)、LoongArch32或不含有LSX扩展指令的，如3A4000、2K0300，在此不受支持。
 
 ## 🧩 截图
 <img src="./res/screenshots/screenshot-windows-accelerator.webp" width="800" />
