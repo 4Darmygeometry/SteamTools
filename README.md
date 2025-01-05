@@ -135,11 +135,11 @@
 - 系统要求
 	- [AOSC OS 12 或更高版本](https://aosc.io/download)
 	- loongnix 25 或更高版本
-        - [Deepin 25 或更高版本](https://www.deepin.org/zh/download/)
-        - Yongbao 2.9 或更高版本
-        - [Alpine Linux 3.21.0 或更高版本](https://alpinelinux.org/downloads/)
-        - [GXDE OS 15.14.2 或更高版本](https://www.gxde.top/)
-        - [Debian 13 或更高版本](https://www.debian.org/)
+	- [Deepin 25 或更高版本](https://www.deepin.org/zh/download/)
+	- Yongbao 2.9 或更高版本
+	- [Alpine Linux 3.21.0 或更高版本](https://alpinelinux.org/downloads/)
+	- [GXDE OS 15.14.2 或更高版本](https://www.gxde.top/)
+	- [Debian 13 或更高版本](https://www.debian.org/)
 - 工作负荷
 	- .NET版本
 		- [.NET 9.0及以上](https://github.com/loongson-community/dotnet-unofficial-build)
