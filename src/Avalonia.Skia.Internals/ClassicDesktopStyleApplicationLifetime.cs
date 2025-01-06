@@ -174,7 +174,7 @@ namespace Avalonia.Controls.ApplicationLifetimes
                 {
                     if (w.Owner is null)
                     {
-                        w.CloseCore_(WindowCloseReason.ApplicationShutdown, isProgrammatic);
+                        w.CloseCore_(WindowCloseReason.ApplicationShutdown, isProgrammatic, false);
                     }
                 }
 
