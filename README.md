@@ -152,7 +152,12 @@
 	- 桌面应用
 		- .NET 桌面开发
 
+### 编译libskiasharp.so时，需定义标签png_init_filter_functions_lsx
+### 具体可参考：[[1]](https://github.com/AOSC-Dev/aosc-os-abbs/blob/1190e02603c6d42771541b2c3b5d4e45d6f3d00f/app-web/thunderbird/autobuild/patches/0014-AOSCOS-Add-missing-loongarch-lsx-code-for-libpng.patch#L472)[[2]](https://github.com/phorcys/loongarch-debian-patches/blob/f452592ce8a9442a2d3c4e82273a8aad5c5fe382/patches/libpng1.6/libpng1.6.patch#L591)[[3]](https://github.com/xen0n/loongson-overlay/blob/17a0da775a19878f96a9e587f6c439df1ec8611f/mail-client/thunderbird/files/firefox-128.5-loong/0010-Vendor-missing-loongarch-files-of-libpng.patch#L469)[[4]](https://github.com/ravynsoft/ravynos/blob/49ffed929700e2e2e4f6fcacc8640b9c95d4750e/lib/libpng/loongarch/loongarch_lsx_init.c#L32)[[5]](https://github.com/winlibs/libpng/blob/44baa877767133e5ebd5121fb5cdc6ef046e2269/loongarch/loongarch_lsx_init.c#L32)
+
 [SkiaSharp](https://github.com/mono/SkiaSharp)
+
+[harfbuzz](https://github.com/harfbuzz/harfbuzz)
 
 ## 🏗️ [项目结构](./src/README.md)
 详见&nbsp;&nbsp;[./src/README.md](./src/README.md)  
