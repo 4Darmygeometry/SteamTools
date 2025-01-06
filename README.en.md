@@ -53,7 +53,7 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 ## 🖥️ Supported Operating Systems
 ### The operating systems listed below are all x86-64 versions of the respective operating systems. Users of older Windows versions such as Windows 7, 8.1, or 32-bit operating systems are advised to download the older versions from the Release section for use.
 ### ARM Processor users, please download the stable version from the Release section or build it yourself.
-### The LoongArch64 version is currently in the dev build stage, and stable software packages have not yet been built. Please wait.
+### The LoongArch64 version is currently in the dev build stage, and stable software packages have not yet been built. Please wait. To run the LoongArch64 version of Watt Toolkit, you need to meet the requirements of Linux kernel>=6.6 and glibc>=2.40. Users of deepin 23 and loongnix 25 need to first run "sudo apt install libpng-dev" before being able to use the software normally.
 - Windows 11
 - Windows 10 version 1809(OS internal version 17763) or higher is required
 - macOS 10.15 or higher is required
@@ -68,8 +68,10 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 ## 🔲 Supported Processors
 ### X86 Processor
 - An x86-64 CPU that meets or exceeds the minimum requirements for the installation of the aforementioned operating system
+- For Zhaoxin processors, it is recommended to use KX-U6780A or above to ensure smooth program execution.
 ### ARM Processor
 - CPUs supporting ARM V8 (aarch64) or above
+- For Phytium processor, it is recommended to use the Phytium D2000 or above to ensure smooth program execution.
 ### Loongson Processor
 - LoongArch64 CPUs with LSX extension instructions, such as 3A5000 and above. MIPS (LoongISA), LoongArch32, or CPUs without LSX extension instructions, such as 3A4000 and 2K0300, are not supported.
 
@@ -113,7 +115,12 @@ The LoongArch64 version only builds the New World version.
 	- Desktop applications
 		- .NET desktop development
 
+### When compiling libskiasharp.so, it is necessary to define the tag png_init_filter_functions_lsx
+### For specific reference, please see: [[1]](https://github.com/AOSC-Dev/aosc-os-abbs/blob/1190e02603c6d42771541b2c3b5d4e45d6f3d00f/app-web/thunderbird/autobuild/patches/0014-AOSCOS-Add-missing-loongarch-lsx-code-for-libpng.patch#L472)[[2]](https://github.com/phorcys/loongarch-debian-patches/blob/f452592ce8a9442a2d3c4e82273a8aad5c5fe382/patches/libpng1.6/libpng1.6.patch#L591)[[3]](https://github.com/xen0n/loongson-overlay/blob/17a0da775a19878f96a9e587f6c439df1ec8611f/mail-client/thunderbird/files/firefox-128.5-loong/0010-Vendor-missing-loongarch-files-of-libpng.patch#L469)[[4]](https://github.com/ravynsoft/ravynos/blob/49ffed929700e2e2e4f6fcacc8640b9c95d4750e/lib/libpng/loongarch/loongarch_lsx_init.c#L32)[[5]](https://github.com/winlibs/libpng/blob/44baa877767133e5ebd5121fb5cdc6ef046e2269/loongarch/loongarch_lsx_init.c#L32)
+
 [SkiaSharp](https://github.com/mono/SkiaSharp)
+
+[harfbuzz](https://github.com/harfbuzz/harfbuzz)
 
 ## 🏗️ Project Structure
 See details&nbsp;&nbsp;[./src/README.md](./src/README.md) 
