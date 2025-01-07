@@ -843,6 +843,7 @@ $"""
                         arg.ReadyToRun = false;
                         arg.Trimmed = false;
                         arg.SelfContained = false;
+                        arg.Architecture = architecture;
                         // https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-run
                         // https://download.visualstudio.microsoft.com/download/pr/c1e2729e-ab96-4929-911d-bf0f24f06f47/1b2f39cbc4eb530e39cfe6f54ce78e45/aspnetcore-runtime-7.0.7-linux-x64.tar.gz
                         // dotnet "Steam++.dll" -clt devtools
@@ -889,7 +890,9 @@ $"""
         bool? EnableMsixTooling = null,
         bool? GenerateAppxPackageOnBuild = null,
         bool? StripSymbols = null,
-        bool? CreatePackage = null)
+        bool? CreatePackage = null,
+        Architecture? Architecture = null
+        )
     {
         string? _Configuration;
 
@@ -1122,9 +1125,19 @@ publish -c {0} -p:OutputType={1} -p:PublishDir=bin\{0}\Publish\win-any -p:Publis
         argumentList.Add("-f");
         argumentList.Add(arg.Framework);
 
-        // 发布针对给定运行时的应用程序。 有关运行时标识符 (RID) 的列表，请参阅 RID 目录。
-        argumentList.Add("-r");
-        argumentList.Add(arg.RuntimeIdentifier);
+        if (arg.Architecture.HasValue && (Architecture.LoongArch64 | Architecture.RiscV64).HasFlag(arg.Architecture.Value))
+        {
+            argumentList.Add($"--arch");
+            argumentList.Add(ArchToString(arg.Architecture.Value));
+            argumentList.Add($"--os");
+            argumentList.Add("linux");
+        }
+        else
+        {
+            // 发布针对给定运行时的应用程序。 有关运行时标识符 (RID) 的列表，请参阅 RID 目录。
+            argumentList.Add("-r");
+            argumentList.Add(arg.RuntimeIdentifier);
+        }
 
         argumentList.Add("-v");
         argumentList.Add("q");
