@@ -94,6 +94,14 @@
 <br/>
 <img src="./res/screenshots/screenshot-windows-gamelist.webp" width="800" />
 <br/>
+<img src="./res/screenshots/linux-3A6000-homepage.png" width="800" />
+<br/>
+<img src="./res/screenshots/linux-3A6000-script.png" width="800" />
+<br/>
+<img src="./res/screenshots/linux-3A6000-ASF.png" width="800" />
+<br/>
+<img src="./res/screenshots/linux-3A6000-settings.png" width="800" />
+<br/>
 <br/>
 <!--<img src="./res/screenshots/screenshot-android-authenticator.png" width="800" />-->
 
