@@ -94,9 +94,7 @@
 <br/>
 <img src="./res/screenshots/screenshot-windows-gamelist.webp" width="800" />
 <br/>
-<img src="./res/screenshots/linux-3A6000-homepage.png" width="800" />
-<br/>
-<img src="./res/screenshots/linux-3A6000-script.png" width="800" />
+<img src="./res/screenshots/linux-3A6000-accelerate.png" width="800" />
 <br/>
 <img src="./res/screenshots/linux-3A6000-ASF.png" width="800" />
 <br/>
@@ -160,12 +158,9 @@
 	- 桌面应用
 		- .NET 桌面开发
 
-### 编译libskiasharp.so时，需定义标签png_init_filter_functions_lsx
-### 具体可参考：[[1]](https://github.com/AOSC-Dev/aosc-os-abbs/blob/1190e02603c6d42771541b2c3b5d4e45d6f3d00f/app-web/thunderbird/autobuild/patches/0014-AOSCOS-Add-missing-loongarch-lsx-code-for-libpng.patch#L472)[[2]](https://github.com/phorcys/loongarch-debian-patches/blob/f452592ce8a9442a2d3c4e82273a8aad5c5fe382/patches/libpng1.6/libpng1.6.patch#L591)[[3]](https://github.com/xen0n/loongson-overlay/blob/17a0da775a19878f96a9e587f6c439df1ec8611f/mail-client/thunderbird/files/firefox-128.5-loong/0010-Vendor-missing-loongarch-files-of-libpng.patch#L469)[[4]](https://github.com/ravynsoft/ravynos/blob/49ffed929700e2e2e4f6fcacc8640b9c95d4750e/lib/libpng/loongarch/loongarch_lsx_init.c#L32)[[5]](https://github.com/winlibs/libpng/blob/44baa877767133e5ebd5121fb5cdc6ef046e2269/loongarch/loongarch_lsx_init.c#L32)
-
-[SkiaSharp](https://github.com/mono/SkiaSharp)
-
-[harfbuzz](https://github.com/harfbuzz/harfbuzz)
+### 由于新世界nuget尚未完全上游化，本项目龙芯版本使用[龙芯官方提供的nuget源](https://nuget.loongnix.cn)以提供SkiaSharp、HarfBuzzSharp等。借此也可以兼容Loongnix 20、UOS 20、银河麒麟这三个旧世界发行版。
+### 龙架构旧世界用户可以在[龙芯开源社区](https://www.loongnix.cn/zh/api/dotnet/)自行下载.net 9及以上版本编译此项目。常见问题可以看[参考文档](https://docs.loongnix.cn/dotnet/support/list/01.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-FAQ.html#%E9%BE%99%E8%8A%AFnuget%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95)。
+### 龙架构新世界用户编译此项目时，可能会混入旧世界二进制文件，建议装[liblol旧世界兼容工具](https://liblol.aosc.io)以保证正常编译和运行。AOSC OS、Deepin 23、Yongbao一般自带liblol,无需额外安装。
 
 ## 🏗️ [项目结构](./src/README.md)
 详见&nbsp;&nbsp;[./src/README.md](./src/README.md)  
