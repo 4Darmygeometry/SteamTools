@@ -188,16 +188,23 @@ fi
 chmod +x "$base_path/$exec_name.sh"
 # xdg-icon-resource install "$base_path/Icons/Watt-Toolkit.png" --size 128 Watt-Toolkit
 InitDesktop() {
+    # 检查XDG_DESKTOP_DIR环境变量，如果未设置则使用默认值，支持KDE的中文桌面路径
+    if command -v xdg-user-dir &>/dev/null; then
+        XDG_DESKTOP_DIR=$(xdg-user-dir DESKTOP)
+    else
+        XDG_DESKTOP_DIR="$HOME/Desktop"
+    fi
+
     while true; do
         # 使用 zenity 提示用户选择安装路径或使用默认路径
-        choice=$(zenity --list --radiolist --title="请选择要添加到的位置" --column="选择" --column="路径" TRUE "$HOME/.local/share/applications/" FALSE "$HOME/Desktop")
+        choice=$(zenity --list --radiolist --title="请选择要添加到的位置" --column="选择" --column="路径" TRUE "$HOME/.local/share/applications/" FALSE "$XDG_DESKTOP_DIR")
 
         # 检查用户输入
         if [ "$choice" == "$HOME/.local/share/applications/" ]; then
             target_dir="$HOME/.local/share/applications/"
             break
-        elif [ "$choice" == "$HOME/Desktop" ]; then
-            target_dir="$HOME/Desktop/"
+        elif [ "$choice" == "$XDG_DESKTOP_DIR" ]; then
+            target_dir="$XDG_DESKTOP_DIR"
             break
         else
             echo "无效选项，请输入 1 或 2。"

@@ -422,8 +422,12 @@ Kill_Process
 Decompression
 # xdg-icon-resource install "$base_path/Icons/Watt-Toolkit.png" --size 128 Watt-Toolkit
 InitDesktop() {
-    # 检查XDG_DESKTOP_DIR环境变量，如果未设置则使用默认值
-    XDG_DESKTOP_DIR="${XDG_DESKTOP_DIR:-$HOME/Desktop}"
+    # 检查XDG_DESKTOP_DIR环境变量，如果未设置则使用默认值，支持KDE的中文桌面路径
+    if command -v xdg-user-dir &>/dev/null; then
+        XDG_DESKTOP_DIR=$(xdg-user-dir DESKTOP)
+    else
+        XDG_DESKTOP_DIR="$HOME/Desktop"
+    fi
 
     while true; do
         # 使用 zenity 提示用户选择安装路径或使用默认路径
