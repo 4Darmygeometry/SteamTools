@@ -78,6 +78,12 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 ## 🧩 Screenshots
 <img src="./res/screenshots/screenshot-windows-accelerator.webp" width="800" />
 <br/>
+<img src="./res/screenshots/linux-3A6000-accelerate-en.png" width="800" />
+<br/>
+<img src="./res/screenshots/linux-3A6000-ASF-en.png" width="800" />
+<br/>
+<img src="./res/screenshots/linux-3A6000-settings-en.png" width="800" />
+<br/>
 <br/>
 <img src="./res/screenshots/screenshot-android-authenticator.png" width="800" />
 
@@ -115,12 +121,9 @@ The LoongArch64 version only builds the New World version.
 	- Desktop applications
 		- .NET desktop development
 
-### When compiling libskiasharp.so, it is necessary to define the tag png_init_filter_functions_lsx
-### For specific reference, please see: [[1]](https://github.com/AOSC-Dev/aosc-os-abbs/blob/1190e02603c6d42771541b2c3b5d4e45d6f3d00f/app-web/thunderbird/autobuild/patches/0014-AOSCOS-Add-missing-loongarch-lsx-code-for-libpng.patch#L472)[[2]](https://github.com/phorcys/loongarch-debian-patches/blob/f452592ce8a9442a2d3c4e82273a8aad5c5fe382/patches/libpng1.6/libpng1.6.patch#L591)[[3]](https://github.com/xen0n/loongson-overlay/blob/17a0da775a19878f96a9e587f6c439df1ec8611f/mail-client/thunderbird/files/firefox-128.5-loong/0010-Vendor-missing-loongarch-files-of-libpng.patch#L469)[[4]](https://github.com/ravynsoft/ravynos/blob/49ffed929700e2e2e4f6fcacc8640b9c95d4750e/lib/libpng/loongarch/loongarch_lsx_init.c#L32)[[5]](https://github.com/winlibs/libpng/blob/44baa877767133e5ebd5121fb5cdc6ef046e2269/loongarch/loongarch_lsx_init.c#L32)
-
-[SkiaSharp](https://github.com/mono/SkiaSharp)
-
-[harfbuzz](https://github.com/harfbuzz/harfbuzz)
+### Due to the fact that the new world NuGet has not yet been fully upstreamed, the LoongArch64 version of this project uses the NuGet source provided by [Loongson Open Source Community](https://nuget.loongnix.cn) to provide SkiaSharp, HarfBuzzSharp, etc. This also allows compatibility with the three old world distributions: Loongnix 20, UOS 20, and Kylin.
+### Users of the LoongArch64 in the old world can download the .NET 9 and later versions from the [Loongson Open Source Community](https://www.loongnix.cn/zh/api/dotnet/) to compile this project. For common issues, please refer to the [reference documentation](https://docs.loongnix.cn/dotnet/support/list/01.%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-FAQ.html#%E9%BE%99%E8%8A%AFnuget%E6%BA%90%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95).
+### When compiling this project for users of the new world architecture, there is a possibility of incorporating old world binary files. It is recommended to install the [liblol old world compatibility tool](https://liblol.aosc.io) to ensure normal compilation and operation. AOSC OS, Deepin 23, and Yongbao generally come with liblol preinstalled, so no additional installation is required.
 
 ## 🏗️ Project Structure
 See details&nbsp;&nbsp;[./src/README.md](./src/README.md) 
