@@ -174,6 +174,7 @@ Install_zenity() {
         echo "安装过程需要 zenity 工具。"
         # 判断包管理器
         if command -v apt &>/dev/null; then
+            # 使用 apt (Debian/Ubuntu)
             if command -v oma &>/dev/null; then
                 # 使用 oma (AOSC OS)
                 sudo oma install -y zenity
