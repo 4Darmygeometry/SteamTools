@@ -63,9 +63,7 @@
 	- 强制游戏窗口使用无边框窗口化、更多功能待开发。
 
 ## 🖥️ 支持的操作系统
-### 下面所列操作系统均为该操作系统的x86-64版本。Windows 7、8.1等旧版Windows用户或32位操作系统用户请在Release中下载旧版使用。
-### ARM用户请下载Release中的稳定版或自行构建。
-### 龙芯版目前仍处于dev构建阶段，尚未构建出稳定软件包，还望等待。运行Watt Toolkit龙芯版需达到Linux内核>=6.6、glibc>=2.40的要求。deepin 23、loongnix 25用户需先sudo apt install libpng-dev方可正常使用该软件。
+### 下面所列操作系统为该操作系统的x86-64版本。Windows 7、8.1等旧版Windows用户、Windows 10版本低于1809的用户或32位操作系统用户请在Release中下载旧版使用。
 - Windows 11
 - Windows 10 版本 1809（OS 内部版本 17763）或更高版本
 - macOS 10.15 或更高版本
@@ -76,6 +74,11 @@
 - ~~iOS 11 或更高版本~~（开发中…）
 - Android 5.0(API 21) 或更高版本
 - AOSC OS 12(Localhost) 或更高版本
+### ARM用户请下载Release中的稳定版或自行构建。
+### 龙芯用户请下载Release中的测试版。运行Watt Toolkit龙芯版需达到Linux内核>=6.6、glibc>=2.40的要求（deepin 23除外）。下列为龙芯版目前所适配的操作系统：
+- Deepin 23 或更高版本
+- AOSC OS 12(Localhost) 或更高版本
+- Loongnix 25 或更高版本
 
 ## 🔲 支持的处理器
 ### X86处理器
