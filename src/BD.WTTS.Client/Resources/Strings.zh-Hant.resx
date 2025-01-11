@@ -146,7 +146,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="About_UpdateHistory" xml:space="preserve">
-    <value>更新記錄</value>
+    <value>更新紀錄</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="About_UpdateLog" xml:space="preserve">
@@ -154,11 +154,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AccountChange_RestartSteam" xml:space="preserve">
-    <value>修改的數據生效需要重啟 Steam 是否需要重啟 Steam。</value>
+    <value>修改的資料生效需要重啟 Steam 是否需要重啟 Steam。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AccountChange_ShareManageAboutTips" xml:space="preserve">
-    <value>調整當前設備上共用的 Steam 帳號優先順序順序，用於解決想玩帳號B的共用卻一直使用的是帳號A的共用這種問題，從上到下的排序為共用庫使用的優先順序順序順序，也可以選擇暫時禁用或啟用指定帳號的共用。 調整後保存重啟 Steam 生效！</value>
+    <value>調整目前裝置上共用的 Steam 帳號優先順序順序，用於解決想玩帳號B的共用卻一直使用的是帳號A的共用這種問題，從上到下的排序為共用庫使用的優先順序順序順序，也可以選擇暫時停用或啟用指定帳號的共用。 調整後儲存重啟 Steam 生效！</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AccountChange_Title" xml:space="preserve">
@@ -198,7 +198,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_RefreshTip" xml:space="preserve">
-    <value>刷新成就和統計</value>
+    <value>重新整理成就和統計</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_ResetTip" xml:space="preserve">
@@ -222,7 +222,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_StoreTip" xml:space="preserve">
-    <value>保存並應用成就和統計</value>
+    <value>儲存並應用成就和統計</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_TimeFormat" xml:space="preserve">
@@ -234,7 +234,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_Warning_1" xml:space="preserve">
-    <value>與 Steam 建立連接失敗，可能是該遊戲沒有成就，或者你沒有該遊戲。</value>
+    <value>與 Steam 建立連線失敗，可能是該遊戲沒有成就，或者你沒有該遊戲。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_Warning_3" xml:space="preserve">
@@ -262,7 +262,7 @@
     <comment>Comment=;Author=AigioL</comment>
   </data>
   <data name="ASF_RuningTip" xml:space="preserve">
-    <value>ASF已經運行</value>
+    <value>ASF已經執行</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Bind" xml:space="preserve">
@@ -278,7 +278,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="BugFeedback" xml:space="preserve">
-    <value>Bug 反饋</value>
+    <value>Bug 回饋</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -307,14 +307,14 @@
   </data>
   <data name="CommunityFix_AlreadyProxy" xml:space="preserve">
     <value>已加速  </value>
-    <comment>Comment=末尾带空格;Author=MicrosoftTranslator</comment>
+    <comment>Comment=末尾帶空格;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_AutoRunProxy" xml:space="preserve">
     <value>啟動時自動啟動加速</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_CertificateSettings" xml:space="preserve">
-    <value>證書設置</value>
+    <value>證書設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_DeleteCertificate" xml:space="preserve">
@@ -330,7 +330,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_MenuName" xml:space="preserve">
-    <value>加速設置</value>
+    <value>加速設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_NetworkFix" xml:space="preserve">
@@ -342,7 +342,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_OnlySteamBrowser" xml:space="preserve">
-    <value>僅對 Steam 內置瀏覽器生效</value>
+    <value>僅對 Steam 內建瀏覽器生效</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_OpenCertificateDir" xml:space="preserve">
@@ -366,7 +366,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ProxyMode_WinSystemTip" xml:space="preserve">
-    <value>設置系統代理來監聽請求，不需要佔用 443 埠，會全域代理本機所有流量，如果你使用 Hosts 方式沒有問題，那就不需要使用此模式。</value>
+    <value>設定系統代理來監聽請求，不需要佔用 443 埠，會全域代理本機所有流量，如果你使用 Hosts 方式沒有問題，那就不需要使用此模式。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ScriptManage" xml:space="preserve">
@@ -386,7 +386,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_StartProxyFaild" xml:space="preserve">
-    <value>啟動加速服務失敗，遇到未知錯誤，具體原因請在 [設置] - [通用設置] - [存儲空間] - [打開 Logs 資料夾] 查看當天日誌。</value>
+    <value>啟動加速服務失敗，遇到未知錯誤，具體原因請在 [設定] - [通用設定] - [儲存空間] - [打開 Logs 資料夾] 查看當天日誌。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_StartProxySuccess" xml:space="preserve">
@@ -402,7 +402,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ConfirmImport" xml:space="preserve">
-    <value>確認導入</value>
+    <value>確認匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Continue" xml:space="preserve">
@@ -414,7 +414,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Cut" xml:space="preserve">
-    <value>剪切</value>
+    <value>剪下</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Default" xml:space="preserve">
@@ -426,7 +426,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="DelAccountTips" xml:space="preserve">
-    <value>您現有的帳號資訊以及帳號使用過程中的產生所有數據將被刪除，且無法以原先的身份資訊重新登錄，確認前請注意備份重要數據避免造成無法挽回的損失，是否確定註銷？</value>
+    <value>您現有的帳號資訊以及帳號使用過程中的產生所有資料將被刪除，且無法以原先的身份資訊重新登入，確認前請注意備份重要資料避免造成無法挽回的損失，是否確定註銷？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Delete" xml:space="preserve">
@@ -462,11 +462,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>郵箱</value>
+    <value>信箱</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="EmailCode" xml:space="preserve">
-    <value>郵箱驗證代碼</value>
+    <value>信箱驗證程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Encrypt" xml:space="preserve">
@@ -494,7 +494,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_AddAFKAppsWarningCountTips" xml:space="preserve">
-    <value>警告：Steam允許的同時運行遊戲數量為 {0} 個，如果您同時掛時長 {1} 款遊戲，將無法正常遊玩遊戲！</value>
+    <value>警告：Steam允許的同時執行遊戲數量為 {0} 個，如果您同時掛時長 {1} 款遊戲，將無法正常遊玩遊戲！</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_AddAfkGameList" xml:space="preserve">
@@ -510,7 +510,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_AutoAFK" xml:space="preserve">
-    <value>自動運行掛時長遊戲</value>
+    <value>自動執行掛時長遊戲</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_DeleteAll" xml:space="preserve">
@@ -554,7 +554,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_IsEmpty" xml:space="preserve">
-    <value>沒有獲取到任何遊戲數據</value>
+    <value>沒有獲取到任何遊戲資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_IsLoading" xml:space="preserve">
@@ -574,7 +574,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_OpenFolder" xml:space="preserve">
-    <value>流覽安裝資料夾</value>
+    <value>瀏覽安裝資料夾</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_OpenSteamCardUrl" xml:space="preserve">
@@ -602,11 +602,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_RefreshGamesList" xml:space="preserve">
-    <value>刷新遊戲清單</value>
+    <value>重新整理遊戲清單</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_RefreshGamesListSucess" xml:space="preserve">
-    <value>刷新遊戲清單完成</value>
+    <value>重新整理遊戲清單完成</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_RemoveBtn" xml:space="preserve">
@@ -638,11 +638,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_RunState" xml:space="preserve">
-    <value>運行中</value>
+    <value>執行中</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_SetCustomImage" xml:space="preserve">
-    <value>設置自定義封面</value>
+    <value>設定自訂封面</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_SteamNotRuning" xml:space="preserve">
@@ -686,7 +686,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_KillProcess" xml:space="preserve">
-    <value>結束進程</value>
+    <value>結束行程</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_Maximize" xml:space="preserve">
@@ -694,23 +694,23 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_MoveMouseTip" xml:space="preserve">
-    <value>拖拽十字到遊戲視窗，即可獲取遊戲資訊執行對應操作。</value>
+    <value>拖曳十字到遊戲視窗，即可獲取遊戲資訊執行對應操作。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_Normal" xml:space="preserve">
-    <value>默認大小</value>
+    <value>預設大小</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_Path" xml:space="preserve">
-    <value>程序路徑</value>
+    <value>程式路徑</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_Process" xml:space="preserve">
-    <value>進程</value>
+    <value>行程</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_ResetWallerpaper" xml:space="preserve">
-    <value>刷新壁紙</value>
+    <value>重新整理桌布</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_Show" xml:space="preserve">
@@ -722,11 +722,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_ToWallerpaper" xml:space="preserve">
-    <value>置於壁紙層</value>
+    <value>置於桌布層</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameRelated_Borderless_ToWallerpaperTip" xml:space="preserve">
-    <value>置於壁紙層的遊戲可能會無法操控，這個問題可以解決但是目前開發精力不在這，目前這個功能就這樣了。 遊戲結束后桌面會依然留下凍結的畫面，這時可以點擊刷新壁紙來恢復默認壁紙。 並且將視窗放置於桌面壁紙層功能與 Wallpaper Engine 和其它動態桌面軟體不相容，使用時注意關掉 Wallpaper Engine 等軟體。</value>
+    <value>置於桌布層的遊戲可能會無法操控，這個問題可以解決但是目前開發精力不在這，目前這個功能就這樣了。 遊戲結束後桌面會依然留下凍結的畫面，這時可以點擊重新整理桌布來復原預設桌布。 並且將視窗放置於桌面桌布層功能與 Wallpaper Engine 和其它動態桌面軟體不相容，使用時注意關掉 Wallpaper Engine 等軟體。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Gender" xml:space="preserve">
@@ -746,11 +746,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GetLoginUsingSteamClientCookies" xml:space="preserve">
-    <value>正在獲取 Steam 登錄狀態</value>
+    <value>正在獲取 Steam 登入狀態</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GetLoginUsingSteamClientCookiesFail_" xml:space="preserve">
-    <value>獲取 Steam 登錄狀態失敗 {0}，請輸入 Steam 使用者名密碼進行快速登錄</value>
+    <value>獲取 Steam 登入狀態失敗 {0}，請輸入 Steam 使用者名密碼進行快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Hosts_Exists" xml:space="preserve">
@@ -778,7 +778,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Import" xml:space="preserve">
-    <value>導入</value>
+    <value>匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Loading" xml:space="preserve">
@@ -786,7 +786,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth" xml:space="preserve">
-    <value>本地令牌</value>
+    <value>本機令牌</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AddAuth" xml:space="preserve">
@@ -794,7 +794,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AddAuthSuccess" xml:space="preserve">
-    <value>令牌導入完成</value>
+    <value>令牌匯入完成</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AddAuthSyncTip" xml:space="preserve">
@@ -802,15 +802,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AddAuth_PartSuccess" xml:space="preserve">
-    <value>部分數據導入成功</value>
+    <value>部分資料匯入成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthData" xml:space="preserve">
-    <value>令牌數據</value>
+    <value>令牌資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthName" xml:space="preserve">
-    <value>令牌自定義名稱</value>
+    <value>令牌自訂名稱</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade" xml:space="preserve">
@@ -854,11 +854,11 @@
     <comment>Comment=同意 or 取消;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_GetError" xml:space="preserve">
-    <value>您沒有權限檢視確認資訊. 是否啟用了家庭監護功能？ 暫時不支援管理啟用家庭監護功能后的交易確認。</value>
+    <value>您沒有權限檢視確認資訊. 是否啟用了家庭監護功能？ 暫時不支援管理啟用家庭監護功能後的交易確認。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_GetError2" xml:space="preserve">
-    <value>獲取 Steam 令牌交易數據失敗，請確認是否正常加速了 Steam 社區位址。</value>
+    <value>獲取 Steam 令牌交易資料失敗，請確認是否正常加速了 Steam 社群位址。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_GetTip" xml:space="preserve">
@@ -870,11 +870,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_ListNullTip" xml:space="preserve">
-    <value>當前沒有任何需要處理的交易報價</value>
+    <value>目前沒有任何需要處理的交易報價</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_Null" xml:space="preserve">
-    <value>當前沒有任何交易</value>
+    <value>目前沒有任何交易</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_TradeError" xml:space="preserve">
@@ -894,8 +894,8 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_DeleteAuthTip" xml:space="preserve">
-    <value>確定要永久刪除此令牌嗎，這隻是刪除令牌文件數據，並不會解綁你的帳號和令牌，
-    如果需要解綁令牌請到 https://store.steampowered.com/twofactor/manage 解綁后在刪除。</value>
+    <value>確定要永久刪除此令牌嗎，這只是刪除令牌文件資料，並不會解綁你的帳號和令牌，
+    如果需要解綁令牌請到 https://store.steampowered.com/twofactor/manage 解綁後在刪除。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_EditAuth" xml:space="preserve">
@@ -903,7 +903,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_EmailCodeTip" xml:space="preserve">
-    <value>請輸入發送到您電子郵件地址的代碼，以批准從新設備進行訪問。</value>
+    <value>請輸入發送到您電子郵件地址的程式碼，以批准從新裝置進行訪問。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth" xml:space="preserve">
@@ -915,7 +915,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth_EncryptionExport" xml:space="preserve">
-    <value>是否需要匯出帶加密的數據</value>
+    <value>是否需要匯出帶加密的資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth_Error" xml:space="preserve">
@@ -923,7 +923,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth_ExportPassword" xml:space="preserve">
-    <value>請輸入匯出的數據密碼</value>
+    <value>請輸入匯出的資料密碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth_SelectPath" xml:space="preserve">
@@ -931,7 +931,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_HasPasswordUnEncryptionAuth" xml:space="preserve">
-    <value>當前數據已加密，請先解鎖才能訪問。</value>
+    <value>目前資料已加密，請先解鎖才能訪問。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ImportFaild" xml:space="preserve">
@@ -939,7 +939,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_LockError" xml:space="preserve">
-    <value>沒有設置密碼無法鎖定令牌</value>
+    <value>沒有設定密碼無法鎖定令牌</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_MenuName" xml:space="preserve">
@@ -947,11 +947,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_NoAuthTip" xml:space="preserve">
-    <value>你還沒有導入任何令牌，請先新增令牌。</value>
+    <value>你還沒有匯入任何令牌，請先新增令牌。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_OtherImport" xml:space="preserve">
-    <value>其它軟體導入</value>
+    <value>其它軟體匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_PasswordRequired" xml:space="preserve">
@@ -971,15 +971,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_EnablePasswordTip" xml:space="preserve">
-    <value>*注意：你的令牌將使用您自己的密碼進行加密，您需要輸入您的密碼才能打開你被加密的令牌。 如果您忘記了密碼，並且沒有備份，您的令牌將無法訪問，你只能使用恢復代碼解綁或忘記帳號解除此令牌。</value>
+    <value>*注意：你的令牌將使用您自己的密碼進行加密，您需要輸入您的密碼才能打開你被加密的令牌。 如果您忘記了密碼，並且沒有備份，您的令牌將無法訪問，你只能使用復原程式碼解綁或忘記帳號解除此令牌。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_Error" xml:space="preserve">
-    <value>保存加密選項出現錯誤</value>
+    <value>儲存加密選項出現錯誤</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_Info" xml:space="preserve">
-    <value>非常建議您使用密碼保護您的令牌，否則您的數據可能會被您電腦上運行的惡意軟體讀取和竊取。 當然，你也可以不啟用任何加密，這不是強制性的，但您的令牌數據會有被盜取的風險!!!</value>
+    <value>非常建議您使用密碼保護您的令牌，否則您的資料可能會被您電腦上執行的惡意軟體讀取和竊取。 當然，你也可以不啟用任何加密，這不是強制性的，但您的令牌資料會有被盜取的風險!!!</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_IsOnlyCurrentComputerEncrypt" xml:space="preserve">
@@ -987,11 +987,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_IsOnlyCurrentComputerEncryptTip" xml:space="preserve">
-    <value>你也可以使用系統內置的帳戶加密來保護和加密你的數據。 這將把您的令牌鎖定在這台計算機上，因此即使檔被複製，也無法打開它們。 如果你要重新格式化你的磁碟，重新安裝系統或刪除這個用戶帳戶，你必須把這個功能關掉，否則你的數據也會無法解密。</value>
+    <value>你也可以使用系統內建的帳戶加密來保護和加密你的資料。 這將把您的令牌鎖定在這台電腦上，因此即使檔被複製，也無法打開它們。 如果你要重新格式化你的磁碟，重新安裝系統或刪除這個使用者帳戶，你必須把這個功能關掉，否則你的資料也會無法解密。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_NoChangeTip" xml:space="preserve">
-    <value>沒有任何更改需要保存</value>
+    <value>沒有任何更改需要儲存</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_Password" xml:space="preserve">
@@ -1011,11 +1011,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_SaveApply" xml:space="preserve">
-    <value>保存並應用</value>
+    <value>儲存並應用</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_Success" xml:space="preserve">
-    <value>保存加密設置成功</value>
+    <value>儲存加密設定成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ProtectionAuth_VerifyPassword" xml:space="preserve">
@@ -1027,11 +1027,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_RefreshAuthSuccess" xml:space="preserve">
-    <value>令牌數據載入完成</value>
+    <value>令牌資料載入完成</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SDAImport" xml:space="preserve">
-    <value>Steam Desktop Auth導入</value>
+    <value>Steam Desktop Auth匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ShowAuthCode" xml:space="preserve">
@@ -1039,27 +1039,27 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ShowAuthInfo" xml:space="preserve">
-    <value>查看令牌詳細數據</value>
+    <value>查看令牌詳細資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ShowSteamAuthTip1" xml:space="preserve">
-    <value>Steam 身份驗證器的完整數據，可在導入不同軟體時使用</value>
+    <value>Steam 身份驗證器的完整資料，可在匯入不同軟體時使用</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ShowSteamAuthTip2" xml:space="preserve">
-    <value>在 Steam 中啟用兩步驗證令牌後，便會生成一個恢復代碼，您可以在 Steam 用戶端中使用恢復代碼解除兩步驗證令牌，複製下來並保存在安全的地方。</value>
+    <value>在 Steam 中啟用兩步驗證令牌後，便會生成一個復原程式碼，您可以在 Steam 用戶端中使用復原程式碼解除兩步驗證令牌，複製下來並儲存在安全的地方。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SMSCodeTip" xml:space="preserve">
-    <value>還差一步，請輸入發送到您手機的簡訊驗證代碼，並點擊繼續按鈕。</value>
+    <value>還差一步，請輸入發送到您手機的簡訊驗證程式碼，並點擊繼續按鈕。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamAppImport" xml:space="preserve">
-    <value>手機 Steam 導入</value>
+    <value>手機 Steam 匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamAppImportTip" xml:space="preserve">
-    <value>您可以在已 root 的 Android 設備中導入您的 SteamGuard 身份驗證器路徑：/data/data/com.valvesoftware.android.steam.community 然後將以下兩個文件的內容複製到下面的對應輸入框中</value>
+    <value>您可以在已 root 的 Android 裝置中匯入您的 SteamGuard 身份驗證器路徑：/data/data/com.valvesoftware.android.steam.community 然後將以下兩個文件的內容複製到下面的對應輸入框中</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamAuthTrade" xml:space="preserve">
@@ -1067,28 +1067,28 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamGuardTip" xml:space="preserve">
-    <value>在 files 資料夾中，打開 'SteamGuard-NNNNNNN' 檔，粘貼檔的全部內容</value>
+    <value>在 files 資料夾中，打開 'SteamGuard-NNNNNNN' 檔，貼上檔的全部內容</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamToolsImport" xml:space="preserve">
-    <value>Watt Toolkit 導入</value>
+    <value>Watt Toolkit 匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamToolsV1Import" xml:space="preserve">
-    <value>導入 Watt Toolkit V1 版本的導出的令牌數據</value>
+    <value>匯入 Watt Toolkit V1 版本的匯出的令牌資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamToolsV2Import" xml:space="preserve">
-    <value>導入 Watt Toolkit V2 版本的導出的令牌數據</value>
+    <value>匯入 Watt Toolkit V2 版本的匯出的令牌資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamTradeLoginTip" xml:space="preserve">
-    <value>確認交易需要登錄 Steam，程式不會記錄你的密碼，只會在本地保存登錄的狀態。
+    <value>確認交易需要登入 Steam，程式不會記錄你的密碼，只會在本機儲存登入的狀態。
     （如果沒有開 Steam 網路加速會導致無法登入成功）</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamUserImport" xml:space="preserve">
-    <value>Steam 帳號導入</value>
+    <value>Steam 帳號匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamUser_Error" xml:space="preserve">
@@ -1096,7 +1096,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamUser_Requires2FA" xml:space="preserve">
-    <value>您的帳戶似乎已添加了身份驗證器，需要移除現有的身份驗證器才可以通過帳號導入。</value>
+    <value>您的帳戶似乎已添加了身份驗證器，需要移除現有的身份驗證器才可以透過帳號匯入。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamUUID" xml:space="preserve">
@@ -1104,7 +1104,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamuuidTip" xml:space="preserve">
-    <value>在 shared_prefs 資料夾中，粘貼 'steam_uuid.xml' 的 uuidKey</value>
+    <value>在 shared_prefs 資料夾中，貼上 'steam_uuid.xml' 的 uuidKey</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SyncTime" xml:space="preserve">
@@ -1112,11 +1112,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_WinAuthImport" xml:space="preserve">
-    <value>WinAuth 導入</value>
+    <value>WinAuth 匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_WinAuthTip" xml:space="preserve">
-    <value>WinAuth 是 Windows 的攜帶型開放原始程式碼身份驗證器，它提供基於計數器或基於時間的 RFC 6238 身份驗證器和常見的實現。 導入方法：從 WinAuth 匯出 txt 文件之後在此選擇從 WinAuth 匯出的 txt 檔進行導入。</value>
+    <value>WinAuth 是 Windows 的攜帶型開放原始碼身份驗證器，它提供基於計數器或基於時間的 RFC 6238 身份驗證器和常見的實現。 匯入方法：從 WinAuth 匯出 txt 文件之後在此選擇從 WinAuth 匯出的 txt 檔進行匯入。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Lock" xml:space="preserve">
@@ -1128,7 +1128,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LoginAndRegister" xml:space="preserve">
-    <value>登錄 / 註冊</value>
+    <value>登入 / 註冊</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Logining" xml:space="preserve">
@@ -1136,7 +1136,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>註銷登錄</value>
+    <value>註銷登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="MacSudoPasswordTips" xml:space="preserve">
@@ -1168,7 +1168,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NickName" xml:space="preserve">
-    <value>昵稱</value>
+    <value>暱稱</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="OtherGamePlaform" xml:space="preserve">
@@ -1176,7 +1176,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Paste" xml:space="preserve">
-    <value>粘貼</value>
+    <value>貼上</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="PleaseEnterNickName" xml:space="preserve">
@@ -1192,31 +1192,31 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RecoveryCode" xml:space="preserve">
-    <value>恢復代碼</value>
+    <value>復原程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RecoveryCode_Remember" xml:space="preserve">
-    <value>我已經寫下了我的恢復代碼</value>
+    <value>我已經寫下了我的復原程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RecoveryCode_RememberTip" xml:space="preserve">
-    <value>您的令牌已被添加到您的 Steam 帳戶上並已經成功導入 Watt Toolkit。 這是您的恢復代碼，如果您丟失了身份驗證器，可以用它從您的賬戶中刪除。 請您現在就寫下它，並將其放在安全的地方。</value>
+    <value>您的令牌已被添加到您的 Steam 帳戶上並已經成功匯入 Watt Toolkit。 這是您的復原程式碼，如果您遺失了身份驗證器，可以用它從您的帳戶中刪除。 請您現在就寫下它，並將其放在安全的地方。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value>刷新</value>
+    <value>重新整理</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RefreshList" xml:space="preserve">
-    <value>刷新清單</value>
+    <value>重新整理清單</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RefreshOK" xml:space="preserve">
-    <value>刷新成功</value>
+    <value>重新整理成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveChanges" xml:space="preserve">
-    <value>保存修改</value>
+    <value>儲存修改</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptConfig" xml:space="preserve">
@@ -1224,7 +1224,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptConfig_ScriptEmptyTip" xml:space="preserve">
-    <value>未查詢到匹配的文稿檔，您可以從腳本工坊下載文本檔。</value>
+    <value>未查詢到匹配的文稿檔，您可以從腳本工坊下載文字檔。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptShop_GetTableError" xml:space="preserve">
@@ -1236,7 +1236,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptShop_NoLogin" xml:space="preserve">
-    <value>使用腳本工坊需要先登錄。</value>
+    <value>使用腳本工坊需要先登入。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScriptStore" xml:space="preserve">
@@ -1252,11 +1252,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Edit" xml:space="preserve">
-    <value>編輯文本</value>
+    <value>編輯文字</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_EditTxt" xml:space="preserve">
-    <value>是否完成文稿修改，點擊確定刷新緩存。</value>
+    <value>是否完成文稿修改，點擊確定重新整理快取。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_FileError" xml:space="preserve">
@@ -1264,11 +1264,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Home" xml:space="preserve">
-    <value>腳本主頁</value>
+    <value>腳本首頁</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_ImportLoading" xml:space="preserve">
-    <value>處理導入腳本中</value>
+    <value>處理匯入腳本中</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Install" xml:space="preserve">
@@ -1276,15 +1276,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFileDeleteItem" xml:space="preserve">
-    <value>該文字檔已丟失，是否刪除腳本記錄。</value>
+    <value>該文字檔已遺失，是否刪除腳本記錄。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Refresh" xml:space="preserve">
-    <value>刷新快取</value>
+    <value>重新整理快取</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_ReplaceTips" xml:space="preserve">
-    <value>已安裝此文稿確定替換已安裝的版本？</value>
+    <value>已安裝此文稿確定取代已安裝的版本？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_Update" xml:space="preserve">
@@ -1292,7 +1292,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_UpdateError" xml:space="preserve">
-    <value>獲取文本新版本信息失敗。</value>
+    <value>獲取文字新版本資訊失敗。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Search" xml:space="preserve">
@@ -1304,11 +1304,11 @@
     <comment>Comment=*.txt;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>設置</value>
+    <value>設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Auth" xml:space="preserve">
-    <value>令牌設置</value>
+    <value>令牌設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Fonts" xml:space="preserve">
@@ -1316,7 +1316,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General" xml:space="preserve">
-    <value>通用設置</value>
+    <value>通用設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_AutoCheckUpdate" xml:space="preserve">
@@ -1324,7 +1324,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_RuningMinimize" xml:space="preserve">
-    <value>啟動時最小化到托盤</value>
+    <value>啟動時最小化到系統匣</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_StartAutoRun" xml:space="preserve">
@@ -1336,11 +1336,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam" xml:space="preserve">
-    <value>Steam 設置</value>
+    <value>Steam 設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_AutoRunSteam" xml:space="preserve">
-    <value>啟動時自動運行 Steam</value>
+    <value>啟動時自動執行 Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_NotCheckUpdate" xml:space="preserve">
@@ -1348,7 +1348,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_RuningMinimize" xml:space="preserve">
-    <value>Steam 啟動時最小化到托盤</value>
+    <value>Steam 啟動時最小化到系統匣</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_SteamStratParameter" xml:space="preserve">
@@ -1360,7 +1360,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI" xml:space="preserve">
-    <value>介面設置</value>
+    <value>介面設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_AcrylicTransparency" xml:space="preserve">
@@ -1380,15 +1380,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SignOut" xml:space="preserve">
-    <value>退出登錄</value>
+    <value>退出登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SMSCode" xml:space="preserve">
-    <value>簡訊驗證代碼</value>
+    <value>簡訊驗證程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SourceRepository" xml:space="preserve">
-    <value>源碼倉庫</value>
+    <value>原始碼倉庫</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="StartUpdate" xml:space="preserve">
@@ -1444,7 +1444,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAppType_Media" xml:space="preserve">
-    <value>預告視頻</value>
+    <value>預告影片</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAppType_Mod" xml:space="preserve">
@@ -1464,7 +1464,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAppType_Shortcut" xml:space="preserve">
-    <value>快捷方式</value>
+    <value>捷徑</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAppType_Tool" xml:space="preserve">
@@ -1476,7 +1476,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAppType_Video" xml:space="preserve">
-    <value>視頻</value>
+    <value>影片</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_ImageCodeTip" xml:space="preserve">
@@ -1516,7 +1516,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UnsavedEditingWillBeDiscarded" xml:space="preserve">
-    <value>將丟棄未保存的編輯</value>
+    <value>將丟棄未儲存的編輯</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Up" xml:space="preserve">
@@ -1528,31 +1528,31 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UploadYourAvatar" xml:space="preserve">
-    <value>上傳您的頭像</value>
+    <value>上傳您的大頭貼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UploadYourAvatarDesc" xml:space="preserve">
-    <value>從您的設備上傳一個檔。 圖片應為方形，至少為 400px x 400px</value>
+    <value>從您的裝置上傳一個檔。 圖片應為方形，至少為 400px x 400px</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_BtnText" xml:space="preserve">
-    <value>一鍵登錄 Steam</value>
+    <value>一鍵登入 Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_BtnTootlip" xml:space="preserve">
-    <value>按下此按鈕將重啟 Steam 並以該帳號登錄</value>
+    <value>按下此按鈕將重啟 Steam 並以該帳號登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_DeleteUser" xml:space="preserve">
-    <value>刪除此帳號數據</value>
+    <value>刪除此帳號資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_DeleteUserDataTip" xml:space="preserve">
-    <value>是否也要同時刪除此帳戶在本地的 Steam 快取資料（包括此帳號遊戲的設定檔及創意工坊檔）。</value>
+    <value>是否也要同時刪除此帳戶在本機的 Steam 快取資料（包括此帳號遊戲的設定檔及創意工坊檔）。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_DeleteUserTip" xml:space="preserve">
-    <value>確定要刪除這條本地記錄帳戶嗎？</value>
+    <value>確定要刪除這條本機記錄帳戶嗎？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_EditRemark" xml:space="preserve">
@@ -1560,11 +1560,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_LoginNewAccount" xml:space="preserve">
-    <value>登錄新 Steam 帳號</value>
+    <value>登入新 Steam 帳號</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_NoUserTip" xml:space="preserve">
-    <value>沒有在您的電腦上讀取到任何 Steam 帳戶數據。</value>
+    <value>沒有在您的電腦上讀取到任何 Steam 帳戶資料。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_OfflineBtn" xml:space="preserve">
@@ -1576,11 +1576,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_RecentLogin" xml:space="preserve">
-    <value>最近登錄</value>
+    <value>最近登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_RememberMe" xml:space="preserve">
-    <value>已記住登錄狀態</value>
+    <value>已記住登入狀態</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserFastChange" xml:space="preserve">
@@ -1600,19 +1600,19 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_AccountBind" xml:space="preserve">
-    <value>賬號綁定</value>
+    <value>帳號綁定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_AccountBindTip" xml:space="preserve">
-    <value>解綁第三方帳號需要已綁定手機號才能解綁，如果要將已綁定第三方帳號換綁至另一個帳號，可以使用 [關於-此軟體-賬號註銷] 註銷已綁定的帳號。</value>
+    <value>解綁第三方帳號需要已綁定手機號碼才能解綁，如果要將已綁定第三方帳號換綁至另一個帳號，可以使用 [關於-此軟體-帳號註銷] 註銷已綁定的帳號。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Agreement" xml:space="preserve">
-    <value>用戶協定</value>
+    <value>使用者協定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_AppleLogin" xml:space="preserve">
-    <value>使用 Apple 登錄</value>
+    <value>使用 Apple 登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_BasicInfo" xml:space="preserve">
@@ -1625,22 +1625,22 @@
   </data>
   <data name="User_ChangePhoneNum" xml:space="preserve">
     <value>換綁手機</value>
-    <comment>Comment=修改手机号;Author=MicrosoftTranslator</comment>
+    <comment>Comment=修改手機號碼;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_EditProfile" xml:space="preserve">
     <value>編輯資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_FastLogin" xml:space="preserve">
-    <value>快速登錄</value>
+    <value>快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_FastLoginTip" xml:space="preserve">
-    <value>選擇如何登錄您的 Watt Toolkit 帳戶</value>
+    <value>選擇如何登入您的 Watt Toolkit 帳戶</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_FastLogin_" xml:space="preserve">
-    <value>{0} 快速登錄</value>
+    <value>{0} 快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_GetSMSCode" xml:space="preserve">
@@ -1648,19 +1648,19 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Login" xml:space="preserve">
-    <value>登錄</value>
+    <value>登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoginCodeTimeLimitTip" xml:space="preserve">
     <value>重新取得（{0}）</value>
-    <comment>Comment=短信验证码倒计时;Author=MicrosoftTranslator</comment>
+    <comment>Comment=簡訊驗證碼倒數計時;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoginError" xml:space="preserve">
     <value>帳號或密碼錯誤</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoginError_Auth" xml:space="preserve">
-    <value>當前令牌帳號與已登錄帳號不匹配</value>
+    <value>目前令牌帳號與已登入帳號不匹配</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoginError_CodeImage" xml:space="preserve">
@@ -1672,15 +1672,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoginTroubleshoot" xml:space="preserve">
-    <value>無法登錄？</value>
+    <value>無法登入？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_LoiginSuccess" xml:space="preserve">
-    <value>登錄成功</value>
+    <value>登入成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_MicroSoftLogin" xml:space="preserve">
-    <value>使用 Microsoft 登錄</value>
+    <value>使用 Microsoft 登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_NewPhone" xml:space="preserve">
@@ -1688,7 +1688,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_OtherFastLogin" xml:space="preserve">
-    <value>其它快速登錄</value>
+    <value>其它快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Phone" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_PhoneLogin" xml:space="preserve">
-    <value>手機號登錄</value>
+    <value>手機號碼登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Privacy" xml:space="preserve">
@@ -1704,7 +1704,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_QQLogin" xml:space="preserve">
-    <value>使用 QQ 登錄</value>
+    <value>使用 QQ 登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Register" xml:space="preserve">
@@ -1716,7 +1716,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Rememberme" xml:space="preserve">
-    <value>記住登錄狀態</value>
+    <value>記住登入狀態</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SignOutTip" xml:space="preserve">
@@ -1732,35 +1732,35 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SteamAvatarTip" xml:space="preserve">
-    <value>點擊頭像快速登錄</value>
+    <value>點擊大頭貼快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SteamFastLogin" xml:space="preserve">
-    <value>Steam 快速登錄</value>
+    <value>Steam 快速登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SteamFastLoginTimeoutErrorMessage" xml:space="preserve">
-    <value>連接到 Steam 社區超時，請檢查是否開啟Steam社區網路加速。</value>
+    <value>連接到 Steam 社群超時，請檢查是否開啟Steam社群網路加速。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SteamLogoTip" xml:space="preserve">
-    <value>點擊跳轉到快速登錄視窗</value>
+    <value>點擊跳轉到快速登入視窗</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_SteamUnLoginTip" xml:space="preserve">
-    <value>點擊 Steam Logo 登錄</value>
+    <value>點擊 Steam Logo 登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_UnbundleAccountTip" xml:space="preserve">
-    <value>解綁第三方帳號關聯后將無法以該第三方帳號快速登錄，是否確定解綁？</value>
+    <value>解綁第三方帳號關聯後將無法以該第三方帳號快速登入，是否確定解綁？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_UseFastLoginChannel_" xml:space="preserve">
-    <value>使用 {0} 登錄</value>
+    <value>使用 {0} 登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_UsePhoneNumLoginChannel" xml:space="preserve">
-    <value>使用手機號碼登錄</value>
+    <value>使用手機號碼登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Warning" xml:space="preserve">
@@ -1780,11 +1780,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_Code" xml:space="preserve">
-    <value>一次性密碼代碼</value>
+    <value>一次性密碼程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_Code_Desc" xml:space="preserve">
-    <value>可以使用此應用生成的一次性密碼代碼來驗證登錄</value>
+    <value>可以使用此應用生成的一次性密碼程式碼來驗證登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_Code_Title" xml:space="preserve">
@@ -1796,7 +1796,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SeeData" xml:space="preserve">
-    <value>查看數據</value>
+    <value>查看資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_Delete" xml:space="preserve">
@@ -1820,11 +1820,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ImportByQRCode" xml:space="preserve">
-    <value>掃碼導入</value>
+    <value>掃碼匯入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_LogoutTip" xml:space="preserve">
-    <value>確定要註銷當前令牌登錄的賬號資訊嗎？</value>
+    <value>確定要註銷目前令牌登入的帳號資訊嗎？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ExportAuth_ToQRCode" xml:space="preserve">
@@ -1832,7 +1832,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AuthLocal_ExportToQRCodeTooLongErrorTip" xml:space="preserve">
-    <value>數據長度超出二維碼最大值，請嘗試其他匯出方式或單個導出</value>
+    <value>資料長度超出二維碼最大值，請嘗試其他匯出方式或單個匯出</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RememberChooseNotToAskAgain" xml:space="preserve">
@@ -1844,15 +1844,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Translators" xml:space="preserve">
-    <value>社區翻譯</value>
+    <value>社群翻譯</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_RemarkReplaceName" xml:space="preserve">
-    <value>使用備註替換暱稱顯示</value>
+    <value>使用備註取代暱稱顯示</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_UseGPURendering" xml:space="preserve">
-    <value>使用 GPU 渲染介面（硬體加速）</value>
+    <value>使用 GPU 繪製介面（硬體加速）</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_RestartEffective" xml:space="preserve">
@@ -1873,18 +1873,18 @@
   </data>
   <data name="Settings_General_BrowseCustomFolder" xml:space="preserve">
     <value>打開{0}資料夾</value>
-    <comment>Comment={0}文件夹名称英文字母组成;Author=MicrosoftTranslator</comment>
+    <comment>Comment={0}資料夾名稱英文字母組成;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_CacheSize" xml:space="preserve">
     <value>快取檔案已佔用 {0}</value>
-    <comment>Comment={0}占用体积大小;Author=MicrosoftTranslator</comment>
+    <comment>Comment={0}占用體積大小;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_ClearCache" xml:space="preserve">
     <value>清理快取檔</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_StorageSpace" xml:space="preserve">
-    <value>存儲空間</value>
+    <value>儲存空間</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_Calcing" xml:space="preserve">
@@ -1896,7 +1896,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_CheckSteamRuningNotification" xml:space="preserve">
-    <value>當 Steam 用戶端登錄時彈出通知</value>
+    <value>當 Steam 用戶端登入時彈出通知</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_CheckStarted" xml:space="preserve">
@@ -1908,7 +1908,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_CurrentUser" xml:space="preserve">
-    <value>Steam 登錄使用者：</value>
+    <value>Steam 登入使用者：</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_SteamChina" xml:space="preserve">
@@ -1921,10 +1921,10 @@
   </data>
   <data name="Settings_General_LogSize" xml:space="preserve">
     <value>記錄檔已佔用 {0}</value>
-    <comment>Comment={0}占用体积大小;Author=MicrosoftTranslator</comment>
+    <comment>Comment={0}占用體積大小;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_WaitFastLoginTip" xml:space="preserve">
-    <value>我們已使用您的系統瀏覽器打開快速登錄視窗，請進入該頁面並登錄。 保持該窗口打開</value>
+    <value>我們已使用您的系統瀏覽器打開快速登入視窗，請進入該頁面並登入。 保持該視窗打開</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Retry" xml:space="preserve">
@@ -1932,15 +1932,15 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="RefreshAvatar" xml:space="preserve">
-    <value>刷新頭像</value>
+    <value>重新整理大頭貼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AsyncSteamAvatar" xml:space="preserve">
-    <value>同步 Steam 頭像</value>
+    <value>同步 Steam 大頭貼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="AsyncSteamAvatarDesc" xml:space="preserve">
-    <value>綁定 Steam 帳號後可手動同步刷新使用 Steam 帳號頭像。</value>
+    <value>綁定 Steam 帳號後可手動同步重新整理使用 Steam 帳號大頭貼。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_ThemeAccent" xml:space="preserve">
@@ -1956,7 +1956,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_UnLogin" xml:space="preserve">
-    <value>未登錄</value>
+    <value>未登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ScanQRCode" xml:space="preserve">
@@ -1968,7 +1968,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Helper" xml:space="preserve">
-    <value>説明</value>
+    <value>說明</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_CustomBackgroundImage" xml:space="preserve">
@@ -1976,7 +1976,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>重置</value>
+    <value>重設</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_SelectImage" xml:space="preserve">
@@ -1984,7 +1984,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Login_ManualLogin" xml:space="preserve">
-    <value>手動登錄</value>
+    <value>手動登入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LoginInputManualLoginToken" xml:space="preserve">
@@ -1996,7 +1996,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Login_WebSocketOnMessage" xml:space="preserve">
-    <value>數據解密失敗，請確定數據正確重試。</value>
+    <value>資料解密失敗，請確定資料正確重試。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamAccountPage_ShareEmpt" xml:space="preserve">
@@ -2004,7 +2004,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ProxySettings" xml:space="preserve">
-    <value>代理設置</value>
+    <value>代理設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_CaptureScreen" xml:space="preserve">
@@ -2016,7 +2016,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_ChangeUserTip" xml:space="preserve">
-    <value>切換到 {0} 登錄 Steam</value>
+    <value>切換到 {0} 登入 Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ProxyOnlyOnScript" xml:space="preserve">
@@ -2036,7 +2036,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CreateCertificateFaild" xml:space="preserve">
-    <value>創建證書失敗</value>
+    <value>建立證書失敗</value>
     <comment>Comment=Fail;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Decompressing_" xml:space="preserve">
@@ -2052,7 +2052,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="IsExistUpdateFalse" xml:space="preserve">
-    <value>當前已是最新版本</value>
+    <value>目前已是最新版本</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NewVersionUpdate" xml:space="preserve">
@@ -2101,11 +2101,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFile" xml:space="preserve">
-    <value>文稿：{0} 檔案丟失已刪除</value>
+    <value>文稿：{0} 檔案遺失已刪除</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_NoFileDeleteError" xml:space="preserve">
-    <value>腳本：{0} 檔案丟失，刪除失敗去嘗試手動刪除</value>
+    <value>腳本：{0} 檔案遺失，刪除失敗去嘗試手動刪除</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_ReadFileError" xml:space="preserve">
@@ -2113,7 +2113,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_SaveDBError" xml:space="preserve">
-    <value>保存數據出錯請重試</value>
+    <value>儲存資料出錯請重試</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Script_SaveDbSuccess" xml:space="preserve">
@@ -2141,7 +2141,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ProgramUpdateEcho" xml:space="preserve">
-    <value>Watt Toolkit 替換升級中...</value>
+    <value>Watt Toolkit 取代升級中...</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SteamInstallPathNotFound" xml:space="preserve">
@@ -2157,7 +2157,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RedeemKey" xml:space="preserve">
-    <value>批量啟動 Key</value>
+    <value>批次啟動 Key</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RedeemKey_InputKey" xml:space="preserve">
@@ -2185,7 +2185,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RefreshBot" xml:space="preserve">
-    <value>刷新 Bot</value>
+    <value>重新整理 Bot</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_OpenWebUIConsole" xml:space="preserve">
@@ -2209,19 +2209,19 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_AutoRunASF" xml:space="preserve">
-    <value>啟動時自動運行 ASF</value>
+    <value>啟動時自動執行 ASF</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_OpenWebUIGlobalConfig" xml:space="preserve">
-    <value>跳轉到 WebUI 全域設置</value>
+    <value>跳轉到 WebUI 全域設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_ImportBotFile" xml:space="preserve">
-    <value>導入已有的 ASF Bot 檔</value>
+    <value>匯入已有的 ASF Bot 檔</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RequirRunASF" xml:space="preserve">
-    <value>請先運行 ASF 功能</value>
+    <value>請先執行 ASF 功能</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RedeemKeyBotSuccessTip" xml:space="preserve">
@@ -2253,7 +2253,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_Disable" xml:space="preserve">
-    <value>禁用</value>
+    <value>停用</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_Offline" xml:space="preserve">
@@ -2261,7 +2261,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_Online" xml:space="preserve">
-    <value>在線</value>
+    <value>線上</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_NowCardFarming" xml:space="preserve">
@@ -2285,7 +2285,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RequiredInput_SteamParentalCode" xml:space="preserve">
-    <value>家庭監護代碼</value>
+    <value>家庭監護程式碼</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SelectFile" xml:space="preserve">
@@ -2297,11 +2297,11 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_GetError3" xml:space="preserve">
-    <value>登錄狀態已失效請嘗試重新登錄。</value>
+    <value>登入狀態已失效請嘗試重新登入。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SteamUserImportSuccess" xml:space="preserve">
-    <value>你已經成功通過帳號登錄導入了你的令牌，請最後在測試一下你的令牌是否可以正常使用，如果無法使用可能導入失敗，嘗試重新進行導入並且刪除掉無效令牌即可。</value>
+    <value>你已經成功透過帳號登入匯入了你的令牌，請最後在測試一下你的令牌是否可以正常使用，如果無法使用可能匯入失敗，嘗試重新進行匯入並且刪除掉無效令牌即可。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_EnableDesktopBackground" xml:space="preserve">
@@ -2329,7 +2329,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Proxy_Socks5Proxy" xml:space="preserve">
-    <value>Socks5 本地代理</value>
+    <value>Socks5 本機代理</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Proxy_ProxyPort" xml:space="preserve">
@@ -2361,7 +2361,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_UseOpenGL" xml:space="preserve">
-    <value>使用 OpenGL 渲染</value>
+    <value>使用 OpenGL 繪製</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Download_ScriptError_" xml:space="preserve">
@@ -2377,7 +2377,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_ImportSuccessTip" xml:space="preserve">
-    <value>成功導入了 {0} 個檔</value>
+    <value>成功匯入了 {0} 個檔</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="DelAccount_VerifyDesc_NickName" xml:space="preserve">
@@ -2389,7 +2389,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="DelAccount_VerifyError_NickName" xml:space="preserve">
-    <value>輸入的昵稱不正確，請重新輸入</value>
+    <value>輸入的暱稱不正確，請重新輸入</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="DelAccount_VerifyError_PhoneNumber" xml:space="preserve">
@@ -2425,7 +2425,7 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Achievement_ResetWaring_3" xml:space="preserve">
-    <value>該操作不是還原當前修改，而是使所有成就和統計數據歸零。
+    <value>該操作不是還原目前修改，而是使所有成就和統計資料歸零。
 真的確定嗎？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
@@ -2435,41 +2435,41 @@
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_RedeemKey_InputKey_Watermark" xml:space="preserve">
-    <value>你可以鍵入任何文本只要其中包含 SteamKey 就會被自動識別添加到啟動清單，也可以按以下格式輸入：
+    <value>你可以鍵入任何文字只要其中包含 SteamKey 就會被自動識別添加到啟動清單，也可以按以下格式輸入：
 AAAAA-BBBBB-CCCC1
 AAAAA-BBBBB-CCCC2
 AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_AuthTrade_MessageBoxTip" xml:space="preserve">
-    <value>這將{0}您當前所有的交易報價。
+    <value>這將{0}您目前所有的交易報價。
 確定要繼續嗎？</value>
     <comment>Comment=同意 or 取消;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_EnableDesktopBackground_Tip" xml:space="preserve">
-    <value>*實驗性功能（開啟此功能時建議將透明材質設置為 Transparent 或 AcrylicBlur）
-這個功能可以將 Wallpaper Engine 以及其它壁紙軟體的動態壁紙設置為程式背景，如果你沒有啟動 Wallpaper Engine ，則預設使用桌面背景。 背景僅在主視窗生效，其它窗口建議調整透明度不要完全透明或者使用圖片背景。 使用時注意自行根據壁紙亮暗色情況切換對應主題以獲得更好的效果。</value>
+    <value>*實驗性功能（開啟此功能時建議將透明材質設定為 Transparent 或 AcrylicBlur）
+這個功能可以將 Wallpaper Engine 以及其它桌布軟體的動態桌布設定為程式背景，如果你沒有啟動 Wallpaper Engine ，則預設使用桌面背景。 背景僅在主視窗生效，其它視窗建議調整透明度不要完全透明或者使用圖片背景。 使用時注意自行根據桌布亮暗色情況切換對應主題以獲得更好的效果。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_UserLoginTip" xml:space="preserve">
-    <value>登錄 Steam 帳號進行令牌導入，導入前需要移除舊令牌，並且此導入方式會有市場交易 15 天冷卻期。
+    <value>登入 Steam 帳號進行令牌匯入，匯入前需要移除舊令牌，並且此匯入方式會有市場交易 15 天冷卻期。
 （如果沒有開 Steam 網路加速會導致無法登入成功）</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_LoginNewAccountTip" xml:space="preserve">
-    <value>確定要登錄 Steam 新帳戶嗎？
-此操作會結束正在運行的 Steam 跳轉到新帳號登錄視窗。</value>
+    <value>確定要登入 Steam 新帳戶嗎？
+此操作會結束正在執行的 Steam 跳轉到新帳號登入視窗。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="About_Donate_Desc" xml:space="preserve">
-    <value>「Watt Toolkit」當前版本的發佈離不開大家的支援，如果 Watt Toolkit 有説明到您，並且您希望我們能長久的保持新功能開發和維護，您可以考慮給我們一點捐助，以使我們更有動力的更新維護 Watt Toolkit。
-*捐助時請記得備註上您 Watt Toolkit 帳號的 UID 在備註消息內，這樣能方便我們後續將捐助獎勵反饋到您的帳號上。
+    <value>「Watt Toolkit」目前版本的發佈離不開大家的支援，如果 Watt Toolkit 有說明到您，並且您希望我們能長久的保持新功能開發和維護，您可以考慮給我們一點捐助，以使我們更有動力的更新維護 Watt Toolkit。
+*捐助時請記得備註上您 Watt Toolkit 帳號的 UID 在備註消息內，這樣能方便我們後續將捐助獎勵回饋到您的帳號上。
 
-在1.x版本捐助過的人我們之後會開發補錄賬號數據的網頁連結，請留意更新資訊，和保存好您曾經捐助支付的訂單號。</value>
+在1.x版本捐助過的人我們之後會開發補錄帳號資料的網頁連結，請留意更新資訊，和儲存好您曾經捐助支付的訂單號。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
-    <value>已複製到剪貼板</value>
+    <value>已複製到剪貼簿</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ClickHereCopyUIDToClipboard" xml:space="preserve">
@@ -2477,7 +2477,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="YouNeedSignInToGetUID" xml:space="preserve">
-    <value>需要登錄 Watt Toolkit 帳號才能獲取 UID</value>
+    <value>需要登入 Watt Toolkit 帳號才能獲取 UID</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Sleep" xml:space="preserve">
@@ -2525,11 +2525,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FileAttributeIsReadOnlyModifyFailTryBakDelAgain" xml:space="preserve">
-    <value>文件屬性為只讀，修改失敗，你可以嘗試先備份該檔后刪除再重試一遍</value>
+    <value>文件屬性為唯讀，修改失敗，你可以嘗試先備份該檔後刪除再重試一遍</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UpdatePackCacheHashInvalidDeleteFileTrue" xml:space="preserve">
-    <value>下載更新包快取檔驗證失敗，已刪除緩存嘗試重新下載，請等待</value>
+    <value>下載更新包快取檔驗證失敗，已刪除快取嘗試重新下載，請等待</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_ConsoleFontName" xml:space="preserve">
@@ -2565,13 +2565,13 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_WebConfigGenerator" xml:space="preserve">
-    <value>在線配置檔產生器</value>
+    <value>線上配置檔產生器</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_SteamShutdown_DownloadCompleteTip" xml:space="preserve">
     <value>Steam遊戲已下載完成
 系統將在 {0} 秒後{1}。</value>
-    <comment>Comment={0}倒计时时间 {1}执行操作;Author=MicrosoftTranslator</comment>
+    <comment>Comment={0}倒數計時時間 {1}執行操作;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LinuxSudoTips" xml:space="preserve">
     <value>Linux 需要提供系統 root 密碼才能正常使用該功能</value>
@@ -2610,11 +2610,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ReadHosts_IOException" xml:space="preserve">
-    <value>讀取或還原文件時失敗，因被其他進程佔用，可能是其他不相容的網路加速程式，請找到佔用的進程將其關閉。</value>
+    <value>讀取或還原文件時失敗，因被其他行程佔用，可能是其他不相容的網路加速程式，請找到佔用的行程將其關閉。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_System" xml:space="preserve">
-    <value>系統設置</value>
+    <value>系統設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_CertificateExport" xml:space="preserve">
@@ -2622,7 +2622,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_GoToSystemSecuritySettings" xml:space="preserve">
-    <value>打開安全設置</value>
+    <value>打開安全設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ExportedToPath_" xml:space="preserve">
@@ -2630,11 +2630,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_DeleteCertificateTipText_" xml:space="preserve">
-    <value>必須在【系統設置 - 安全 - 加密與憑據 - 憑據存儲 - 使用者憑據】中找到 {0} 點擊該項后在彈窗中點擊卸載。</value>
+    <value>必須在【系統設定 - 安全 - 加密與憑據 - 憑據儲存 - 使用者憑據】中找到 {0} 點擊該項後在彈出視窗中點擊移除。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_DeleteCertificateTipTitle" xml:space="preserve">
-    <value>在「安全設置」中移除證書</value>
+    <value>在「安全設定」中移除證書</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_IsVpnMode" xml:space="preserve">
@@ -2646,23 +2646,23 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ResetHostsFile" xml:space="preserve">
-    <value>重置 Hosts 檔</value>
+    <value>重設 Hosts 檔</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ResetHostsFileCatchTip_" xml:space="preserve">
-    <value>重置 Hosts 檔失敗，錯誤：{0}</value>
+    <value>重設 Hosts 檔失敗，錯誤：{0}</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ResetHostsFileTip" xml:space="preserve">
-    <value>重置 Hosts 檔將刪除所有資料並還原當前操作系統預設值，建議先編輯 Hosts 檔查看是否有需要的數據先進行備份後再執行此操作，是否確認重置？</value>
+    <value>重設 Hosts 檔將刪除所有資料並還原目前作業系統預設值，建議先編輯 Hosts 檔查看是否有需要的資料先進行備份後再執行此操作，是否確認重設？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_Hosts_MarkDuplicate_" xml:space="preserve">
-    <value>Mark 出現多個 [{0}]，請嘗試重置 Hosts 檔或編輯 Hosts 檔並刪除多餘的 Mark 后再試一次</value>
+    <value>Mark 出現多個 [{0}]，請嘗試重設 Hosts 檔或編輯 Hosts 檔並刪除多餘的 Mark 後再試一次</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_ResetHostsFileOk" xml:space="preserve">
-    <value>重置 Hosts 檔成功</value>
+    <value>重設 Hosts 檔成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="NotificationChannelType_Description_ForegroundService" xml:space="preserve">
@@ -2686,11 +2686,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ProxyForegroundService_NotificationText" xml:space="preserve">
-    <value>本地加速代理服務正在運行。</value>
+    <value>本機加速代理服務正在執行。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ArchiSteamFarmForegroundService_NotificationText" xml:space="preserve">
-    <value>ASF 服務正在運行。</value>
+    <value>ASF 服務正在執行。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_RemoveAuth" xml:space="preserve">
@@ -2698,7 +2698,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="LocalAuth_SDATip" xml:space="preserve">
-    <value>Steam 的行動身份驗證器應用程式的桌面實現。 導入方法：選擇 SDA 目錄下 maFiles 資料夾的 maFile 檔案進行匯入。 （不支援匯入加密檔，請先移除密碼再匯入）</value>
+    <value>Steam 的行動身份驗證器應用程式的桌面實現。 匯入方法：選擇 SDA 目錄下 maFiles 資料夾的 maFile 檔案進行匯入。 （不支援匯入加密檔，請先移除密碼再匯入）</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_ShareDisable" xml:space="preserve">
@@ -2706,7 +2706,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_ShareDisableBtn" xml:space="preserve">
-    <value>禁用</value>
+    <value>停用</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Steam_ShareEnableBtn" xml:space="preserve">
@@ -2718,15 +2718,15 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_SetCryptKey" xml:space="preserve">
-    <value>設置自訂金鑰</value>
+    <value>設定自訂金鑰</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ASF_ConsoleSettings" xml:space="preserve">
-    <value>主控台設置</value>
+    <value>主控台設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UnixSudoPasswordTips" xml:space="preserve">
-    <value>請輸入系統密碼繼續或者複製命令手動執行</value>
+    <value>請輸入系統密碼繼續或者複製指令手動執行</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="UserChange_ShowUserDataFolder" xml:space="preserve">
@@ -2758,7 +2758,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>保存</value>
+    <value>儲存</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ProxyMode_DNSIntercept" xml:space="preserve">
@@ -2830,7 +2830,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="OpenSteamGridDBInBrowser" xml:space="preserve">
-    <value>打開 SteamGridDB 網頁流覽</value>
+    <value>打開 SteamGridDB 網頁瀏覽</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="OpenTheAuthorPageInBrowser" xml:space="preserve">
@@ -2870,7 +2870,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_EditedAppsSaveManger" xml:space="preserve">
-    <value>保存 Steam 遊戲自訂資訊</value>
+    <value>儲存 Steam 遊戲自訂資訊</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveFile" xml:space="preserve">
@@ -2894,39 +2894,39 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveImageFileFailed" xml:space="preserve">
-    <value>保存 {0} 圖片失敗</value>
+    <value>儲存 {0} 圖片失敗</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="ResetAll" xml:space="preserve">
-    <value>重置全部</value>
+    <value>重設全部</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SaveToSteam" xml:space="preserve">
-    <value>保存全部更改到 Steam</value>
+    <value>儲存全部更改到 Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_EmptyAppsTip" xml:space="preserve">
-    <value>沒有獲取到已編輯的遊戲數據</value>
+    <value>沒有獲取到已編輯的遊戲資料</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SaveFailed" xml:space="preserve">
-    <value>保存 AppInfos 出現錯誤</value>
+    <value>儲存 AppInfos 出現錯誤</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_RestartSteamTip" xml:space="preserve">
-    <value>修改的數據已保存到 Steam 本地檔中，是否立即重啟 Steam 生效？</value>
+    <value>修改的資料已儲存到 Steam 本機檔中，是否立即重啟 Steam 生效？</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SaveToSteamSuccess" xml:space="preserve">
-    <value>保存數據到 Steam 成功</value>
+    <value>儲存資料到 Steam 成功</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SaveToSteamFailed" xml:space="preserve">
-    <value>保存資料失敗，查看程式日誌獲取詳細錯誤資訊</value>
+    <value>儲存資料失敗，查看程式日誌獲取詳細錯誤資訊</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SteamUserNullTip" xml:space="preserve">
-    <value>獲取最後登錄的 Steam 帳號資訊失敗，無法修改自定義封面是。</value>
+    <value>獲取最後登入的 Steam 帳號資訊失敗，無法修改自訂封面是。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SaveEditedAppInfo_SelectImageFailed" xml:space="preserve">
@@ -2934,7 +2934,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Notice_Tray" xml:space="preserve">
-    <value>當前有 {0} 條{1}通知，詳情請在程式內通知公告處查看。</value>
+    <value>目前有 {0} 條{1}通知，詳情請在程式內通知公告處查看。</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="HorizontalTitlePage" xml:space="preserve">
@@ -2958,11 +2958,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_EnableTrayIcon" xml:space="preserve">
-    <value>啟用托盤圖示</value>
+    <value>啟用系統匣圖示</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_EnableTrayIcon_Tip" xml:space="preserve">
-    <value>禁用此選項時關閉主視窗將直接退出程式</value>
+    <value>停用此選項時關閉主視窗將直接退出程式</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_UI_HighContrast" xml:space="preserve">
@@ -2998,7 +2998,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CreateTime" xml:space="preserve">
-    <value>創建時間</value>
+    <value>建立時間</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="GameList_CloudArchiveManager" xml:space="preserve">
@@ -3082,7 +3082,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="FailedToRunSetupWithPath_PleaseRunItManually" xml:space="preserve">
-    <value>運行安裝程式失敗，路徑為：{0}，請手動運行</value>
+    <value>執行安裝程式失敗，路徑為：{0}，請手動執行</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="User_Level" xml:space="preserve">
@@ -3098,7 +3098,7 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Advertisement_NoShow_Tip" xml:space="preserve">
-    <value>僅贊助用戶可設置</value>
+    <value>僅贊助使用者可設定</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="SeeDetails" xml:space="preserve">
@@ -3118,11 +3118,11 @@ AAAAA-BBBBB-CCCC3</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="CommunityFix_DNSErrorNotify" xml:space="preserve">
-    <value>DNS解析遇到異常，請嘗試在代理設置中修改其它DNS再次嘗試</value>
+    <value>DNS解析遇到異常，請嘗試在代理設定中修改其它DNS再次嘗試</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_Steam_RuningAdmin" xml:space="preserve">
-    <value>以管理員許可權運行 Steam</value>
+    <value>以管理員許可權執行 Steam</value>
     <comment>Comment=;Author=MicrosoftTranslator</comment>
   </data>
   <data name="Settings_General_UseWinHttpHandler" xml:space="preserve">
