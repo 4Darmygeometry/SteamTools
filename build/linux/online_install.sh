@@ -235,8 +235,8 @@ Get_NewVer() {
     aarch64)
         architecture=3
         ;;
-    loongarch64)
-        architecture=4
+    loongarch64 | loong64)
+        architecture=6
         ;;
     *)
         zenity --info --text="未知的设备架构:$arch!" --width=300
