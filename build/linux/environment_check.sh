@@ -1,6 +1,104 @@
 #!/bin/bash
 base_path="$HOME/WattToolkit"
 export LC_ALL=en_US.UTF-8
+Determine_distribution() {
+    # 判断发行版类型
+    # 由于Linux发行版包管理器可以混装，如Debian安装Arch Linux的pacman，此处采用/etc/os-release的形式进行一次判断。
+    # 读取 /etc/os-release 文件并提取 ID 字段，转换为小写
+    os_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2 | tr -d '"' | tr '[:upper:]' '[:lower:]')
+    # 输出 ID
+    echo "OS ID: $os_id"
+
+    case "$os_id" in
+    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde")
+        echo 默认包管理器：apt
+        sudo apt update
+        installprefix="sudo apt install -y"
+        nssvar="libnss3-tools"
+        ;;
+    "fedora")
+        echo 默认包管理器：dnf
+        installprefix="sudo dnf install -y"
+        nssvar="nss-tools"
+        ;;
+    "centos" | "rhel" | "rocky" | "alma" | "amzn" | "nfs" | "alt")
+        echo 默认包管理器：yum
+        installprefix="sudo yum install -y"
+        nssvar="nss-tools"
+        ;;
+    "opensuse")
+        echo 默认包管理器：zypper
+        sudo zypper refresh
+        installprefix="sudo zypper install"
+        nssvar="mozilla-nss-tools"
+        ;;
+    "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
+        echo 默认包管理器：pacman
+        installprefix="sudo pacman -S"
+        nssvar="nss"
+        ;;
+    "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
+        echo 默认包管理器：urpmi
+        sudo urpmi.update -a
+        installprefix="sudo urpmi"
+        nssvar="nss-tools"
+        ;;
+    "slackware" | "salix" | "porteus" | "slacko")
+        echo 默认包管理器：slackpkg
+        sudo slackpkg update gpg
+        sudo slackpkg update
+        installprefix="sudo slackpkg install"
+        nssvar="nss"
+        ;;
+    "gentoo")
+        echo 默认包管理器：emerge
+        sudo emerge --sync
+        installprefix="sudo emerge -av"
+        nssvar="nss"
+        ;;
+    "solus")
+        echo 默认包管理器：eopkg
+        sudo eopkg update-repo
+        installprefix="sudo eopkg install"
+        nssvar="nss-tools"
+        ;;
+    "clearlinux")
+        echo 默认包管理器：swupd
+        # 手动安装判断变量
+        manualins="1"
+        ;;
+    "nixos")
+        echo 默认包管理器：nix
+        manualins="1"
+        ;;
+    "void")
+        echo 默认包管理器：xbps
+        manualins="1"
+        ;;
+    "puppy")
+        echo 默认包管理器：petget
+        manualins="1"
+        ;;
+    "tinycore")
+        echo 默认包管理器：tce-load
+        manualins="1"
+        ;;
+    "aosc")
+        echo 默认包管理器：oma
+        installprefix="sudo oma install -y"
+        nssvar="nss"
+        ;;
+    "yongbao")
+        echo 无包管理器
+        manualins="1"
+        ;;
+    *)
+        echo 未知发行版
+        manualins="1"
+        ;;
+    esac
+}
+Determine_distribution
 if [ "$1" = "-c" ]; then
     # 只验证 certutil 是否可用
     if command -v certutil &>/dev/null; then
@@ -11,37 +109,21 @@ if [ "$1" = "-c" ]; then
     fi
 else
     Install_certutil() {
-        # 判断发行版类型
         if command -v certutil &>/dev/null; then
             echo "certutil 工具已安装。"
+        elif [ "$manualins" == "1" ]; then
+            echo "请手动安装 certutil 工具。"
         else
             echo "证书导入以及验证需要使用 certutil 工具。"
-            # 判断包管理器
-            if command -v apt &>/dev/null; then
-                # 使用 apt (Debian/Ubuntu)
-                if command -v oma &>/dev/null; then
-                    # 使用 oma (AOSC OS)
-                    sudo oma install -y nss
-                else
-                    sudo apt update
-                    sudo apt install -y libnss3-tools
-                fi
-            elif command -v dnf &>/dev/null; then
-                # 使用 dnf (Fedora)
-                sudo dnf install -y nss-tools
-            elif command -v yum &>/dev/null; then
-                # 使用 yum (CentOS/Red Hat)
-                sudo yum install -y nss-tools
-            elif command -v pacman &>/dev/null; then
-                # 使用 pacman (Arch Linux)
-                # sudo pacman -S nss
-                echo "请手动安装 certutil 工具。"
-                exit 1
+            $installprefix $nssvar
+            # Loongnix 25特殊情况
+            if [ "$os_id" == "loongnix" ]; then
+                sudo ln -s /usr/sbin/setcap /usr/bin/setcap
+                sudo apt update
+                # sudo apt dist-upgrade
             else
-                echo "请手动安装 certutil 工具。"
-                exit 1
+                echo "certutil 工具已安装。"
             fi
-            echo "certutil 工具已安装。"
         fi
     }
     certutil_Init() {
