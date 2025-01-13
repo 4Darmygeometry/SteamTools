@@ -75,10 +75,11 @@
 - Android 5.0(API 21) 或更高版本
 - AOSC OS 12(Localhost) 或更高版本
 ### ARM用户请下载Release中的稳定版或自行构建。
-### 龙芯用户请下载Release中的测试版。运行Watt Toolkit龙芯版需达到Linux内核>=6.6、glibc>=2.40的要求（deepin 23除外）。下列为龙芯版目前所适配的操作系统：
-- Deepin 23 或更高版本
-- AOSC OS 12(Localhost) 或更高版本
+### 龙芯用户请下载Release中的测试版。运行Watt Toolkit龙芯版需达到Linux内核>=6.6、glibc>=2.40的要求（deepin 23除外）。下列为龙芯版目前所适配的操作系统（均为新世界系统）：
+- [Deepin 23 或更高版本](https://www.deepin.org/zh/download/)
+- [AOSC OS 12 或更高版本](https://aosc.io/download)
 - Loongnix 25 或更高版本
+- [Loongnix server 23.1 或更高版本](http://pkg.loongnix.cn/loongnix-server/23.1/isos/)
 
 ## 🔲 支持的处理器
 ### X86处理器
@@ -146,6 +147,7 @@
 - 系统要求
 	- [AOSC OS 12 或更高版本](https://aosc.io/download)
 	- loongnix 25 或更高版本
+	- [Loongnix server 23.1 或更高版本](http://pkg.loongnix.cn/loongnix-server/23.1/isos/)
 	- [Deepin 25 或更高版本](https://www.deepin.org/zh/download/)
 	- Yongbao 2.9 或更高版本
 	- [Alpine Linux 3.21.0 或更高版本](https://alpinelinux.org/downloads/)
