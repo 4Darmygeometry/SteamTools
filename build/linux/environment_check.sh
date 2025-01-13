@@ -98,7 +98,6 @@ Determine_distribution() {
         ;;
     esac
 }
-Determine_distribution
 if [ "$1" = "-c" ]; then
     # 只验证 certutil 是否可用
     if command -v certutil &>/dev/null; then
@@ -139,6 +138,7 @@ else
             echo "certutil nssdb 正常"
         fi
     }
+    Determine_distribution
     Install_certutil
     certutil_Init
     exit 0
