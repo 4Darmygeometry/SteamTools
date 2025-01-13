@@ -154,7 +154,7 @@
 [Xcode 14 或更高版本](https://developer.apple.com/xcode)  
 
 ### 龙芯版构建特殊要求
-详见&nbsp;&nbsp;[./src/loongson-build.md](./src/loongson-build.md)
+详见&nbsp;&nbsp;[./doc/loongson-build.md](./doc/loongson-build.md)
 
 ## 🏗️ [项目结构](./src/README.md)
 详见&nbsp;&nbsp;[./src/README.md](./src/README.md)  
