@@ -59,6 +59,11 @@ Determine_distribution() {
         installprefix="sudo slackpkg install"
         nssvar="nss"
         ;;
+    "aosc")
+        echo 默认包管理器：oma
+        installprefix="sudo oma install -y"
+        nssvar="nss"
+        ;;
     "gentoo")
         echo 默认包管理器：emerge
         sudo emerge --sync
@@ -91,11 +96,6 @@ Determine_distribution() {
     "tinycore")
         echo 默认包管理器：tce-load
         manualins="1"
-        ;;
-    "aosc")
-        echo 默认包管理器：oma
-        installprefix="sudo oma install -y"
-        nssvar="nss"
         ;;
     "yongbao")
         echo 无包管理器
