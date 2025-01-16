@@ -71,15 +71,18 @@
 - Debian 11 或更高版本
 - Fedora 37 或更高版本
 - Deepin(UOS) 20 或更高版本
-- ~~iOS 11 或更高版本~~（开发中…）
-- Android 5.0(API 21) 或更高版本
 - AOSC OS 12(Localhost) 或更高版本
-### ARM用户请下载Release中的稳定版或自行构建。
+- 中科方德桌面版 5.0 或更高版本
+### ARM PC用户请下载Release中的稳定版或自行构建，手机用户支持如下版本：
+- Android 5.0(API 21) 或更高版本
+- ~~iOS 11 或更高版本~~（开发中…）
+- 使用鸿蒙系统的手机用户等后续适配。
 ### 龙芯用户请下载Release中的测试版。运行Watt Toolkit龙芯版需达到Linux内核>=6.6、glibc>=2.40的要求（deepin 23除外）。下列为龙芯版目前所适配的操作系统（均为新世界系统）：
 - [Deepin 23 或更高版本](https://www.deepin.org/zh/download/)
 - [AOSC OS 12 或更高版本](https://aosc.io/download)
 - Loongnix 25 或更高版本
-- [Loongnix server 23.1 或更高版本](http://pkg.loongnix.cn/loongnix-server/23.1/isos/)
+- [Loongnix Server 23.1 或更高版本](http://pkg.loongnix.cn/loongnix-server/23.1/isos/)
+- [Yongbao 2.10 或更高版本](https://mirrors.wsyu.edu.cn/fedora/linux/Yongbao/2.10/) 16K内核
 ### 常见问题
 #### Deepin 23：
 - error while loading shared libraries: unexpected reloc type 0x0e
@@ -92,7 +95,30 @@
 原因：主文件夹中没有.pki文件夹或内容存在问题
 
 解决方法：手动运行脚本中的environment_check.sh，重新生成文件夹
+#### Yongbao（勇豹）：
+- error while loading shared libraries: cannot apply additional memory protection after relocation: Cannot allocate memory
 
+原因：使用4K内核启动勇豹系统，目前加速功能仅能在16K LoongArch64内核下正常工作
+
+解决方法：换16K内核启动，或者忽略警告，使用除加速功能外的其他功能
+- Failed to load System.Private.CoreLib.dll (error code 0x8007000E)
+Path: ./WattToolkit/dotnet/shared/Microsoft.NETCore.App/9.0.0/System.Private.CoreLib.dll
+Error message: Out Of Memory
+Failed to create CoreCLR, HRESULT: 0x8007000E
+
+原因：使用64K内核启动勇豹系统，软件目前不支持该内核
+
+解决方法：换16K内核启动
+- pkexec must be setuid root
+
+原因：pkexec未获得权限
+
+解决方法：sudo chmod u+s $(which pkexec)
+- StartProxyFail: BindPortError
+
+原因：勇豹只支持System代理加速
+
+解决方法：将host代理加速改成system代理加速
 ## 🔲 支持的处理器
 ### X86处理器
 - 满足上述操作系统安装最低要求及以上的的x86-64 CPU
