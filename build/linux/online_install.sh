@@ -248,8 +248,6 @@ Install_zenity() {
     else
         echo "安装过程需要 zenity 工具。"
         $installprefix zenity
-        # pv工具用于显示解压百分比
-        $installprefix pv
         echo "zenity 工具已安装。"
     fi
 }
