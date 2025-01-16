@@ -9,11 +9,21 @@ if [ "$EUID" -eq 0 ]; then
   exit 1
 fi
 
+command -v dialog &>/dev/null && dialog1="dialog" || dialog1="whiptail"
 # 循环直到用户输入有效路径或直接回车
 while true; do
-    # 使用 zenity 提示用户选择安装路径或使用默认路径
-    custom_base_path=$(zenity --entry --title="安装路径" --text="请输入安装路径（默认为 $default_base_path，不输入则使用默认路径）")
-
+    # 使用 zenity 提示用户选择安装路径或使用默认路径（若未安装zenity，调用默认对话框工具）
+    if command -v zenity &>/dev/null; then
+        custom_base_path=$(zenity --entry --title="安装路径" --text="请输入安装路径（默认为 "$default_base_path"，不输入则使用默认路径）")
+    else
+        custom_base_path=$($dialog1 --title "安装路径" --inputbox "请输入安装路径（默认为 "$default_base_path"，不输入则使用默认路径）" 10 60 3>&1 1>&2 2>&3)
+    fi
+    # 点确定即使不输入也进行下一步，点取消取消安装
+    case $? in
+    0) ;;
+    1) exit 1 ;;
+    *) echo "发生意外错误" ;;
+    esac
     # 如果用户提供了自定义路径，则使用该路径
     if [ -n "$custom_base_path" ]; then
         base_path="$custom_base_path"
@@ -90,12 +100,14 @@ Determine_distribution() {
     # 判断发行版类型
     # 由于Linux发行版包管理器可以混装，如Debian安装Arch Linux的pacman，此处采用/etc/os-release的形式进行一次判断。
     # 读取 /etc/os-release 文件并提取 ID 字段，转换为小写
+    # $installprefix是该发行版包管理器安装软件前缀
+    # $nssvar是该发行版certutil包名称
     os_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2 | tr -d '"' | tr '[:upper:]' '[:lower:]')
     # 输出 ID
     echo "OS ID: $os_id"
 
     case "$os_id" in
-    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde")
+    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde" | "nfsdesktop")
         echo 默认包管理器：apt
         sudo apt update
         installprefix="sudo apt install -y"
@@ -106,7 +118,7 @@ Determine_distribution() {
         installprefix="sudo dnf install -y"
         nssvar="nss-tools"
         ;;
-    "centos" | "rhel" | "rocky" | "alma" | "amzn" | "nfs" | "alt")
+    "centos" | "rhel" | "rocky" | "alma" | "amzn" | "alt")
         echo 默认包管理器：yum
         installprefix="sudo yum install -y"
         nssvar="nss-tools"
@@ -236,6 +248,8 @@ Install_zenity() {
     else
         echo "安装过程需要 zenity 工具。"
         $installprefix zenity
+        # pv工具用于显示解压百分比
+        $installprefix pv
         echo "zenity 工具已安装。"
     fi
 }
@@ -243,7 +257,7 @@ Install_zenity() {
 Show_Run() {
     local param1=$1
     # 显示提示框，询问是否运行程序
-    zenity --question --text="$1" --width=400
+    if [ "$os_id" != "yongbao" ]; then zenity --question --text="$1" --width=400; else whiptail --yesno "$1" 10 60; fi
 
     # 获取上一个命令的退出码
     response=$?
@@ -278,7 +292,7 @@ Get_NewVer() {
         architecture=6
         ;;
     *)
-        zenity --info --text="未知的设备架构:$arch!" --width=300
+        [ "$os_id" != "yongbao" ] && zenity --info --text="未知的设备架构:$arch!" --width=300 || whiptail --msgbox "未知的设备架构:$arch!" 10 60
         exit 500
         ;;
     esac
@@ -290,6 +304,9 @@ Get_NewVer() {
     if [ -z "$os_version" ]; then
         os_version=$(cat /etc/os-release | grep -E 'BUILD_ID=' | awk -F'=' '{ print $2 }' | tr -d '"')
     fi
+
+    # 假如是勇豹系统用下面的命令判断
+    [ "$os_id" != "yongbao" ] && os_version=$(grep -E 'VERSION_ID=' /etc/os-release | awk -F'=' '{ print $2 }' | tr -d '"')
 
     # 分割版本号
     IFS='.' read -ra version_parts <<<"$os_version"
@@ -308,11 +325,10 @@ Get_NewVer() {
 
     # 检查 SHA384 值是否为空
     if [ "$n_sha384" = "" ]; then
-        zenity --info --text="未知的最新版本 Hash:$n_sha384!" --width=300
+        [ "$os_id" != "yongbao" ] && zenity --info --text="未知的最新版本 Hash:$n_sha384!" --width=300 || whiptail --msgbox "未知的最新版本 Hash:$n_sha384!" 10 60
         exit 500
     fi
 
-    sleep 1
     #本地版本 Hash
     if [ -f "AppVer" ]; then
         o_sha384=$(cat "AppVer")
@@ -335,21 +351,26 @@ Download_File() {
     else
         title="更新"
     fi
+    [ "$os_id" != "yongbao" ] && dialog1=zenity || dialog1=whiptail
     for i in {1..3}; do
         #下载文件到目标目录
-        wget "$downloads_url" -O "$tar_path" 2>&1 | sed -u 's/.* \([0-9]\+%\)\ \+\([0-9.]\+.\) \(.*\)/\1\n# 下载中 \2\/s, 剩余时间： \3/' | zenity --progress --title="$title Watt Toolkit" --auto-close --width=500
+        if [ "$os_id" != "yongbao" ]; then
+            wget "$downloads_url" -O "$tar_path" 2>&1 | sed -u 's/.* \([0-9]\+%\)\ \+\([0-9.]\+.\) \(.*\)/\1\n# 下载中 \2\/s, 剩余时间： \3/' | zenity --progress --title="$title Watt Toolkit" --auto-close --width=500
+        else
+            wget "$downloads_url" -O "$tar_path" 2>&1 | sed -u 's/.* \([0-9]\+\)%.*/\1/' | whiptail --title "$title" --gauge "正在下载中" 10 60 0
+        fi
 
         RUNNING=0
         while [ $RUNNING -eq 0 ]; do
-            if [ -z "$(pidof zenity)" ]; then
+            if [ -z "$(pidof $dialog1)" ]; then
                 pkill wget
                 RUNNING=1
             fi
             sleep 0.1
         done
 
-        sleep 1
         # 校验下载文件 Hash
+        echo 正在校验哈希值
         actual_hash=$(sha384sum "$tar_name" | awk '{ print $1 }')
         if [ "${actual_hash,,}" = "${n_sha384,,}" ]; then
             rm "AppVer"
@@ -358,7 +379,7 @@ Download_File() {
         fi
 
         if [ "$i" -ge "3" ]; then
-            zenity --error --text="下载错误。" --width=500
+            [ "$os_id" != "yongbao" ] && zenity --error --text="下载错误。" --width=500 || whiptail --msgbox "下载错误。" 10 60
             exit 1
         fi
     done
@@ -397,32 +418,28 @@ Kill_Process() {
 }
 
 Decompression() {
-    echo "开始解压更新。"
-
-    # 使用 zenity 显示进度条对话框，并将解压命令输出重定向到文件
-    tar -xzvf "$tar_name" 2>&1 |
-        zenity --progress \
-            --title="安装中" \
-            --text="正在解压 $tar_name..." \
-            --percentage=20 \
-            --auto-close \
-            --width=500
-
-    # 删除本地版本缓存
+    echo "正在校验安装包"
+    TOTAL_FILES=$(tar tf "$tar_name" 2>/dev/null | wc -l)
+    {
+       COUNTER=0
+       tar -xzvf "$tar_name" 2>/dev/null | while read -r FILE; do
+       COUNTER=$((COUNTER + 1))
+       PERCENTAGE=$((COUNTER * 100 / TOTAL_FILES))
+       echo "# 解压 $FILE"
+       echo "$PERCENTAGE"
+     done
+     echo "100"
+   }| { ([ "$os_id" != "yongbao" ] && zenity --progress --title="安装中" --text="正在解压文件..." --width=500 --percentage=0 --auto-close --no-cancel || whiptail --title "安装中" --gauge "正在解压文件..." 10 60 0)}
     rm -f "$appVer_path" &>/dev/null
     dotnet_path="$base_path/dotnet"
     dotnet_exec="$dotnet_path/dotnet"
-    if [ -x "$dotnet_exec" ]; then
-        echo "文件具有执行权限。"
-    else
-        chmod +x "$dotnet_exec"
-    fi
+    [ -x "$dotnet_exec" ] || chmod +x "$dotnet_exec"
     chmod +x "$base_path/$exec_name.sh"
 }
 
 #先安装依赖;
 Install_certutil
-Install_zenity
+[ "$os_id" != "yongbao" ] && Install_zenity || echo 勇豹没有包管理器，不能安装zenity，此处以whiptail代替
 Install_jq
 certutil_Init
 #版本检查更新;
@@ -439,7 +456,7 @@ if [ -f "$tar_path" ]; then
         rm "$base_path/AppVer"
         #版本号是最新缓存 输出到文件
         echo "${temp_hash,,}" >>"$base_path/AppVer"
-        zenity --question --text="本地已有最新安装包是否继续解压?" --width=400
+        if [ "$os_id" != "yongbao" ]; then zenity --question --text="本地已有最新安装包是否继续解压?" --width=400; else whiptail --yesno "本地已有最新安装包是否继续解压?" 10 60; fi
 
         # 获取上一个命令的退出码
         response=$?
@@ -470,10 +487,7 @@ InitDesktop() {
 
     while true; do
         # 使用 zenity 提示用户选择安装路径或使用默认路径
-        choice=$(zenity --list --radiolist --title="请选择要添加到的位置" \
-            --column="选择" --column="路径" \
-            TRUE "$XDG_DESKTOP_DIR" \
-            FALSE "$HOME/.local/share/applications/")
+        choice=$([ "$os_id" != "yongbao" ] && { zenity --list --radiolist --title="请选择要添加到的位置" --column="选择" --column="路径" TRUE "$XDG_DESKTOP_DIR" FALSE "$HOME/.local/share/applications/";} || { whiptail --title "请选择要添加到的位置" --radiolist "" 10 60 2 "$XDG_DESKTOP_DIR" "" ON "$HOME/.local/share/applications/" "" OFF 3>&1 1>&2 2>&3;} )
 
         # 检查用户输入
         if [ "$choice" == "$HOME/.local/share/applications/" ]; then
@@ -484,7 +498,7 @@ InitDesktop() {
             break
         else
             # 无效选项时给出提示，并继续循环
-            zenity --info --text="无效选项，请重新选择。"
+            [ "$os_id" != "yongbao" ] && zenity --info --text="无效选项，请重新选择。" --width=300 || whiptail --msgbox "无效选项，请重新选择。" 10 60
         fi
     done
 
@@ -506,5 +520,6 @@ EOT
 InitDesktop
 # update-desktop-database ~/.local/share/applications
 #运行程序
+if [ "$os_id" = "yongbao" ]; then sudo chmod u+s $(which pkexec); fi
 Show_Run "下载安装完成，是否启动程序？"
 exit 0

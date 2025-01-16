@@ -5,12 +5,14 @@ Determine_distribution() {
     # 判断发行版类型
     # 由于Linux发行版包管理器可以混装，如Debian安装Arch Linux的pacman，此处采用/etc/os-release的形式进行一次判断。
     # 读取 /etc/os-release 文件并提取 ID 字段，转换为小写
+    # $installprefix是该发行版包管理器安装软件前缀
+    # $nssvar是该发行版certutil包名称
     os_id=$(grep "^ID=" /etc/os-release | cut -d'=' -f2 | tr -d '"' | tr '[:upper:]' '[:lower:]')
     # 输出 ID
     echo "OS ID: $os_id"
 
     case "$os_id" in
-    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde")
+    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde" | "nfsdesktop")
         echo 默认包管理器：apt
         sudo apt update
         installprefix="sudo apt install -y"
@@ -21,7 +23,7 @@ Determine_distribution() {
         installprefix="sudo dnf install -y"
         nssvar="nss-tools"
         ;;
-    "centos" | "rhel" | "rocky" | "alma" | "amzn" | "nfs" | "alt")
+    "centos" | "rhel" | "rocky" | "alma" | "amzn" | "alt")
         echo 默认包管理器：yum
         installprefix="sudo yum install -y"
         nssvar="nss-tools"
