@@ -1,5 +1,6 @@
 // ReSharper disable once CheckNamespace
 using BD.WTTS.Helpers;
+using BD.WTTS.Services.Implementation;
 
 namespace BD.WTTS.Services;
 
@@ -72,6 +73,18 @@ partial class ProxyService
         bool isSupportIpv6 = await RefreshIpv6Support();
         bool useDoh = ProxySettings.UseDoh.Value;
         string? customDohAddres = ProxySettings.CustomDohAddres2.Value;
+
+        if (ProxySettings.ProxyBeforeDNSCheck.Value)
+        {
+            if (useDoh)
+            {
+                customDohAddres = await GetFastestDNSAsync(ProxySettingsWindowViewModel.DohAddress);
+            }
+            else
+            {
+                proxyDNS = await GetFastestDNSAsync(ProxySettingsWindowViewModel.ProxyDNSs.Skip(1));
+            }
+        }
 
         Lazy<IPAddress> proxyIp_ = new(() => ReverseProxySettings.GetProxyIp(proxyIp));
         void SetProxyIp(IPAddress proxyIPAddress)
@@ -462,5 +475,70 @@ partial class ProxyService
             }
             return proxyStatus;
         }
+    }
+
+    async Task<(long delayMs, string dns)> GetValidDNSAsync(string dns, CancellationToken cancellationToken = default)
+    {
+        var testDomain = "dnscheck-test.steampp.net";
+        try
+        {
+            long delayMs;
+            IPAddress[] address;
+            if (ProxySettings.UseDoh.Value)
+            {
+                (delayMs, address) = await INetworkTestService.Instance.TestDNSOverHttpsAsync(testDomain, dns, cancellationToken: cancellationToken);
+            }
+            else
+            {
+                (delayMs, address) = await INetworkTestService.Instance.TestDNSAsync(testDomain, dns, 53, cancellationToken: cancellationToken);
+            }
+            if (address.Length == 0)
+                throw new Exception("Parsing failed. Return empty ip address.");
+
+            return (delayMs, dns);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(StartOrStopProxyService), ex.ToString(), "DNS检测出错");
+            return (0, dns);
+        }
+    }
+
+    async Task<string?> GetFastestDNSAsync(IEnumerable<string> dnsAddresses, CancellationToken cancellationToken = default)
+    {
+        var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        var tasks = new List<Task<(long delayMs, string dns)>>();
+
+        foreach (var dns in dnsAddresses)
+        {
+            tasks.Add(GetValidDNSAsync(dns, cts.Token));
+        }
+
+        try
+        {
+            // 等待任意一个任务完成
+            var completedTask = await Task.WhenAny(tasks);
+
+            // 获取任务结果
+            var (delayMs, dns) = await completedTask;
+            _ = cts.CancelAsync(); // 取消其他任务
+
+            // 如果任务成功完成（假设 delayMs > 0 表示成功）
+            if (delayMs > 0)
+            {
+                return dns; // 返回第一个成功的 DNS 地址
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // 任务被取消，忽略
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(StartOrStopProxyService), ex.ToString(), "DNS检测出错");
+        }
+
+        // 如果没有有效结果,返回默认值
+        return null;
     }
 }

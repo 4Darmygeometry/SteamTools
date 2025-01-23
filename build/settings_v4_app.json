@@ -997,6 +997,15 @@
           "Summary": "加速后自动唤起 Watt 加速器界面",
           "IsRegionOrEndregion": null,
           "IsValueType": null
+        },
+        {
+          "TypeName": "bool",
+          "PropertyName": "ProxyBeforeDNSCheck",
+          "DefaultValue": "true",
+          "DefaultValueIsConst": true,
+          "Summary": "加速前进行 DNS 可用性检查",
+          "IsRegionOrEndregion": null,
+          "IsValueType": null
         }
       ],
       "Usings": ""

@@ -307,6 +307,7 @@ public sealed partial class GameAcceleratorService
         Games.AddOrUpdate(CurrentAcceleratorGame);
 
         //加速后
+        TracepointHelper.TrackEvent("AcceleratorGameSuccess");
         Toast.Show(ToastIcon.Success, "加速成功");
         if (ProxySettings.AutoShowWattAcceleratorWindow.Value)
         {
@@ -628,49 +629,91 @@ public sealed partial class GameAcceleratorService
             };
             var install = Ioc.Get<IAcceleratorService>().XY_Install(GameAcceleratorSettings.WattAcceleratorDirPath.Value!);
 
-            td.Opened += async (s, e) =>
+            td.Opened += (s, e) =>
             {
-                await foreach (var item in install)
-                {
-                    if (item.HandleUI(out var content))
-                    {
-                        switch (content)
-                        {
-                            case < 100:
-                                Dispatcher.UIThread.Post(() => { td.Content = $"正在下载 {item.Content}%"; });
-                                td.SetProgressBarState(item.Content, TaskDialogProgressState.Normal);
-                                break;
-                            case 100:
-                                td.SetProgressBarState(item.Content, TaskDialogProgressState.Indeterminate);
-                                Dispatcher.UIThread.Post(() => { td.Content = $"下载完成，正在安装..."; });
-                                break;
-                            case (int)XunYouDownLoadCode.安装成功:
-                                //处理成功
-                                //Dispatcher.UIThread.Post(() => { td.Content = $"安装完成"; });
-                                Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
-                                td.Hide();
-                                break;
-                            case int n when n > 101 && n < (int)XunYouDownLoadCode.启动安装程序失败:
-                                //处理失败
-                                break;
-                            // Code 和进度重叠 递进 1000 XunYouInstallOrStartCode.默认 XunYouInstallOrStartCode.已安装
-                            case 1000:
-                                Dispatcher.UIThread.Post(() => { td.Content = $"默认"; });
-                                // XunYouInstallOrStartCode.默认
-                                break;
-                            case 1001:
-                                Dispatcher.UIThread.Post(() => { td.Content = $"已安装"; });
-                                // XunYouInstallOrStartCode.已安装
-                                Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
-                                break;
-                        }
-                    }
-                }
+                DownloadCallbackAsync(td, install).Wait();
+                //await foreach (var item in install)
+                //{
+                //    if (item.HandleUI(out var content))
+                //    {
+                //        switch (content)
+                //        {
+                //            case < 100:
+                //                Dispatcher.UIThread.Post(() => { td.Content = $"正在下载 {item.Content}%"; });
+                //                td.SetProgressBarState(item.Content, TaskDialogProgressState.Normal);
+                //                break;
+                //            case 100:
+                //                td.SetProgressBarState(item.Content, TaskDialogProgressState.Indeterminate);
+                //                Dispatcher.UIThread.Post(() => { td.Content = $"下载完成，正在安装..."; });
+                //                break;
+                //            case (int)XunYouDownLoadCode.安装成功:
+                //                //处理成功
+                //                //Dispatcher.UIThread.Post(() => { td.Content = $"安装完成"; });
+                //                Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
+                //                td.Hide();
+                //                break;
+                //            case int n when n > 101 && n < (int)XunYouDownLoadCode.启动安装程序失败:
+                //                //处理失败
+                //                break;
+                //            // Code 和进度重叠 递进 1000 XunYouInstallOrStartCode.默认 XunYouInstallOrStartCode.已安装
+                //            case 1000:
+                //                Dispatcher.UIThread.Post(() => { td.Content = $"默认"; });
+                //                // XunYouInstallOrStartCode.默认
+                //                break;
+                //            case 1001:
+                //                Dispatcher.UIThread.Post(() => { td.Content = $"已安装"; });
+                //                // XunYouInstallOrStartCode.已安装
+                //                Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
+                //                break;
+                //        }
+                //    }
+                //}
             };
 
             //_ = Task.Run(() => { XunYouSDK.InstallAsync(progress, Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "WattAccelerator")); });
 
             var result = await td.ShowAsync(true);
+        }
+    }
+
+    private static async Task DownloadCallbackAsync(TaskDialog td, IAsyncEnumerable<ApiRsp<int>> install)
+    {
+        await foreach (var item in install)
+        {
+            if (item.HandleUI(out var content))
+            {
+                switch (content)
+                {
+                    case < 100:
+                        Dispatcher.UIThread.Post(() => { td.Content = $"正在下载 {item.Content}%"; });
+                        td.SetProgressBarState(item.Content, TaskDialogProgressState.Normal);
+                        break;
+                    case 100:
+                        td.SetProgressBarState(item.Content, TaskDialogProgressState.Indeterminate);
+                        Dispatcher.UIThread.Post(() => { td.Content = $"下载完成，正在安装..."; });
+                        break;
+                    case (int)XunYouDownLoadCode.安装成功:
+                        //处理成功
+                        //Dispatcher.UIThread.Post(() => { td.Content = $"安装完成"; });
+                        TracepointHelper.TrackEvent("DownloadInstallSuccess");
+                        Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
+                        td.Hide();
+                        break;
+                    case int n when n > 101 && n < (int)XunYouDownLoadCode.启动安装程序失败:
+                        //处理失败
+                        break;
+                    // Code 和进度重叠 递进 1000 XunYouInstallOrStartCode.默认 XunYouInstallOrStartCode.已安装
+                    case 1000:
+                        Dispatcher.UIThread.Post(() => { td.Content = $"默认"; });
+                        // XunYouInstallOrStartCode.默认
+                        break;
+                    case 1001:
+                        Dispatcher.UIThread.Post(() => { td.Content = $"已安装"; });
+                        // XunYouInstallOrStartCode.已安装
+                        Dispatcher.UIThread.Post(() => { td.Hide(TaskDialogStandardResult.OK); });
+                        break;
+                }
+            }
         }
     }
 

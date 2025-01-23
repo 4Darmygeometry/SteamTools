@@ -209,6 +209,12 @@ public sealed partial class ProxySettings_ : IProxySettings, ISettings, ISetting
     [MPKey(24), MP2Key(24), JsonPropertyOrder(24)]
     public bool AutoShowWattAcceleratorWindow { get; set; } = IProxySettings.DefaultAutoShowWattAcceleratorWindow;
 
+    /// <summary>
+    /// 加速前进行 DNS 可用性检查
+    /// </summary>
+    [MPKey(25), MP2Key(25), JsonPropertyOrder(25)]
+    public bool ProxyBeforeDNSCheck { get; set; } = IProxySettings.DefaultProxyBeforeDNSCheck;
+
 }
 
 public static partial class ProxySettings
@@ -382,5 +388,11 @@ public static partial class ProxySettings
     /// </summary>
     public static SettingsStructProperty<bool, ProxySettings_> AutoShowWattAcceleratorWindow { get; }
         = new(DefaultAutoShowWattAcceleratorWindow);
+
+    /// <summary>
+    /// 加速前进行 DNS 可用性检查
+    /// </summary>
+    public static SettingsStructProperty<bool, ProxySettings_> ProxyBeforeDNSCheck { get; }
+        = new(DefaultProxyBeforeDNSCheck);
 
 }

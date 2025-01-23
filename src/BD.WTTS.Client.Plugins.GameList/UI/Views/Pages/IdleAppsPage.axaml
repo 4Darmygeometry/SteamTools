@@ -3,8 +3,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="using:Avalonia.Xaml.Interactivity"
-    xmlns:ia="using:Avalonia.Xaml.Interactions.Core"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ms="https://steampp.net/settings"
     xmlns:s="https://steampp.net/services"
@@ -190,7 +188,15 @@
                             </spp:AppItem.ActionButton>-->
                             <spp:AppItem.Image>
                                 <Panel x:Name="ItemImage">
-                                    <i:Interaction.Behaviors>
+                                    <Panel.Styles>
+                                        <Style Selector="Panel#ItemBox">
+                                            <Setter Property="Opacity" Value="0" />
+                                        </Style>
+                                        <Style Selector="Panel#ItemBox:pointerover">
+                                            <Setter Property="Opacity" Value="0.8" />
+                                        </Style>
+                                    </Panel.Styles>
+                                    <!--<i:Interaction.Behaviors>
                                         <ia:EventTriggerBehavior EventName="PointerEntered" SourceObject="{Binding #ItemImage}">
                                             <ia:ChangePropertyAction
                                                 PropertyName="IsVisible"
@@ -203,7 +209,7 @@
                                                 TargetObject="{Binding #ItemBox}"
                                                 Value="False" />
                                         </ia:EventTriggerBehavior>
-                                    </i:Interaction.Behaviors>
+                                    </i:Interaction.Behaviors>-->
                                     <Panel MinWidth="{Binding $parent[spp:AppItem].MinWidth}" MaxWidth="{Binding $parent[spp:AppItem].MaxWidth}">
                                         <spp:Image2
                                             Name="AppImage"
@@ -247,11 +253,7 @@
                                             </DockPanel>
                                         </Border>
                                     </Panel>
-                                    <Panel
-                                        x:Name="ItemBox"
-                                        Background="{DynamicResource SolidBackgroundFillColorBaseBrush}"
-                                        IsVisible="False"
-                                        Opacity="0.8">
+                                    <Panel x:Name="ItemBox" Background="{DynamicResource SolidBackgroundFillColorBaseBrush}">
                                         <Button
                                             Padding="0"
                                             HorizontalAlignment="Center"

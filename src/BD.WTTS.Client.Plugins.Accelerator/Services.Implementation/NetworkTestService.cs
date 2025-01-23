@@ -345,7 +345,8 @@ internal partial class NetworkTestService : INetworkTestService
         )
     {
         using UdpClient udpClient = new UdpClient(dnsServerIp, dnsServerPort);
-
+        udpClient.Client.SendTimeout = 3000;
+        udpClient.Client.ReceiveTimeout = 3000;
         var query = new DnsQueryUdpRequest(testDomain, dnsRecordType);
 
         Stopwatch watch = Stopwatch.StartNew();
@@ -382,7 +383,7 @@ internal partial class NetworkTestService : INetworkTestService
             Proxy = HttpNoProxy.Instance,
         };
         using HttpClient client = new HttpClient(handler);
-
+        client.Timeout = TimeSpan.FromSeconds(3);
         string queryUrl = $"{dohServer}?name={testDomain}&type={dnsRecordType}";
 
         Stopwatch watch = Stopwatch.StartNew();
