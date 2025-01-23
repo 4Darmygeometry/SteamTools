@@ -123,7 +123,6 @@ interface Constants
         Architecture.X64 => "x64",
         Architecture.X86 => "x86",
         Architecture.LoongArch64 => "loongarch64",
-        Architecture.RiscV64 => "riscv64",
         _ => throw new ArgumentOutOfRangeException(nameof(architecture), architecture, null),
     };
 
