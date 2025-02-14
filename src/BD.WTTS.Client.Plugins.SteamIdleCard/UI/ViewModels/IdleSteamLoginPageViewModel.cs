@@ -26,7 +26,7 @@ public sealed partial class IdleSteamLoginPageViewModel : WindowViewModel
             {
                 IsLoading = true;
 
-                if (SteamLoginState.SteamId == 0)
+                if (!Requires2FA && !RequiresEmailAuth)
                 {
                     SteamLoginState.Username = UserNameText;
                     SteamLoginState.Password = PasswordText;
@@ -65,9 +65,10 @@ public sealed partial class IdleSteamLoginPageViewModel : WindowViewModel
                 }
                 else if (SteamLoginState.Message != null)
                 {
-                    IsLoading = false;
                     Toast.Show(ToastIcon.Warning, SteamLoginState.Message);
                 }
+
+                IsLoading = false;
             }
         }
         catch (Exception ex)
