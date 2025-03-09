@@ -333,16 +333,18 @@ public sealed class UserService : ReactiveObject
                 if (token != null)
                 {
                     await Browser2.OpenAsync(string.Format(Constants.Urls.OfficialWebsite_Fast_Login_, token.AccessToken, HttpUtility.UrlEncode(token.ExpiresIn.ToString("R")), HttpUtility.UrlEncode(url)));
+                    return;
                 }
-                return;
+                break;
             case FastLoginWebChannel.WattGame:
                 var shopToken = await userManager.GetShopAuthTokenAsync();
                 if (shopToken != null)
                 {
                     var cookieMaxAge = (shopToken.ExpiresIn - DateTimeOffset.Now).TotalSeconds;
                     await Browser2.OpenAsync(string.Format(Constants.Urls.WattGame_Fast_Login_, shopToken.AccessToken, HttpUtility.UrlEncode(cookieMaxAge.ToString()), HttpUtility.UrlEncode(url)));
+                    return;
                 }
-                return;
+                break;
         }
         await Browser2.OpenAsync(url.ToString());
     }

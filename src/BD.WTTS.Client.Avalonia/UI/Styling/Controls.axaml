@@ -40,14 +40,6 @@
         <Setter Property="FontFamily" Value="{Binding Source={x:Static ms:UISettings.FontName}, Path=Value, Mode=OneWay, Converter={StaticResource NameToFontFamilyConverter}}" />
     </Style>
 
-    <Style Selector="ui|FontIcon">
-        <Setter Property="MinWidth" Value="16" />
-    </Style>
-
-    <Style Selector="ui|SymbolIcon">
-        <Setter Property="MinWidth" Value="16" />
-    </Style>
-
     <!--<Style Selector="TextBlock">
         <Setter Property="FontFamily" Value="{Binding Source={x:Static ms:UISettings.FontName}, Path=Value, Mode=OneWay, Converter={StaticResource NameToFontFamilyConverter}}" />
     </Style>-->

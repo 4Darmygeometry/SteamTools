@@ -21,16 +21,17 @@ public sealed partial class AcceleratorPageViewModel
             {
                 // Create new ProxyEnableDomain for 加速服务 page
                 var enableGroupDomain = ProxyService.Current.ProxyDomainsList
-                    .Where(list => list.ThreeStateEnable == true || list.ThreeStateEnable == null)
+                    .Where(list => list.ThreeStateEnable != false)
                     .Select(list => new ProxyDomainGroupViewModel
                     {
                         Name = list.Name,
                         IconUrl = list.IconUrl ?? string.Empty,
                         EnableProxyDomainVMs = new(
                             list.Items!
-                                .Where(i => i.ThreeStateEnable == true)
+                                .Where(i => i.ThreeStateEnable != false)
                                 .Select(i => new ProxyDomainViewModel(i.Name, i.ProxyType, "https://" + i.ListenDomainNames.Split(";")[0],
                                                                     i.Items?
+                                                                        .Where(x => x.ThreeStateEnable != false)
                                                                         .Select(c => new ProxyDomainViewModel(c.Name, c.ProxyType, "https://" + c.ListenDomainNames.Split(';')[0]))
                                                                         .ToList()))
                                 .ToList()),

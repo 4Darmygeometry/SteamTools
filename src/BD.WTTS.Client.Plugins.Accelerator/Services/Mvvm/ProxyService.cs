@@ -163,8 +163,35 @@ public sealed partial class ProxyService
             return [];
         var data = ProxyDomains.Items
             .Where(x => x.Items != null)
-            .SelectMany(s => s.Items!.Where(w => w.ThreeStateEnable != false));
-        //return data.Concat(data.SelectMany(s => GetProxyDomainsItems(s)));
+            .SelectMany(s => s.Items!.Where(w => w.ThreeStateEnable != false))
+            .Select(item =>
+            {
+                //过滤部分选中的子项
+                if (item.Items.Any_Nullable())
+                {
+                    return new AccelerateProjectDTO
+                    {
+                        Name = item.Name,
+                        Port = item.Port,
+                        MatchDomainNames = item.MatchDomainNames,
+                        ForwardDomainNames = item.ForwardDomainNames,
+                        IgnoreSSLCertVerification = item.IgnoreSSLCertVerification,
+                        FakeServerName = item.FakeServerName,
+                        ProxyType = item.ProxyType,
+                        ListenDomainNames = item.ListenDomainNames,
+                        Checked = item.Checked,
+                        Id = item.Id,
+                        Order = item.Order,
+                        FakeUserAgent = item.FakeUserAgent,
+                        Version = item.Version,
+                        ThreeStateEnable = item.ThreeStateEnable,
+                        // 递归过滤子项
+                        Items = item.Items.Where(x => x.ThreeStateEnable != false).ToList()
+                    };
+                }
+                return item;
+            });
+
         return data;
     }
 

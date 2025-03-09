@@ -36,7 +36,7 @@ sealed class ReverseProxyHttpClientHandler : DelegatingHandler
 
         // 设置请求头 host，因为连接中已带端口号故 修改协议为 http
         request.Headers.Host = uri.Host;
-        request.RequestUri = new UriBuilder(uri) { Scheme = Uri.UriSchemeHttp }.Uri;
+        //request.RequestUri = new UriBuilder(uri) { Scheme = Uri.UriSchemeHttp }.Uri;
 
         if (domainConfig.Timeout != null)
         {
@@ -61,6 +61,7 @@ sealed class ReverseProxyHttpClientHandler : DelegatingHandler
         AutomaticDecompression = DecompressionMethods.None,
         ConnectCallback = ConnectCallback,
         EnableMultipleHttp2Connections = true,
+        EnableMultipleHttp3Connections = true,
         RequestHeaderEncodingSelector = (_, _) => Encoding.UTF8,
         ResponseHeaderEncodingSelector = (_, _) => Encoding.UTF8,
     };

@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Http;
 using Yarp.ReverseProxy.Forwarder;
+using HttpVersion = System.Net.HttpVersion;
 
 // ReSharper disable once CheckNamespace
 namespace BD.WTTS.Services.Implementation;
@@ -29,6 +30,27 @@ sealed partial class HttpReverseProxyMiddleware
         this.reverseProxyConfig = reverseProxyConfig;
         this.logger = logger;
     }
+
+    static ArgumentOutOfRangeException GetUnknownHttpVersionException(string? actualValue, [CallerArgumentExpression(nameof(actualValue))] string? paramName = null) => new(
+$"""
+Version doesn't map to a known HTTP protocol. (Parameter '{paramName}')
+Actual value was {actualValue}.
+""");
+
+    static Version GetHttpVersion(string requestProtocol) =>
+    (requestProtocol != null && requestProtocol.Length >= 6) ? requestProtocol[5] switch
+    {
+        // 参考 Microsoft.AspNetCore.Http.HttpProtocol.GetHttpProtocol
+        '1' => requestProtocol.Length >= 8 ? requestProtocol[7] switch
+        {
+            '0' => HttpVersion.Version10,
+            '1' => HttpVersion.Version11,
+            _ => throw GetUnknownHttpVersionException(requestProtocol),
+        } : throw GetUnknownHttpVersionException(requestProtocol),
+        '2' => HttpVersion.Version20,
+        '3' => HttpVersion.Version30,
+        _ => throw GetUnknownHttpVersionException(requestProtocol),
+    } : throw GetUnknownHttpVersionException(requestProtocol);
 
     /// <summary>
     /// 处理请求
@@ -60,12 +82,7 @@ sealed partial class HttpReverseProxyMiddleware
                 var destinationPrefix = GetDestinationPrefix(context.Request.Scheme, context.Request.Host, null);
                 var forwarderRequestConfig = new ForwarderRequestConfig()
                 {
-                    Version = context.Request.Protocol switch
-                    {
-                        var protocol when protocol.StartsWith("HTTP/2") => System.Net.HttpVersion.Version20,
-                        var protocol when protocol.StartsWith("HTTP/3") => System.Net.HttpVersion.Version30,
-                        _ => System.Net.HttpVersion.Version11,
-                    },
+                    Version = GetHttpVersion(context.Request.Protocol),
                 };
                 var error = await httpForwarder.SendAsync(context, destinationPrefix, httpClient, forwarderRequestConfig, HttpTransformer.Empty);
                 if (error != ForwarderError.None)
@@ -119,19 +136,23 @@ sealed partial class HttpReverseProxyMiddleware
                 context.Request.Headers.UserAgent = domainConfig.UserAgent.Replace("${origin}", context.Request.Headers.UserAgent, StringComparison.OrdinalIgnoreCase);
             }
 
-            var forwarderRequestConfig = new ForwarderRequestConfig()
-            {
-                Version = context.Request.Protocol switch
-                {
-                    var protocol when protocol.StartsWith("HTTP/2") => System.Net.HttpVersion.Version20,
-                    var protocol when protocol.StartsWith("HTTP/3") => System.Net.HttpVersion.Version30,
-                    _ => System.Net.HttpVersion.Version11,
-                },
-            };
+            ForwarderRequestConfig forwarderRequestConfig;
 
             if (domainConfig.IsServerSideProxy)
             {
                 SetWattHeaders(context, reverseProxyConfig.Service.ServerSideProxyToken);
+                forwarderRequestConfig = new ForwarderRequestConfig()
+                {
+                    Version = HttpVersion.Version30,
+                    VersionPolicy = HttpVersionPolicy.RequestVersionOrLower
+                };
+            }
+            else
+            {
+                forwarderRequestConfig = new ForwarderRequestConfig()
+                {
+                    Version = GetHttpVersion(context.Request.Protocol),
+                };
             }
 
             var error = await httpForwarder.SendAsync(context, destinationPrefix, httpClient, forwarderRequestConfig, HttpTransformer.Empty);
