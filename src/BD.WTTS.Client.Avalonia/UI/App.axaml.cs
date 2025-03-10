@@ -45,7 +45,7 @@ public sealed partial class App : Application
         {
             if (ApplicationLifetime is ClassicDesktopStyleApplicationLifetime classicDesktopStyleApplicationLifetime)
             {
-                window = classicDesktopStyleApplicationLifetime.Windows.FirstOrDefault(x => x != null);
+                window = classicDesktopStyleApplicationLifetime.Windows?.FirstOrDefault(x => x != null);
             }
         }
         return window;

@@ -137,12 +137,15 @@ partial class Startup // 全局异常处理
 #endif
 
 #if WINDOWS
-            var mbText =
+            if (isTerminating == true)
+            {
+                var mbText =
 $"""
 {string.Format(message, args)}
 {ex}
 """;
-            ShowApplicationCrash(mbText);
+                ShowApplicationCrash(mbText);
+            }
 #endif
         }
 

@@ -295,33 +295,42 @@ sealed partial class Program : Startup
 
     protected override ActiveUserRecordDTO GetActiveUserRecord()
     {
-#if !__MOBILE__ && !MAUI
-        var app = UI.App.Instance;
-        var window = app.GetFirstOrDefaultWindow();
-        var screens = window?.Screens;
-#else
-        var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-        var mainDisplayInfoH = mainDisplayInfo.Height.ToInt32(NumberToInt32Format.Ceiling);
-        var mainDisplayInfoW = mainDisplayInfo.Width.ToInt32(NumberToInt32Format.Ceiling);
-#endif
         var result = new ActiveUserRecordDTO
         {
-#if __MOBILE__ || MAUI
-            ScreenCount = 1,
-            PrimaryScreenPixelDensity = mainDisplayInfo.Density,
-            PrimaryScreenWidth = mainDisplayInfoW,
-            PrimaryScreenHeight = mainDisplayInfoH,
-            SumScreenWidth = mainDisplayInfoW,
-            SumScreenHeight = mainDisplayInfoH,
-#else
-            ScreenCount = screens?.ScreenCount ?? default,
-            PrimaryScreenPixelDensity = screens?.Primary?.Scaling ?? default,
-            PrimaryScreenWidth = screens?.Primary?.Bounds.Width ?? default,
-            PrimaryScreenHeight = screens?.Primary?.Bounds.Height ?? default,
-            SumScreenWidth = screens?.All.Sum(x => x.Bounds.Width) ?? default,
-            SumScreenHeight = screens?.All.Sum(x => x.Bounds.Height) ?? default,
-#endif
         };
+        SetScreen(result);
+        static void SetScreen(ActiveUserRecordDTO m)
+        {
+            try
+            {
+#if !__MOBILE__ && !MAUI
+                var app = UI.App.Instance;
+                var window = app.GetFirstOrDefaultWindow();
+                var screens = window?.Screens;
+
+                m.ScreenCount = screens?.ScreenCount ?? default;
+                m.PrimaryScreenPixelDensity = screens?.Primary?.Scaling ?? default;
+                m.PrimaryScreenWidth = screens?.Primary?.Bounds.Width ?? default;
+                m.PrimaryScreenHeight = screens?.Primary?.Bounds.Height ?? default;
+                m.SumScreenWidth = screens?.All?.Sum(x => x.Bounds.Width) ?? default;
+                m.SumScreenHeight = screens?.All?.Sum(x => x.Bounds.Height) ?? default;
+#else
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var mainDisplayInfoH = mainDisplayInfo.Height.ToInt32(NumberToInt32Format.Ceiling);
+            var mainDisplayInfoW = mainDisplayInfo.Width.ToInt32(NumberToInt32Format.Ceiling);
+
+            m.ScreenCount = 1;
+            m.PrimaryScreenPixelDensity = mainDisplayInfo.Density;
+            m.PrimaryScreenWidth = mainDisplayInfoW;
+            m.PrimaryScreenHeight = mainDisplayInfoH;
+            m.SumScreenWidth = mainDisplayInfoW;
+            m.SumScreenHeight = mainDisplayInfoH;
+#endif
+            }
+            catch
+            {
+            }
+        }
         return result;
     }
 }
