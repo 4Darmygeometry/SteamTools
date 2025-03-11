@@ -9,7 +9,7 @@ internal partial class NetworkTestService : INetworkTestService
     #region 常量
 
     // 默认测试地址
-    const string DEFAULT_TESTSERVER_HOSTNAME = "stun.syncthing.net";
+    internal const string DEFAULT_TESTSERVER_HOSTNAME = "stun.miwifi.com";
 
     const int DEFAULT_PORT = 3478;
     const int DEFAULT_TLSPORT = 5349;

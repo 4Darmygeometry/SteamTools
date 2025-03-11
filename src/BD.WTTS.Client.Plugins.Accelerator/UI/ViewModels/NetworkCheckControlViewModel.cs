@@ -31,10 +31,9 @@ public partial class NetworkCheckControlViewModel : ViewModelBase
 
     public string[] STUNAddress { get; } =
     [
-        "stun.syncthing.net",
+        NetworkTestService.DEFAULT_TESTSERVER_HOSTNAME,
         "stun.hot-chilli.net",
         "stun.fitauto.ru",
-        "stun.miwifi.com",
     ];
 
     [ObservableAsProperty]
