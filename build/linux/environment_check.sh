@@ -36,7 +36,7 @@ Determine_distribution() {
         ;;
     "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
         echo 默认包管理器：pacman
-        installprefix="sudo pacman -S"
+        installprefix="sudo pacman -Sy"
         nssvar="nss"
         ;;
     "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
@@ -69,29 +69,8 @@ Determine_distribution() {
         installprefix="sudo eopkg install"
         nssvar="nss-tools"
         ;;
-    "clearlinux")
-        echo 默认包管理器：swupd
-        # 手动安装判断变量
-        manualins="1"
-        ;;
-    "nixos")
-        echo 默认包管理器：nix
-        manualins="1"
-        ;;
-    "void")
-        echo 默认包管理器：xbps
-        manualins="1"
-        ;;
-    "puppy")
-        echo 默认包管理器：petget
-        manualins="1"
-        ;;
-    "tinycore")
-        echo 默认包管理器：tce-load
-        manualins="1"
-        ;;
-    "yongbao")
-        echo 无包管理器
+    "clearlinux" | "nixos" | "void" | "puppy" | "tinycore" | "yongbao")
+        # 冷门发行版，手动安装判断变量
         manualins="1"
         ;;
     *)

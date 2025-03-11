@@ -131,7 +131,7 @@ Determine_distribution() {
         ;;
     "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
         echo 默认包管理器：pacman
-        installprefix="sudo pacman -S"
+        installprefix="sudo pacman -Sy"
         nssvar="nss"
         ;;
     "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
@@ -164,29 +164,8 @@ Determine_distribution() {
         installprefix="sudo eopkg install"
         nssvar="nss-tools"
         ;;
-    "clearlinux")
-        echo 默认包管理器：swupd
-        # 手动安装判断变量
-        manualins="1"
-        ;;
-    "nixos")
-        echo 默认包管理器：nix
-        manualins="1"
-        ;;
-    "void")
-        echo 默认包管理器：xbps
-        manualins="1"
-        ;;
-    "puppy")
-        echo 默认包管理器：petget
-        manualins="1"
-        ;;
-    "tinycore")
-        echo 默认包管理器：tce-load
-        manualins="1"
-        ;;
-    "yongbao")
-        echo 无包管理器
+    "clearlinux" | "nixos" | "void" | "puppy" | "tinycore" | "yongbao")
+        # 冷门发行版，手动安装判断变量
         manualins="1"
         ;;
     *)
@@ -196,6 +175,22 @@ Determine_distribution() {
     esac
 }
 Determine_distribution
+Install_wget() {
+    if command -v wget &>/dev/null; then
+        echo "wget 工具已安装。"
+    elif [ "$manualins" == "1" ]; then
+        echo "请手动安装 wget 工具。"
+    else
+        echo "安装包网上下载需要使用 wget 工具。"
+        # Gentoo特殊情况与一般情况
+        if [ "$os_id" == "gentoo" ]; then
+            $installprefix net-misc/wget
+        else
+            $installprefix wget
+        fi
+        echo "wget 工具已安装。"
+    fi
+}
 Install_certutil() {
     if command -v certutil &>/dev/null; then
         echo "certutil 工具已安装。"
@@ -316,7 +311,15 @@ Get_NewVer() {
         minor_version=0
     fi
     # 通过 SHA384 文件来判断是否需要更新
-    wget "$base_url/basic/versions/8/16/$architecture/$major_version/$minor_version/-1/0/" -O "$appVer_path" 2>&1
+    # ArchLinux特殊情况与一般情况（ArchLinux版本号为rolling，之前的判断方法会导致下载失败）
+    case "$os_id" in
+    "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
+        wget "$base_url/basic/versions/8/16/$architecture/1/1/-1/0/" -O "$appVer_path" 2>&1
+        ;;
+    *)
+        wget "$base_url/basic/versions/8/16/$architecture/$major_version/$minor_version/-1/0/" -O "$appVer_path" 2>&1
+        ;;
+    esac
     n_sha384=$(jq -r '.["\uD83E\uDD93"].Downloads[0].SHA384' "$appVer_path")
 
     downloads_url=$(jq -r '.["\uD83E\uDD93"].Downloads[0].DownloadUrl' "$appVer_path")
@@ -436,6 +439,7 @@ Decompression() {
 }
 
 #先安装依赖;
+Install_wget
 Install_certutil
 [ "$os_id" != "yongbao" ] && Install_zenity || echo 勇豹没有包管理器，不能安装zenity，此处以whiptail代替
 Install_jq

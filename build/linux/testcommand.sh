@@ -7,6 +7,7 @@ else
 fi
 echo 桌面位置：$XDG_DESKTOP_DIR
 Determine_distribution() {
+    # 判断发行版类型
     # 由于Linux发行版包管理器可以混装，如Debian安装Arch Linux的pacman，此处采用/etc/os-release的形式进行一次判断。
     # 读取 /etc/os-release 文件并提取 ID 字段，转换为小写
     # $installprefix是该发行版包管理器安装软件前缀
@@ -18,54 +19,68 @@ Determine_distribution() {
     case "$os_id" in
     "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde" | "nfsdesktop")
         echo 默认包管理器：apt
+        sudo apt update
+        installprefix="sudo apt install -y"
+        nssvar="libnss3-tools"
         ;;
     "fedora")
         echo 默认包管理器：dnf
+        installprefix="sudo dnf install -y"
+        nssvar="nss-tools"
         ;;
     "centos" | "rhel" | "rocky" | "alma" | "amzn" | "alt")
         echo 默认包管理器：yum
+        installprefix="sudo yum install -y"
+        nssvar="nss-tools"
         ;;
     "opensuse")
         echo 默认包管理器：zypper
+        sudo zypper refresh
+        installprefix="sudo zypper install"
+        nssvar="mozilla-nss-tools"
         ;;
     "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
         echo 默认包管理器：pacman
+        installprefix="sudo pacman -S"
+        nssvar="nss"
         ;;
     "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
         echo 默认包管理器：urpmi
+        sudo urpmi.update -a
+        installprefix="sudo urpmi"
+        nssvar="nss-tools"
         ;;
     "slackware" | "salix" | "porteus" | "slacko")
         echo 默认包管理器：slackpkg
+        sudo slackpkg update gpg
+        sudo slackpkg update
+        installprefix="sudo slackpkg install"
+        nssvar="nss"
         ;;
     "aosc")
         echo 默认包管理器：oma
+        installprefix="sudo oma install -y"
+        nssvar="nss"
         ;;
     "gentoo")
         echo 默认包管理器：emerge
+        sudo emerge --sync
+        installprefix="sudo emerge -av"
+        nssvar="nss"
         ;;
     "solus")
         echo 默认包管理器：eopkg
+        sudo eopkg update-repo
+        installprefix="sudo eopkg install"
+        nssvar="nss-tools"
         ;;
-    "clearlinux")
-        echo 默认包管理器：swupd
-        ;;
-    "nixos")
-        echo 默认包管理器：nix
-        ;;
-    "void")
-        echo 默认包管理器：xbps
-        ;;
-    "puppy")
-        echo 默认包管理器：petget
-        ;;
-    "tinycore")
-        echo 默认包管理器：tce-load
-        ;;
-    "yongbao")
-        echo 无包管理器
+    "clearlinux" | "nixos" | "void" | "puppy" | "tinycore" | "yongbao")
+        # 冷门发行版，手动安装判断变量
+        manualins="1"
         ;;
     *)
         echo 未知发行版
+        manualins="1"
         ;;
     esac
 }
