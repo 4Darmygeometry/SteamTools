@@ -406,8 +406,10 @@ partial class ProxyService
             if (!string.IsNullOrEmpty(proxyTokenCache))
                 return proxyTokenCache;
 
+            using CancellationTokenSource cts = new();
+            cts.CancelAfter(TimeSpan.FromSeconds(4.99D)); // 5 秒超时
             var resp = await IMicroServiceClient.Instance.Account
-                .GenerateServerSideProxyToken();
+                .GenerateServerSideProxyToken(cts.Token);
 
             if (resp != null && !string.IsNullOrEmpty(resp.Content?.AccessToken))
             {
@@ -416,11 +418,14 @@ partial class ProxyService
 
             return proxyTokenCache;
         }
+        catch (OperationCanceledException)
+        {
+        }
         catch (Exception ex)
         {
             ex.LogAndShowT();
-            return null;
         }
+        return null;
     }
 
     /// <summary>
