@@ -608,7 +608,7 @@ static unsafe partial class Program
         //LoongArch64 = 6, // SkiaSharp incompatibility.
         Armv6 = 7,
         //Ppc64le = 8,
-        //RiscV64 = 9
+        //RiscV64 = 9,
     }
 #endif
 #endif
