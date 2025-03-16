@@ -341,6 +341,12 @@ public enum StartProxyResultCode : byte
     /// 绑定端口错误
     /// </summary>
     BindPortError,
+
+    /// <summary>
+    /// 早期 Windows 版本且缺少 Windows 更新补丁，Icu 存在 Bug 导致，要么更新操作系统，要么更改配置使用 NLS 重启程序
+    /// <para>https://learn.microsoft.com/zh-cn/dotnet/core/extensions/globalization-icu#use-nls-instead-of-icu</para>
+    /// </summary>
+    IcuTestFail = 127, // 值与 Mobius 保持一致
 }
 
 /// <summary>

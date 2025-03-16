@@ -98,8 +98,58 @@ sealed partial class YarpReverseProxyServiceImpl : ReverseProxyServiceImpl, IRev
 
     protected override Task<StartProxyResult> StartProxyImpl() => Task.FromResult(StartProxyCore());
 
+    readonly string[] allowedHosts = ["*",];
+
+#if WINDOWS
+    /// <summary>
+    /// https://learn.microsoft.com/zh-cn/dotnet/core/extensions/globalization-icu#determine-if-your-app-is-using-icu
+    /// </summary>
+    /// <returns></returns>
+    static bool ICUMode()
+    {
+        SortVersion sortVersion = CultureInfo.InvariantCulture.CompareInfo.Version;
+        byte[] bytes = sortVersion.SortId.ToByteArray();
+        int version = bytes[3] << 24 | bytes[2] << 16 | bytes[1] << 8 | bytes[0];
+        return version != 0 && version == sortVersion.FullVersion;
+    }
+
+    static bool IcuTest(IEnumerable<string> incoming)
+    {
+        if (!OperatingSystem.IsWindowsVersionAtLeast(10, 0, 18362) && ICUMode())
+        {
+            // https://learn.microsoft.com/zh-cn/dotnet/core/extensions/globalization-icu#icu-on-windows
+            // 与 .NET 6 和 .NET 5 相比，.NET 7 及更高版本能够在早期 Windows 版本上加载 ICU
+            // 通常问题出在 1703 ~ 1903 之间的 Windows 版本
+            try
+            {
+                // https://github.com/dotnet/aspnetcore/blob/v9.0.2/src/Middleware/HostFiltering/src/MiddlewareConfigurationManager.cs#L67
+                foreach (var entry in incoming)
+                {
+                    // Punycode. Http.Sys requires you to register Unicode hosts, but the headers contain punycode.
+                    var host = new HostString(entry).ToUriComponent();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+#endif
+
     StartProxyResult StartProxyCore()
     {
+#if WINDOWS
+        if (!IcuTest(allowedHosts))
+        {
+            return StartProxyResultCode.IcuTestFail;
+        }
+#endif
         // https://github.com/dotnetcore/FastGithub/blob/2.1.4/FastGithub/Program.cs#L29
         try
         {
@@ -113,13 +163,10 @@ sealed partial class YarpReverseProxyServiceImpl : ReverseProxyServiceImpl, IRev
 
             builder.Logging.AddProvider(new LogConsoleService.Utf8StringLoggerProvider(AssemblyInfo.Accelerator));
 
-            builder.Services.Configure<HostFilteringOptions>(static o =>
+            builder.Services.Configure<HostFilteringOptions>(o =>
             {
                 o.AllowEmptyHosts = true;
-                o.AllowedHosts = new List<string>
-                {
-                    "*",
-                };
+                o.AllowedHosts = allowedHosts;
             });
 
             builder.Host.UseNLog();
