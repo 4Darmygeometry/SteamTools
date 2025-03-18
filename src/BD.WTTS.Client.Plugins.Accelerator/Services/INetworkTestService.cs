@@ -91,14 +91,12 @@ internal interface IStunTestService
     /// <param name="testServerHostName">STUN 服务地址</param>
     /// <param name="testServerPort">STUN 服务端口</param>
     /// <param name="localIPEndPoint">本机IP</param>
-    /// <param name="force">刷新测试 Client</param>
     /// <remarks></remarks>
     /// <returns></returns>
     Task<ClassicStunResult?> TestStunClient3489Async(
             string? testServerHostName = default,
             int? testServerPort = default,
             IPEndPoint? localIPEndPoint = default,
-            bool force = false,
             CancellationToken cancellationToken = default
         );
 

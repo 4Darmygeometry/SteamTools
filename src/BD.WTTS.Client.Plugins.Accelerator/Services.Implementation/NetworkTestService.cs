@@ -202,8 +202,6 @@ internal partial class NetworkTestService : INetworkTestService
 
     #region RFC3489
 
-    StunClient3489? _stunClient;
-
     /// <summary>
     /// 测试 STUN 客户端 基于 RFC3489
     /// </summary>
@@ -217,19 +215,17 @@ internal partial class NetworkTestService : INetworkTestService
             string? testServerHostName = DEFAULT_TESTSERVER_HOSTNAME,
             int? testServerPort = DEFAULT_TESTSTUN3489_PORT,
             IPEndPoint? localIPEndPoint = null,
-            bool force = false,
             CancellationToken cancellationToken = default
         )
     {
         testServerHostName ??= DEFAULT_TESTSERVER_HOSTNAME;
         testServerPort ??= DEFAULT_TESTSTUN3489_PORT;
 
-        if (_stunClient == null || force)
-            _stunClient = await GetStunClient3489Async(testServerHostName, testServerPort.Value, localIPEndPoint);
+        using var stunClient = await GetStunClient3489Async(testServerHostName, testServerPort.Value, localIPEndPoint);
 
         try
         {
-            await _stunClient.QueryAsync(cancellationToken);
+            await stunClient.QueryAsync(cancellationToken);
         }
         catch (OperationCanceledException) { throw; }
         catch (Exception ex)
@@ -238,7 +234,7 @@ internal partial class NetworkTestService : INetworkTestService
             return null;
         }
 
-        return _stunClient.State;
+        return stunClient.State;
     }
 
     private async ValueTask<StunClient3489> GetStunClient3489Async(string serverHostName, int port, IPEndPoint? localIPEndPoint = null)
