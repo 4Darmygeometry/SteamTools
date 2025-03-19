@@ -35,6 +35,7 @@ public static class KestrelServerOptionsExtensions
 
         options.Listen(IReverseProxyService.Constants.Instance.ProxyIp, httpProxyPort, listen =>
         {
+            listen.Protocols = HttpProtocols.Http1AndHttp2AndHttp3;
             var proxyMiddleware = options.ApplicationServices.GetRequiredService<HttpProxyMiddleware>();
             var tunnelMiddleware = options.ApplicationServices.GetRequiredService<TunnelMiddleware>();
 
