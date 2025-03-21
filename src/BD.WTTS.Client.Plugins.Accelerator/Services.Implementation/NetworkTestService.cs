@@ -285,7 +285,7 @@ internal partial class NetworkTestService : INetworkTestService
         testServerHostName ??= DEFAULT_TESTSERVER_HOSTNAME;
         testServerPort ??= DEFAULT_TESTSTUN5389_PORT;
 
-        IStunClient5389 client = await GetStunClient5389Async(protocol, testServerHostName, testServerPort.Value, localIPEndPoint);
+        using var client = await GetStunClient5389Async(protocol, testServerHostName, testServerPort.Value, localIPEndPoint);
 
         if (client == null)
             return null;

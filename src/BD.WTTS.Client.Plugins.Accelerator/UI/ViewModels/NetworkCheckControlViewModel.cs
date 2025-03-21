@@ -89,28 +89,7 @@ public partial class NetworkCheckControlViewModel : ViewModelBase
     {
         SelectedSTUNAddress = STUNAddress[0];
 
-        NATCheckCommand = ReactiveCommand.CreateFromTask(async () =>
-        {
-            var natCheckResult = await _networkTestService.TestStunClient3489Async(testServerHostName: SelectedSTUNAddress) ?? new ClassicStunResult { NatType = NatType.Unknown };
-            var (netSucc, _) = await _networkTestService.TestOpenUrlAsync("https://www.baidu.com");
-
-            var publicEndPoint = natCheckResult.PublicEndPoint?.Address.ToString() ?? "Unknown";
-            var localEndPoint = natCheckResult.LocalEndPoint?.Address.ToString() ?? "Unknown";
-
-            var (natLevel, natTypeTip) = natCheckResult.NatType switch
-            {
-                // Open
-                NatType.OpenInternet or NatType.FullCone => ("开放 NAT", "您可与在其网络上具有任意 NAT 类型的用户玩多人游戏和发起多人游戏。"),
-                // Moderate
-                NatType.RestrictedCone or NatType.PortRestrictedCone or NatType.SymmetricUdpFirewall => ("中等 NAT", "您可与一些用户玩多人游戏；但是，并且通常你将不会被选为比赛的主持人。"),
-                // Strict
-                NatType.Symmetric or NatType.UdpBlocked => ("严格 NAT", "您只能与具有开放 NAT 类型的用户玩多人游戏。您不能被选为比赛的主持人。"),
-                // Unknown
-                NatType.Unknown or NatType.UnsupportedServer or _ => ("不可用 NAT", "如果 NAT 不可用，您将无法使用群聊天或连接到某些 Xbox 游戏的多人游戏。"),
-            };
-
-            return new NATFetchResult(publicEndPoint, localEndPoint, natLevel, natTypeTip, netSucc);
-        });
+        NATCheckCommand = ReactiveCommand.CreateFromTask(NATCheckAsync);
         NATCheckCommand
             .IsExecuting
             .ToPropertyEx(this, x => x.IsNATChecking);
@@ -144,36 +123,7 @@ public partial class NetworkCheckControlViewModel : ViewModelBase
 
         var canDNSCheck = this.WhenAnyValue(x => x.DomainPendingTest)
             .Select(domain => domain == string.Empty || DomainRegExp().IsMatch(domain));
-        DNSCheckCommand = ReactiveCommand.CreateFromTask(async () =>
-        {
-            var testDomain = DomainPendingTest == string.Empty ? DefaultTestDomain : DomainPendingTest;
-            try
-            {
-                long delayMs;
-                IPAddress[] address;
-                if (ProxySettings.UseDoh)
-                {
-                    var configDoh = ProxySettings.CustomDohAddres2.Value ?? ProxySettingsWindowViewModel.DohAddress.FirstOrDefault() ?? string.Empty;
-                    (delayMs, address) = await _networkTestService.TestDNSOverHttpsAsync(testDomain, configDoh);
-                }
-                else
-                {
-                    var configDns = ProxySettings.ProxyMasterDns.Value ?? string.Empty;
-                    (delayMs, address) = await _networkTestService.TestDNSAsync(testDomain, configDns, 53);
-                }
-                if (address.Length == 0)
-                    throw new Exception("Parsing failed. Return empty ip address.");
-
-                DNSTestDelay = delayMs + "ms ";
-                DNSTestResult = string.Empty + address.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(nameof(AcceleratorPageViewModel), ex.ToString());
-                DNSTestDelay = string.Empty;
-                DNSTestResult = "error";
-            }
-        }, canDNSCheck);
+        DNSCheckCommand = ReactiveCommand.CreateFromTask(DNSCheckAsync, canDNSCheck);
         DNSCheckCommand
             .IsExecuting
             .ToPropertyEx(this, x => x.IsDNSChecking);
@@ -197,5 +147,71 @@ public partial class NetworkCheckControlViewModel : ViewModelBase
             .ToPropertyEx(this, x => x.IsIPv6Checking);
 
         IPv6CheckCommand.Execute().Subscribe();
+    }
+
+    async Task<NATFetchResult> NATCheckAsync()
+    {
+        try
+        {
+            return await NATCheckCoreAsync();
+        }
+        catch
+        {
+            return new("", "", "", "", false);
+        }
+    }
+
+    async Task<NATFetchResult> NATCheckCoreAsync()
+    {
+        var natCheckResult = await _networkTestService.TestStunClient3489Async(testServerHostName: SelectedSTUNAddress) ?? new ClassicStunResult { NatType = NatType.Unknown };
+        var (netSucc, _) = await _networkTestService.TestOpenUrlAsync("https://www.baidu.com");
+
+        var publicEndPoint = natCheckResult.PublicEndPoint?.Address.ToString() ?? "Unknown";
+        var localEndPoint = natCheckResult.LocalEndPoint?.Address.ToString() ?? "Unknown";
+
+        var (natLevel, natTypeTip) = natCheckResult.NatType switch
+        {
+            // Open
+            NatType.OpenInternet or NatType.FullCone => ("开放 NAT", "您可与在其网络上具有任意 NAT 类型的用户玩多人游戏和发起多人游戏。"),
+            // Moderate
+            NatType.RestrictedCone or NatType.PortRestrictedCone or NatType.SymmetricUdpFirewall => ("中等 NAT", "您可与一些用户玩多人游戏；但是，并且通常你将不会被选为比赛的主持人。"),
+            // Strict
+            NatType.Symmetric or NatType.UdpBlocked => ("严格 NAT", "您只能与具有开放 NAT 类型的用户玩多人游戏。您不能被选为比赛的主持人。"),
+            // Unknown
+            NatType.Unknown or NatType.UnsupportedServer or _ => ("不可用 NAT", "如果 NAT 不可用，您将无法使用群聊天或连接到某些 Xbox 游戏的多人游戏。"),
+        };
+
+        return new NATFetchResult(publicEndPoint, localEndPoint, natLevel, natTypeTip, netSucc);
+    }
+
+    async Task DNSCheckAsync()
+    {
+        var testDomain = DomainPendingTest == string.Empty ? DefaultTestDomain : DomainPendingTest;
+        try
+        {
+            long delayMs;
+            IPAddress[] address;
+            if (ProxySettings.UseDoh)
+            {
+                var configDoh = ProxySettings.CustomDohAddres2.Value ?? ProxySettingsWindowViewModel.DohAddress.FirstOrDefault() ?? string.Empty;
+                (delayMs, address) = await _networkTestService.TestDNSOverHttpsAsync(testDomain, configDoh);
+            }
+            else
+            {
+                var configDns = ProxySettings.ProxyMasterDns.Value ?? string.Empty;
+                (delayMs, address) = await _networkTestService.TestDNSAsync(testDomain, configDns, 53);
+            }
+            if (address.Length == 0)
+                throw new Exception("Parsing failed. Return empty ip address.");
+
+            DNSTestDelay = delayMs + "ms ";
+            DNSTestResult = string.Empty + address.FirstOrDefault();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(AcceleratorPageViewModel), ex.ToString());
+            DNSTestDelay = string.Empty;
+            DNSTestResult = "error";
+        }
     }
 }
