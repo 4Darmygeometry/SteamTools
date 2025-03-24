@@ -104,7 +104,7 @@
                 <Button Content="选择证书"/>
               </DockPanel>-->
 
-            <ui:SettingsExpanderItem Description="*该选项勾选后会导致程序的加速完全不生效，请确认是配合二级代理实现仅需要脚本功能后再启用">
+            <ui:SettingsExpanderItem Description="*该选项勾选后会导致程序的加速失效，请确认是配合二级代理实现仅需要脚本功能后再启用">
                 <TextBlock Text="{Binding Path=Res.CommunityFix_ProxyOnlyOnScript, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
                 <ui:SettingsExpanderItem.Footer>
                     <ToggleSwitch Classes="LeftContent" IsChecked="{Binding Source={x:Static ms:ProxySettings.OnlyEnableProxyScript}, Path=Value, Mode=TwoWay}" />
@@ -114,7 +114,7 @@
 
 
         <ui:SettingsExpander
-            Description="*改动后需重启加速才能生效"
+            Description="*请在有正确二级代理的情况下才考虑启用该选项，否则会导致程序的加速失效，改动后需重启加速才能生效"
             Header="{Binding Path=Res.Settings_Proxy_TwoLevelAgent, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
             IsExpanded="True">
             <ui:SettingsExpander.Footer>
