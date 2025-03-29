@@ -143,6 +143,8 @@ static unsafe partial class Program
         Architecture.X64 => "x64",
         Architecture.Arm => "Arm32",
         Architecture.Arm64 => "Arm64",
+        Architecture.LoongArch64 => "LoongArch64",
+        Architecture.RiscV64 => "RiscV64",
 #if !NETFRAMEWORK
         Architecture.Armv6 => "Armv6",
 #endif
@@ -605,10 +607,10 @@ static unsafe partial class Program
         Arm64 = 3,
         //Wasm = 4,
         //S390x = 5,
-        //LoongArch64 = 6, // SkiaSharp incompatibility.
+        LoongArch64 = 6,
         Armv6 = 7,
         //Ppc64le = 8,
-        //RiscV64 = 9,
+        RiscV64 = 9,
     }
 #endif
 #endif
