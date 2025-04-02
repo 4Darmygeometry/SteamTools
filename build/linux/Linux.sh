@@ -2,6 +2,8 @@
 default_base_path="$HOME/WattToolkit"
 base_path="$default_base_path"
 [ "$EUID" -eq 0 ] && { echo "此脚本不能以root身份执行。"; exit 1; }
+command -v ldd &>/dev/null || { echo "Error: ldd tools is missing, please install ldd in your system."; exit 1; }
+ldd --version 2>&1 | grep -qi 'musl' && { echo "Error: Watt Toolkit didn't support Linux distribution which use musl library, please use another tools." >&2; exit 1; } || echo "系统使用Glibc，继续运行..."
 command -v dialog &>/dev/null && dialog1="dialog" || dialog1="whiptail"
 while true; do
     if command -v zenity &>/dev/null; then

@@ -9,6 +9,10 @@ if [ "$EUID" -eq 0 ]; then
   exit 1
 fi
 
+#判断系统是使用Glibc库还是musl库
+command -v ldd &>/dev/null || { echo "Error: ldd tools is missing, please install ldd in your system."; exit 1; }
+ldd --version 2>&1 | grep -qi 'musl' && { echo "Error: Watt Toolkit didn't support Linux distribution which use musl library, please use another tools." >&2; exit 1; } || echo "系统使用Glibc，继续运行..."
+
 command -v dialog &>/dev/null && dialog1="dialog" || dialog1="whiptail"
 # 循环直到用户输入有效路径或直接回车
 while true; do
