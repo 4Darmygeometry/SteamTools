@@ -65,7 +65,12 @@ Install_wget() {
         echo "请手动安装 wget 工具。"
     else
         echo "安装包网上下载需要使用 wget 工具。"
-        [ "$os_id" == "gentoo" ] && { $installprefix net-misc/wget; } || { $installprefix wget; }; echo "wget 工具已安装。" ;;
+        if [ "$os_id" == "gentoo" ]; then
+            $installprefix net-misc/wget
+        else
+            $installprefix wget
+        fi
+        echo "wget 工具已安装。"
     fi
 }
 Install_certutil() {
