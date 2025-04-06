@@ -15,3 +15,28 @@ dotnet build -c Release src/BD.WTTS.Client.Plugins.Accelerator/BD.WTTS.Client.Pl
 echo "Publish Done!"
 echo "Start Copy File"
 # to do
+mkdir WattToolkit
+cp -a realbuild/assemblies WattToolkit/
+cd WattToolkit
+mkdir modules
+cd modules
+mkdir Accelerator
+mkdir Authenticator
+mkdir GameAccount
+mkdir GameList
+mkdir SteamIdleCard
+cp "../../realbuild/modules/Accelerator/BD.WTTS.Client.Plugins.Accelerator.dll" "../../realbuild/modules/Accelerator/Steam++.Accelerator" Accelerator/
+cp "../../realbuild/modules/Authenticator/BD.WTTS.Client.Plugins.Authenticator.dll" Authenticator/
+cp "../../realbuild/modules/GameAccount/BD.WTTS.Client.Plugins.GameAccount.dll" GameAccount/
+cp "../../realbuild/modules/GameList/BD.WTTS.Client.Plugins.GameList.dll" GameList/
+cp "../../realbuild/modules/SteamIdleCard/BD.WTTS.Client.Plugins.SteamIdleCard.dll" SteamIdleCard/
+cd ..
+mkdir dotnet
+dotnetloc=$(readlink -f $(which dotnet))
+cp -a $dotnetloc $(dirname $dotnetloc)/host $(dirname $dotnetloc)/shared $(dirname $dotnetloc)/LICENSE.txt $(dirname $dotnetloc)/ThirdPartyNotices.txt dotnet/
+mkdir native
+cd native
+mkdir linux-loongarch64
+cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.0-preview.1.2/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.1-preview.1.2/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
+cd ../..
