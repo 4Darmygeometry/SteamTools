@@ -48,7 +48,7 @@ Determine_distribution() {
     "fedora") installprefix="sudo dnf install -y"; nssvar="nss-tools" ;;
     "centos"|"rhel"|"rocky"|"alma"|"amzn"|"alt") installprefix="sudo yum install -y"; nssvar="nss-tools";;
     "opensuse") installprefix="sudo zypper install"; nssvar="mozilla-nss-tools"; packageupdate="sudo zypper refresh" ;;
-    "arch"|"manjaro"|"artix"|"chakra"|"blackarch"|"frugalware") installprefix="sudo pacman -S"; nssvar="nss" ;;
+    "arch"|"manjaro"|"artix"|"chakra"|"blackarch"|"frugalware") installprefix="sudo pacman -Sy"; nssvar="nss" ;;
     "mageia"|"pclinuxos"|"openmandriva"|"rosa"|"vectorlinux") installprefix="sudo urpmi"; nssvar="nss-tools"; packageupdate="sudo urpmi.update -a";;
     "slackware"|"salix"|"porteus"|"slacko") installprefix="sudo slackpkg install"; nssvar="nss"; packageupdate="sudo slackpkg update gpg; sudo slackpkg update;";;
     "aosc") installprefix="sudo oma install -y"; nssvar="nss" ;;
