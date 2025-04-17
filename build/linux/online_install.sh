@@ -111,13 +111,13 @@ Determine_distribution() {
     echo "OS ID: $os_id"
 
     case "$os_id" in
-    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde" | "nfsdesktop")
+    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "openkylin" | "loongnix" | "gxde" | "nfsdesktop")
         echo 默认包管理器：apt
         sudo apt update
         installprefix="sudo apt install -y"
         nssvar="libnss3-tools"
         ;;
-    "fedora")
+    "fedora" | "neokylin")
         echo 默认包管理器：dnf
         installprefix="sudo dnf install -y"
         nssvar="nss-tools"

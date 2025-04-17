@@ -21,13 +21,13 @@ Determine_distribution() {
     echo "OS ID: $os_id"
 
     case "$os_id" in
-    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "loongnix" | "gxde" | "nfsdesktop")
+    "ubuntu" | "debian" | "kali" | "mx" | "devuan" | "pureos" | "parrot" | "trisquel" | "bunsenlabs" | "deepin" | "antix" | "uos" | "kylin" | "openkylin" | "loongnix" | "gxde" | "nfsdesktop")
         echo 默认包管理器：apt
         sudo apt update
         installprefix="sudo apt install -y"
         nssvar="libnss3-tools"
         ;;
-    "fedora")
+    "fedora" | "neokylin")
         echo 默认包管理器：dnf
         installprefix="sudo dnf install -y"
         nssvar="nss-tools"
@@ -45,7 +45,7 @@ Determine_distribution() {
         ;;
     "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
         echo 默认包管理器：pacman
-        installprefix="sudo pacman -Sy"
+        installprefix="sudo pacman -S"
         nssvar="nss"
         ;;
     "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
@@ -78,8 +78,29 @@ Determine_distribution() {
         installprefix="sudo eopkg install"
         nssvar="nss-tools"
         ;;
-    "clearlinux" | "nixos" | "void" | "puppy" | "tinycore" | "yongbao")
-        # 冷门发行版，手动安装判断变量
+    "clearlinux")
+        echo 默认包管理器：swupd
+        # 手动安装判断变量
+        manualins="1"
+        ;;
+    "nixos")
+        echo 默认包管理器：nix
+        manualins="1"
+        ;;
+    "void")
+        echo 默认包管理器：xbps
+        manualins="1"
+        ;;
+    "puppy")
+        echo 默认包管理器：petget
+        manualins="1"
+        ;;
+    "tinycore")
+        echo 默认包管理器：tce-load
+        manualins="1"
+        ;;
+    "yongbao")
+        echo 无包管理器
         manualins="1"
         ;;
     *)
@@ -89,22 +110,6 @@ Determine_distribution() {
     esac
 }
 Determine_distribution
-Install_wget() {
-    if command -v wget &>/dev/null; then
-        echo "wget 工具已安装。"
-    elif [ "$manualins" == "1" ]; then
-        echo "请手动安装 wget 工具。"
-    else
-        echo "安装包网上下载需要使用 wget 工具。"
-        # Gentoo特殊情况与一般情况
-        if [ "$os_id" == "gentoo" ]; then
-            $installprefix net-misc/wget
-        else
-            $installprefix wget
-        fi
-        echo "wget 工具已安装。"
-    fi
-}
 Install_certutil() {
     if command -v certutil &>/dev/null; then
         echo "certutil 工具已安装。"
@@ -209,9 +214,8 @@ Kill_Process() {
     done
 
 }
-Install_wget
 Install_certutil
-[ "$os_id" != "yongbao" ] && Install_zenity || echo 勇豹没有包管理器，不能安装zenity，此处以whiptail代替
+Install_zenity
 Install_jq
 certutil_Init
 Kill_Process

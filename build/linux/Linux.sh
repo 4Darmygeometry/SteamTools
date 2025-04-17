@@ -43,12 +43,12 @@ Determine_distribution() {
     os_id=$(grep "^ID=" /etc/os-release|cut -d'=' -f2|tr -d '"'|tr '[:upper:]' '[:lower:]')
     echo "OS ID: $os_id"
     case "$os_id" in
-    "ubuntu"|"debian"|"kali"|"mx"|"devuan"|"pureos"|"parrot"|"trisquel"|"bunsenlabs"|"deepin"|"antix"|"uos"|"kylin"|"loongnix"|"gxde"|"nfsdesktop")
+    "ubuntu"|"debian"|"kali"|"mx"|"devuan"|"pureos"|"parrot"|"trisquel"|"bunsenlabs"|"deepin"|"antix"|"uos"|"kylin"|"openkylin"|"loongnix"|"gxde"|"nfsdesktop")
         installprefix="sudo apt install -y"; nssvar="libnss3-tools"; packageupdate="sudo apt update" ;;
-    "fedora") installprefix="sudo dnf install -y"; nssvar="nss-tools" ;;
+    "fedora"|"neokylin") installprefix="sudo dnf install -y"; nssvar="nss-tools" ;;
     "centos"|"rhel"|"rocky"|"alma"|"amzn"|"alt") installprefix="sudo yum install -y"; nssvar="nss-tools";;
     "opensuse") installprefix="sudo zypper install"; nssvar="mozilla-nss-tools"; packageupdate="sudo zypper refresh" ;;
-    "arch"|"manjaro"|"artix"|"chakra"|"blackarch"|"frugalware") installprefix="sudo pacman -Sy"; nssvar="nss" ;;
+    "arch"|"manjaro"|"artix"|"chakra"|"blackarch"|"frugalware") installprefix="sudo pacman -S"; nssvar="nss" ;;
     "mageia"|"pclinuxos"|"openmandriva"|"rosa"|"vectorlinux") installprefix="sudo urpmi"; nssvar="nss-tools"; packageupdate="sudo urpmi.update -a";;
     "slackware"|"salix"|"porteus"|"slacko") installprefix="sudo slackpkg install"; nssvar="nss"; packageupdate="sudo slackpkg update gpg; sudo slackpkg update;";;
     "aosc") installprefix="sudo oma install -y"; nssvar="nss" ;;
@@ -65,12 +65,7 @@ Install_wget() {
         echo "请手动安装 wget 工具。"
     else
         echo "安装包网上下载需要使用 wget 工具。"
-        if [ "$os_id" == "gentoo" ]; then
-            $installprefix net-misc/wget
-        else
-            $installprefix wget
-        fi
-        echo "wget 工具已安装。"
+        [ "$os_id" == "gentoo" ] && { $installprefix net-misc/wget; } || { $installprefix wget; }; echo "wget 工具已安装。" ;;
     fi
 }
 Install_certutil() {
