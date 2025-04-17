@@ -45,7 +45,7 @@ Determine_distribution() {
         ;;
     "arch" | "manjaro" | "artix" | "chakra" | "blackarch" | "frugalware")
         echo 默认包管理器：pacman
-        installprefix="sudo pacman -S"
+        installprefix="sudo pacman -Sy"
         nssvar="nss"
         ;;
     "mageia" | "pclinuxos" | "openmandriva" | "rosa" | "vectorlinux")
@@ -78,29 +78,8 @@ Determine_distribution() {
         installprefix="sudo eopkg install"
         nssvar="nss-tools"
         ;;
-    "clearlinux")
-        echo 默认包管理器：swupd
-        # 手动安装判断变量
-        manualins="1"
-        ;;
-    "nixos")
-        echo 默认包管理器：nix
-        manualins="1"
-        ;;
-    "void")
-        echo 默认包管理器：xbps
-        manualins="1"
-        ;;
-    "puppy")
-        echo 默认包管理器：petget
-        manualins="1"
-        ;;
-    "tinycore")
-        echo 默认包管理器：tce-load
-        manualins="1"
-        ;;
-    "yongbao")
-        echo 无包管理器
+    "clearlinux" | "nixos" | "void" | "puppy" | "tinycore" | "yongbao")
+        # 冷门发行版，手动安装判断变量
         manualins="1"
         ;;
     *)
@@ -110,6 +89,22 @@ Determine_distribution() {
     esac
 }
 Determine_distribution
+Install_wget() {
+    if command -v wget &>/dev/null; then
+        echo "wget 工具已安装。"
+    elif [ "$manualins" == "1" ]; then
+        echo "请手动安装 wget 工具。"
+    else
+        echo "安装包网上下载需要使用 wget 工具。"
+        # Gentoo特殊情况与一般情况
+        if [ "$os_id" == "gentoo" ]; then
+            $installprefix net-misc/wget
+        else
+            $installprefix wget
+        fi
+        echo "wget 工具已安装。"
+    fi
+}
 Install_certutil() {
     if command -v certutil &>/dev/null; then
         echo "certutil 工具已安装。"
@@ -214,8 +209,9 @@ Kill_Process() {
     done
 
 }
+Install_wget
 Install_certutil
-Install_zenity
+[ "$os_id" != "yongbao" ] && Install_zenity || echo 勇豹没有包管理器，不能安装zenity，此处以whiptail代替
 Install_jq
 certutil_Init
 Kill_Process
