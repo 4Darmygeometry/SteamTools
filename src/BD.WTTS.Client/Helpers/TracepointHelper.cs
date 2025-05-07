@@ -1,8 +1,4 @@
-#if USE_MS_APPCENTER_ANALYTICS
-using Microsoft.AppCenter.Analytics;
-#else
 using BD.AppCenter.Analytics;
-#endif
 
 namespace BD.WTTS.Helpers;
 

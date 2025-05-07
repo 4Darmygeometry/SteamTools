@@ -1,6 +1,3 @@
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 #if !APP_REVERSE_PROXY && (WINDOWS || LINUX || MACCATALYST || MACOS)
 using BD_AppCenter = BD.AppCenter.AppCenter;
 #endif
@@ -18,25 +15,12 @@ static partial class VisualStudioAppCenterSDK
 {
     internal static void Init()
     {
-        if (DateTime.UtcNow >= new DateTime(2025, 3, 31, default, default, default, DateTimeKind.Utc))
-        {
-            // Visual Studio App Center is scheduled for retirement on March 31, 2025.
-            // https://learn.microsoft.com/en-us/appcenter/retirement
-            return;
-        }
-
         var appSecret = AppSecret;
         if (string.IsNullOrWhiteSpace(appSecret))
             return;
 #if WINDOWS || LINUX || MACCATALYST || MACOS || APP_REVERSE_PROXY
         var utils = UtilsImpl.Instance;
-        AppCenter.SetDeviceInformationHelper(utils);
-        AppCenter.SetPlatformHelper(utils);
-#pragma warning disable CS0612 // 类型或成员已过时
-        AppCenter.SetApplicationSettingsFactory(utils);
-#pragma warning restore CS0612 // 类型或成员已过时
 #endif
-        AppCenter.Start(appSecret, typeof(Analytics), typeof(Crashes));
 
 #if !USE_MS_APPCENTER_ANALYTICS && !APP_REVERSE_PROXY && (WINDOWS || LINUX || MACCATALYST || MACOS)
         if (Startup.Instance.IsMainProcess)
@@ -55,11 +39,7 @@ static partial class VisualStudioAppCenterSDK
     }
 
 #if WINDOWS || LINUX || MACCATALYST || MACOS || APP_REVERSE_PROXY
-    internal sealed partial class UtilsImpl :
-        Microsoft.AppCenter.Utils.IAbstractDeviceInformationHelper,
-        Microsoft.AppCenter.Utils.IPlatformHelper,
-        Microsoft.AppCenter.Utils.IApplicationSettingsFactory,
-        Microsoft.AppCenter.Utils.IApplicationSettings
+    internal sealed partial class UtilsImpl
     {
         private UtilsImpl() { }
 
@@ -165,12 +145,6 @@ static partial class VisualStudioAppCenterSDK
             return default;
 #endif
         }
-
-        #endregion
-
-        #region IApplicationSettingsFactory
-
-        public Microsoft.AppCenter.Utils.IApplicationSettings CreateApplicationSettings() => this;
 
         #endregion
 
