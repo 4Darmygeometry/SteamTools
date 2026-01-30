@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using BD.WTTS.Helpers;
 
 namespace BD.WTTS.UI.Views.Controls;

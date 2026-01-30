@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using BD.WTTS.UI.Views.Controls;
 using KeyEventArgs = Avalonia.Input.KeyEventArgs;
 

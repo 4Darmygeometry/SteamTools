@@ -127,7 +127,8 @@
 		<!--<PackageReference Include="Portable.BouncyCastle" />-->
 		<PackageReference Include="ReactiveUI.Fody" />
 		<PackageReference Include="dotnetCampus.Ipc" />
-		<PackageReference Include="fusillade" />
+		<!--<PackageReference Include="fusillade" />-->
+		<PackageReference Include="BD.Common.fusillade" />
 		<PackageReference Include="Splat.Drawing" />
 		<PackageReference Include="System.Drawing.Common" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" />

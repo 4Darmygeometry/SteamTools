@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using System.CommandLine;
 
 namespace BD.WTTS.UI.Views.Controls;

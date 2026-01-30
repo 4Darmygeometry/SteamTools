@@ -41,7 +41,7 @@ global using Avalonia.Skia;
 global using Avalonia.Layout;
 global using Avalonia.LogicalTree;
 global using Avalonia.Rendering;
-global using Avalonia.ReactiveUI;
+global using ReactiveUI.Avalonia;
 global using Avalonia.Platform.Storage;
 global using Cursor = Avalonia.Input.Cursor;
 global using KeyboardNavigation = Avalonia.Input.KeyboardNavigation;

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using Avalonia.VisualTree;
 using BD.SteamClient.Enums.SteamGridDB;
 using BD.SteamClient.Models.SteamGridDB;

@@ -40,3 +40,6 @@
 [submodule "ref/appcenter-sdk-dotnet"]
 	path = ref/appcenter-sdk-dotnet
 	url = https://github.com/BeyondDimension/appcenter-sdk-dotnet.git
+[submodule "ref/Fusillade"]
+	path = ref/Fusillade
+	url = https://github.com/reactiveui/Fusillade

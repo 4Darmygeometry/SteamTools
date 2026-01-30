@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using BD.SteamClient.Models;
 
 namespace BD.WTTS.UI.Views.Pages;

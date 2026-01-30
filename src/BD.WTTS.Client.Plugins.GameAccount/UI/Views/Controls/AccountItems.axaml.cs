@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using Avalonia.ReactiveUI;
+using ReactiveUI.Avalonia;
 using BD.SteamClient.Helpers;
 using FluentAvalonia.UI.Controls;
 
