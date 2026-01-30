@@ -2,9 +2,9 @@
 set -e
 dotnet workload restore src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj
 #发布主程序
-dotnet publish -c Release src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj -p:UseAppHost=false -p:PublishDir=realbuild/assemblies -p:PublishSingleFile=false -p:PublishReadyToRun=false -p:PublishDocumentationFile=false -p:PublishDocumentationFiles=false -p:PublishReferencesDocumentationFiles=false -f net9.0 -r linux-loongarch64 -v q /property:WarningLevel=1 --sc false --force --nologo -o "realbuild/assemblies"
+dotnet publish -c Release src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj -p:UseAppHost=false -p:PublishDir=realbuild/assemblies -p:PublishSingleFile=false -p:PublishReadyToRun=false -p:PublishDocumentationFile=false -p:PublishDocumentationFiles=false -p:PublishReferencesDocumentationFiles=false -f net10.0 -r linux-loongarch64 -v q /property:WarningLevel=1 --sc false --force --nologo -o "realbuild/assemblies"
 #发布插件
-dotnet publish -c Release src/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy.csproj -p:UseAppHost=true -p:PublishDir=realbuild/modules/Accelerator -p:PublishSingleFile=true -p:PublishReadyToRun=false -p:PublishDocumentationFile=false -p:PublishDocumentationFiles=false -p:PublishReferencesDocumentationFiles=false -f net9.0 -r linux-loongarch64 -v q /property:WarningLevel=1 --sc false --force --nologo -o "realbuild/modules/Accelerator"
+dotnet publish -c Release src/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy/BD.WTTS.Client.Plugins.Accelerator.ReverseProxy.csproj -p:UseAppHost=true -p:PublishDir=realbuild/modules/Accelerator -p:PublishSingleFile=true -p:PublishReadyToRun=false -p:PublishDocumentationFile=false -p:PublishDocumentationFiles=false -p:PublishReferencesDocumentationFiles=false -f net10.0 -r linux-loongarch64 -v q /property:WarningLevel=1 --sc false --force --nologo -o "realbuild/modules/Accelerator"
 
 dotnet build -c Release src/BD.WTTS.Client.Plugins.GameAccount/BD.WTTS.Client.Plugins.GameAccount.csproj --nologo -v q --property:WarningLevel=1 --property:DebugType=pdbonly -o "realbuild/modules/GameAccount"
 dotnet build -c Release src/BD.WTTS.Client.Plugins.GameList/BD.WTTS.Client.Plugins.GameList.csproj --nologo -v q --property:WarningLevel=1 --property:DebugType=pdbonly -o "realbuild/modules/GameList"
@@ -37,6 +37,6 @@ cp -a $dotnetloc $(dirname $dotnetloc)/host $(dirname $dotnetloc)/shared $(dirna
 mkdir native
 cd native
 mkdir linux-loongarch64
-cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.0-preview.1.2/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
-cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.1-preview.1.2/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.2-preview.2.3/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.3-preview.2.3/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
 cd ../..
