@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33414.496
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{46259E8D-32A4-4065-953D-D6F835B57A28}"
 	ProjectSection(SolutionItems) = preProject
@@ -221,6 +221,38 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.AppCenter.Any", "ref\appcenter-sdk-dotnet\SDK\AppCenter\BD.AppCenter.Any\BD.AppCenter.Any.csproj", "{BD7E0AF0-FABE-3C94-DE36-CF365BF7323D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.AppCenter.Analytics.Any", "ref\appcenter-sdk-dotnet\SDK\AppCenterAnalytics\BD.AppCenter.Analytics.Any\BD.AppCenter.Analytics.Any.csproj", "{9611DBE7-EDF0-9EB0-EE93-B158981BE48F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{61CECBB5-7E07-46D4-A23A-06ED11B1F71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common", "ref\Common\src\BD.Common\BD.Common.csproj", "{10F39A46-FE8D-6BD1-4DD0-5CEC30DE7BE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Area", "ref\Common\src\BD.Common.Area\BD.Common.Area.csproj", "{FD5EC5C0-0E97-BF37-A60A-9A76DAA9D556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Security", "ref\Common\src\BD.Common.Security\BD.Common.Security.csproj", "{5D76878D-FAE2-72DF-10C1-6466FC15CB0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Mvvm", "ref\Common\src\BD.Common.Mvvm\BD.Common.Mvvm.csproj", "{E3FA55D0-9FD6-0DAD-7B4D-7270965A2494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Mvvm.ReactiveUI", "ref\Common\src\BD.Common.Mvvm.ReactiveUI\BD.Common.Mvvm.ReactiveUI.csproj", "{23F4F3D3-7C33-F7D7-8023-945A1EC23B5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Primitives", "ref\Common\src\BD.Common.Primitives\BD.Common.Primitives.csproj", "{235D1EB8-06EF-0AAC-AFB0-807E56F04111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Settings", "ref\Common\src\BD.Common.Settings\BD.Common.Settings.csproj", "{F3114DB9-E688-5A87-5B08-6628D177B864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Repositories.SQLitePCL", "ref\Common\src\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj", "{3306A160-729E-89C8-2604-7D35E02068BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials", "ref\Common\src\BD.Common.Essentials\BD.Common.Essentials.csproj", "{E6010D8A-453B-4E2A-E8E7-E8FC91738377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Primitives", "ref\Common\src\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj", "{E57DEBBD-4BAA-08DB-3E90-C51634522F47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Utils", "ref\Common\src\BD.Common.Essentials.Utils\BD.Common.Essentials.Utils.csproj", "{9A9F6A35-18D8-F980-CEE0-155AB2A2695F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Preferences.SQLite", "ref\Common\src\BD.Common.Essentials.Preferences.SQLite\BD.Common.Essentials.Preferences.SQLite.csproj", "{EA6C9CDF-2982-C015-912B-C33416857D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin", "ref\Common\src\BD.Common.Pinyin\BD.Common.Pinyin.csproj", "{1EFEACE0-C0DB-0252-383F-4CBE5414D08D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Pinyin.TinyPinyin", "ref\Common\src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj", "{641E23B1-E2D1-C15B-7961-0AF918EFEED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.Common.Essentials.Maui.Runtime", "ref\Common\src\BD.Common.Essentials.Maui.Runtime\BD.Common.Essentials.Maui.Runtime.csproj", "{9AB88008-7763-89C1-97AC-41C80EEA410C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1365,6 +1397,22 @@ Global
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {90E88965-DB90-4B49-94F5-6D2965491988}
 		{BD7E0AF0-FABE-3C94-DE36-CF365BF7323D} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{9611DBE7-EDF0-9EB0-EE93-B158981BE48F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{61CECBB5-7E07-46D4-A23A-06ED11B1F71C} = {90E88965-DB90-4B49-94F5-6D2965491988}
+		{10F39A46-FE8D-6BD1-4DD0-5CEC30DE7BE3} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{FD5EC5C0-0E97-BF37-A60A-9A76DAA9D556} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{5D76878D-FAE2-72DF-10C1-6466FC15CB0F} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{E3FA55D0-9FD6-0DAD-7B4D-7270965A2494} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{23F4F3D3-7C33-F7D7-8023-945A1EC23B5A} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{235D1EB8-06EF-0AAC-AFB0-807E56F04111} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{F3114DB9-E688-5A87-5B08-6628D177B864} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{3306A160-729E-89C8-2604-7D35E02068BF} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{E6010D8A-453B-4E2A-E8E7-E8FC91738377} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{E57DEBBD-4BAA-08DB-3E90-C51634522F47} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{9A9F6A35-18D8-F980-CEE0-155AB2A2695F} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{EA6C9CDF-2982-C015-912B-C33416857D54} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{1EFEACE0-C0DB-0252-383F-4CBE5414D08D} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{641E23B1-E2D1-C15B-7961-0AF918EFEED1} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
+		{9AB88008-7763-89C1-97AC-41C80EEA410C} = {61CECBB5-7E07-46D4-A23A-06ED11B1F71C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {567F588F-E95C-4286-8B30-DB3B2200221C}

@@ -86,8 +86,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Area\BD.Common.Area.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Essentials.Preferences.SQLite\BD.Common.Essentials.Preferences.SQLite.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Essentials.Primitives\BD.Common.Essentials.Primitives.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Essentials.Utils\BD.Common.Essentials.Utils.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Essentials\BD.Common.Essentials.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Mvvm.ReactiveUI\BD.Common.Mvvm.ReactiveUI.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Mvvm\BD.Common.Mvvm.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Pinyin\BD.Common.Pinyin.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Primitives\BD.Common.Primitives.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Repositories.SQLitePCL\BD.Common.Repositories.SQLitePCL.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Security\BD.Common.Security.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Settings\BD.Common.Settings.csproj" />
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common\BD.Common.csproj" />
 		<!-- PackageReference -->
-		<PackageReference Include="BD.Common" />
+		<!--<PackageReference Include="BD.Common" />
 		<PackageReference Include="BD.Common.Area" />
 		<PackageReference Include="BD.Common.Security" />
 		<PackageReference Include="BD.Common.Mvvm" />
@@ -100,7 +113,7 @@
 		<PackageReference Include="BD.Common.Essentials.Primitives" />
 		<PackageReference Include="BD.Common.Essentials.Utils" />
 		<PackageReference Include="BD.Common.Essentials.Preferences.SQLite" />
-		<PackageReference Include="BD.Common.Pinyin" />
+		<PackageReference Include="BD.Common.Pinyin" />-->
 		<!--<PackageReference Include="BD.SteamClient" />-->
 		<PackageReference Include="AutoMapper" />
 		<!--<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />-->
@@ -157,7 +170,8 @@
 		<PackageReference Include="7-Zip.NativeAssets.Win32" />
 		<PackageReference Include="System.Management" />
 		<!--<PackageReference Include="Aigio.WinDivertSharp.NativeAssets.Win32" />-->
-		<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />
+		<!--<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />-->
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj" />
 		<PackageReference Include="Microsoft.Extensions.Logging.EventLog" />
 		<PackageReference Include="Microsoft.Win32.SystemEvents" />
 		<PackageReference Include="Vanara.PInvoke.PowrProf" />
@@ -189,7 +203,7 @@
 		<!-- Desktop Only -->
 		<PackageReference Include="System.Composition" />
 		<PackageReference Include="System.CommandLine" />
-		<PackageReference Include="System.CommandLine.NamingConventionBinder" />
+		<!--<PackageReference Include="System.CommandLine.NamingConventionBinder" />-->
 		<PackageReference Include="SteamKit2" />
 		<Compile Condition="'$(Configuration)'=='Debug'" Include="..\Utils.cs" />
 		<!--<PackageReference Include="Microsoft.Extensions.DependencyModel" />-->
@@ -206,7 +220,8 @@
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
 		<!-- Linux Only -->
-		<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />
+		<!--<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />-->
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj" />
 		<ProjectReference Include="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\Facepunch.Steamworks.Posix.csproj" />
 		<PackageReference Include="Aigio.Any.AppCenter" />
 		<PackageReference Include="Aigio.Any.AppCenter.Analytics" />
@@ -217,7 +232,8 @@
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
 		<!-- Android Only -->
-		<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />
+		<!--<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />-->
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">

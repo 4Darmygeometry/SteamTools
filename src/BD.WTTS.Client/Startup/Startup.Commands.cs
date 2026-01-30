@@ -1,8 +1,7 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-using System.CommandLine;
-using System.CommandLine.NamingConventionBinder;
-using BD.WTTS.Services;
 using dotnetCampus.Ipc.CompilerServices.GeneratedProxies;
+using System.CommandLine;
+using Command = System.CommandLine.Command;
 #endif
 
 // ReSharper disable once CheckNamespace
@@ -16,10 +15,19 @@ partial class Startup // 自定义控制台命令参数
     {
 #if DEBUG
         // -clt debug -args 730
-        var debug = new Command("debug", "调试");
-        debug.AddOption(new Option<string>("-args", () => "", "测试参数"));
-        debug.Handler = CommandHandler.Create((string args) => // 参数名与类型要与 Option 中一致！
+        var debug_args = new Option<string>("-args")
         {
+            DefaultValueFactory = _ => "",
+            Description = "测试参数",
+        };
+        var debug = new Command("debug", "调试")
+        {
+            debug_args,
+        };
+        debug.SetAction(parseResult =>
+        {
+            var args = parseResult.GetValue(debug_args);
+
             //Console.WriteLine("-clt debug -args " + args);
             // OutputType WinExe 导致控制台输入不会显示，只能附加一个新的控制台窗口显示内容，不合适
             // 如果能取消 管理员权限要求，改为运行时管理员权限，
@@ -29,28 +37,52 @@ partial class Startup // 自定义控制台命令参数
 
             RunUIApplication();
         });
-        rootCommand.AddCommand(debug);
+        rootCommand.Subcommands.Add(debug);
 #endif
 
         var main = new Command(command_main)
         {
-            Handler = CommandHandler.Create(() =>
-            {
-                RunUIApplication();
-            }),
         };
-        rootCommand.AddCommand(main);
+        main.SetAction(parseResult =>
+        {
+            RunUIApplication();
+        });
+        rootCommand.Subcommands.Add(main);
 
         // -clt devtools
         // -clt devtools -disable_gpu
         // -clt devtools -use_wgl
-        var devtools = new Command("devtools");
-        devtools.AddOption(new Option<bool>("-disable_gpu", () => false, "禁用 GPU 硬件加速"));
-        devtools.AddOption(new Option<bool>("-use_wgl", () => false, "使用 Native OpenGL（仅 Windows）"));
-        devtools.AddOption(new Option<bool>("-use_localhost", () => false, "使用本机服务端"));
-        devtools.AddOption(new Option<bool>("-steamrun", () => false, "Steam 内启动"));
-        devtools.Handler = CommandHandler.Create((bool disable_gpu, bool use_wgl, bool use_localhost, bool steamrun) =>
+        var devtools_disable_gpu = new Option<bool>("-disable_gpu")
         {
+            DefaultValueFactory = _ => false,
+            Description = "禁用 GPU 硬件加速",
+        };
+        var devtools_use_wgl = new Option<bool>("-use_wgl")
+        {
+            DefaultValueFactory = _ => false,
+            Description = "使用 Native OpenGL（仅 Windows）",
+        };
+        var devtools_use_localhost = new Option<bool>("-use_localhost")
+        {
+            DefaultValueFactory = _ => false,
+            Description = "使用本机服务端",
+        };
+        var devtools_steamrun = new Option<bool>("-steamrun")
+        {
+            DefaultValueFactory = _ => false,
+            Description = "Steam 内启动",
+        };
+        var devtools = new Command("devtools")
+        {
+            devtools_disable_gpu, devtools_use_wgl, devtools_use_localhost, devtools_steamrun,
+        };
+        devtools.SetAction(parseResult =>
+        {
+            var disable_gpu = parseResult.GetValue(devtools_disable_gpu);
+            var use_wgl = parseResult.GetValue(devtools_use_wgl);
+            var use_localhost = parseResult.GetValue(devtools_use_localhost);
+            var steamrun = parseResult.GetValue(devtools_steamrun);
+
 #if DEBUG
             AppSettings.UseLocalhostApiBaseUrl = use_localhost;
 #endif
@@ -65,15 +97,29 @@ partial class Startup // 自定义控制台命令参数
 
             RunUIApplication();
         });
-        rootCommand.AddCommand(devtools);
+        rootCommand.Subcommands.Add(devtools);
 
         // -clt c -silence
         // -clt c -steamrun
-        var common = new Command("c", "common");
-        common.AddOption(new Option<bool>("-silence", "静默启动（不弹窗口）"));
-        common.AddOption(new Option<bool>("-steamrun", "Steam 内启动"));
-        common.Handler = CommandHandler.Create((bool silence, bool steamrun) =>
+        var common_silence = new Option<bool>("-silence")
         {
+            DefaultValueFactory = _ => false,
+            Description = "静默启动（不弹窗口）",
+        };
+        var common_steamrun = new Option<bool>("-steamrun")
+        {
+            DefaultValueFactory = _ => false,
+            Description = "Steam 内启动",
+        };
+        var common = new Command("c", "common")
+        {
+            common_silence, common_steamrun,
+        };
+        common.SetAction(parseResult =>
+        {
+            var silence = parseResult.GetValue(common_silence);
+            var steamrun = parseResult.GetValue(common_steamrun);
+
             IsMinimize = silence;
             IsSteamRun = steamrun;
 
@@ -82,13 +128,21 @@ partial class Startup // 自定义控制台命令参数
 
             RunUIApplication();
         });
-        rootCommand.AddCommand(common);
+        rootCommand.Subcommands.Add(common);
 
         // -clt steam -account
-        var steamuser = new Command("steam", "Steam 相关操作");
-        steamuser.AddOption(new Option<string>("-account", "指定对应 Steam 用户名"));
-        steamuser.Handler = CommandHandler.Create(async (string account) =>
+        var steamuser_account = new Option<string>("-account")
         {
+            Description = "指定对应 Steam 用户名",
+        };
+        var steamuser = new Command("steam", "Steam 相关操作")
+        {
+            steamuser_account,
+        };
+        steamuser.SetAction(async parseResult =>
+        {
+            var account = parseResult.GetValue(steamuser_account);
+
             if (!string.IsNullOrEmpty(account))
             {
 #if WINDOWS
@@ -122,16 +176,31 @@ partial class Startup // 自定义控制台命令参数
                 steamService.StartSteamWithParameter();
             }
         });
-        rootCommand.AddCommand(steamuser);
+        rootCommand.Subcommands.Add(steamuser);
 
         // -clt app -id 282800 -achievement
-        var run_SteamApp = new Command("app", "运行 Steam 应用");
-        run_SteamApp.AddOption(new Option<int>("-id", "指定一个 Steam 游戏 Id"));
-        run_SteamApp.AddOption(new Option<bool>("-achievement", "打开成就解锁窗口"));
-        run_SteamApp.AddOption(new Option<bool>("-cloudmanager", "打开云存档管理窗口"));
-        run_SteamApp.AddOption(new Option<bool>("-silence", "挂运行服务，不加载窗口，内存占用更小"));
-        run_SteamApp.Handler = CommandHandler.Create(async (int id, bool achievement, bool cloudmanager) =>
+        var app_id = new Option<int>("-id")
         {
+            Description = "指定一个 Steam 游戏 Id",
+        };
+        var app_achievement = new Option<bool>("-achievement")
+        {
+            Description = "打开成就解锁窗口",
+        };
+        var app_cloudmanager = new Option<bool>("-cloudmanager")
+        {
+            Description = "打开云存档管理窗口",
+        };
+        var run_SteamApp = new Command("app", "运行 Steam 应用")
+        {
+            app_id, app_achievement, app_cloudmanager,
+        };
+        run_SteamApp.SetAction(async parseResult =>
+        {
+            var id = parseResult.GetValue(app_id);
+            var achievement = parseResult.GetValue(app_achievement);
+            var cloudmanager = parseResult.GetValue(app_cloudmanager);
+
             int exitCode = default;
             if (id <= 0)
                 return -1;
@@ -169,14 +238,22 @@ partial class Startup // 自定义控制台命令参数
 
             return exitCode;
         });
-        rootCommand.AddCommand(run_SteamApp);
+        rootCommand.Subcommands.Add(run_SteamApp);
 
         // -clt show -config -cert
-        var show = new Command("show", "显示信息");
-        //show.AddOption(new Option<bool>("-config", "显示 Config.mpo 值"));
-        show.AddOption(new Option<bool>("-cert", "显示当前根证书信息"));
-        show.Handler = CommandHandler.Create((/*bool config,*/ bool cert) =>
+        var show_cert = new Option<bool>("-cert")
         {
+            Description = "显示当前根证书信息",
+        };
+        var show = new Command("show", "显示信息")
+        {
+            show_cert,
+        };
+        //show.AddOption(new Option<bool>("-config", "显示 Config.mpo 值"));
+        show.SetAction(async parseResult =>
+        {
+            var cert = parseResult.GetValue(show_cert);
+
 #if WINDOWS
             if (!IsDesignMode)
             {
@@ -238,7 +315,7 @@ partial class Startup // 自定义控制台命令参数
             }
 #endif
         });
-        rootCommand.AddCommand(show);
+        rootCommand.Subcommands.Add(show);
 
         //#if MACOS
         //        var macOS = new Command("macoscert", "Mac 平台 Root 权限 操作指令");
@@ -265,12 +342,24 @@ partial class Startup // 自定义控制台命令参数
 #if LINUX
         // -clt linux -i or -d AppDataDirectory
         //Linux 可以自定义用户文件夹
-        var linux = new Command("linux", "Linux 平台 Root 权限 操作指令");
-        linux.AddOption(new Option<string>("-ceri", "安装证书 参数为 AppDataDirectory"));
-        linux.AddOption(new Option<string>("-cerd", "删除证书 参数为 AppDataDirectory"));
-        //linux.AddOption(new Option<bool>("-bindProt", "执行允许绑定 443"));
-        linux.Handler = CommandHandler.Create((string ceri, string cerd) =>
+        var linux_ceri = new Option<string>("-ceri")
         {
+            Description = "安装证书 参数为 AppDataDirectory",
+        };
+        var linux_cerd = new Option<string>("-cerd")
+        {
+            Description = "删除证书 参数为 AppDataDirectory",
+        };
+        var linux = new Command("linux", "Linux 平台 Root 权限 操作指令")
+        {
+            linux_ceri, linux_cerd,
+        };
+        //linux.AddOption(new Option<bool>("-bindProt", "执行允许绑定 443"));
+        linux.SetAction(async parseResult =>
+        {
+            var ceri = parseResult.GetValue(linux_ceri);
+            var cerd = parseResult.GetValue(linux_cerd);
+
             if (string.IsNullOrWhiteSpace(ceri) || string.IsNullOrWhiteSpace(ceri))
                 return (int)CommandExitCode.HttpStatusBadRequest;
             if (!string.IsNullOrWhiteSpace(ceri))
@@ -285,15 +374,27 @@ partial class Startup // 自定义控制台命令参数
             }
             return (int)CommandExitCode.HttpStatusBadRequest;
         });
-        rootCommand.AddCommand(linux);
+        rootCommand.Subcommands.Add(linux);
 #endif
 
         // -clt proxy -on
-        var proxy = new Command(key_proxy, "启用代理服务，静默启动（不弹窗口）");
-        proxy.AddOption(new Option<bool>("-on", "开启代理服务"));
-        proxy.AddOption(new Option<bool>("-off", "关闭代理服务"));
-        proxy.Handler = CommandHandler.Create((bool on, bool off) =>
+        var proxy_on = new Option<bool>("-on")
         {
+            Description = "开启代理服务",
+        };
+        var proxy_off = new Option<bool>("-off")
+        {
+            Description = "关闭代理服务",
+        };
+        var proxy = new Command(key_proxy, "启用代理服务，静默启动（不弹窗口）")
+        {
+            proxy_on, proxy_off,
+        };
+        proxy.SetAction(async parseResult =>
+        {
+            var on = parseResult.GetValue(proxy_on);
+            var off = parseResult.GetValue(proxy_off);
+
             // 开关为可选，都不传或都为 false 则执行 toggle
             // 检查当前是否已启动程序
             // 已启动，进行 IPC 通信传递开关
@@ -304,13 +405,21 @@ partial class Startup // 自定义控制台命令参数
             var sendMessage = () => $"{key_proxy} {ProxyServiceStatus}";
             RunUIApplication(sendMessage: sendMessage);
         });
-        rootCommand.AddCommand(proxy);
+        rootCommand.Subcommands.Add(proxy);
 
         // -clt ayaneo -path
-        var ayaneo = new Command("ayaneo", "生成 ayaneo 数据在指定位置");
-        ayaneo.AddOption(new Option<string>("-path", "json 生成路径"));
-        ayaneo.Handler = CommandHandler.Create(async (string path) =>
+        var ayaneo_path = new Option<string>("-path")
         {
+            Description = "json 生成路径",
+        };
+        var ayaneo = new Command("ayaneo", "生成 ayaneo 数据在指定位置")
+        {
+            ayaneo_path,
+        };
+        ayaneo.SetAction(async parseResult =>
+        {
+            var path = parseResult.GetValue(ayaneo_path);
+
             RunUIApplication(AppServicesLevel.Steam);
             await WaitConfiguredServices;
 
@@ -348,190 +457,222 @@ partial class Startup // 自定义控制台命令参数
             }
             File.WriteAllText(path, Serializable.SJSON(content, writeIndented: true));
         });
-        rootCommand.AddCommand(ayaneo);
+        rootCommand.Subcommands.Add(ayaneo);
 
         // -clt shutdown
         var shutdown = new Command(key_shutdown, "安全结束正在运行的程序")
         {
-            Handler = CommandHandler.Create(() =>
-            {
-                InitSingleInstancePipeline(() => key_shutdown);
-            }),
         };
-        rootCommand.AddCommand(shutdown);
+        shutdown.SetAction(async parseResult =>
+        {
+            InitSingleInstancePipeline(() => key_shutdown);
+        });
+        rootCommand.Subcommands.Add(shutdown);
 
 #if WINDOWS
         // -clt sudo
+        var sudo_n = new Option<string>(IPlatformService.IPCRoot.args_PipeName)
+        {
+            Description = "IPC 管道名",
+        };
+        var sudo_p = new Option<string>(IPlatformService.IPCRoot.args_ProcessId)
+        {
+            Description = "主进程 Id",
+        };
         var sudo = new Command(IPlatformService.IPCRoot.CommandName, "使用管理员权限启动 IPC 服务进程")
         {
-            Handler = CommandHandler.Create(async (string n, int p) =>
+            sudo_n, sudo_p,
+        };
+        sudo.SetAction(async parseResult =>
+        {
+            var n = parseResult.GetValue(sudo_n);
+            var p = parseResult.GetValue(sudo_p);
+
+            if (string.IsNullOrWhiteSpace(n) || p == default)
+                return 400;
+            if (!WindowsPlatformServiceImpl.IsPrivilegedProcess)
+                return 401;
+            if (ModuleName != IPlatformService.IPCRoot.moduleName)
+                return 402;
+
+            RunUIApplication(AppServicesLevel.IPCRoot | AppServicesLevel.Hosts);
+            await WaitConfiguredServices;
+
+            try
             {
-                if (string.IsNullOrWhiteSpace(n) || p == default)
-                    return 400;
-                if (!WindowsPlatformServiceImpl.IsPrivilegedProcess)
-                    return 401;
-                if (ModuleName != IPlatformService.IPCRoot.moduleName)
-                    return 402;
-
-                RunUIApplication(AppServicesLevel.IPCRoot | AppServicesLevel.Hosts);
-                await WaitConfiguredServices;
-
-                try
+                var exitCode = await IPCSubProcessService.MainAsync(IPlatformService.IPCRoot.moduleName, null, ConfigureServices, static ipcProvider =>
                 {
-                    var exitCode = await IPCSubProcessService.MainAsync(IPlatformService.IPCRoot.moduleName, null, ConfigureServices, static ipcProvider =>
-                    {
-                        // 添加平台服务（供主进程的 IPC 远程访问）
-                        var platformService = IPlatformService.Instance;
-                        IHostsFileService hostsFileService = IHostsFileService.Constants.Instance;
+                    // 添加平台服务（供主进程的 IPC 远程访问）
+                    var platformService = IPlatformService.Instance;
+                    IHostsFileService hostsFileService = IHostsFileService.Constants.Instance;
 #if DEBUG
-                        Console.WriteLine(platformService.GetDebugString());
+                    Console.WriteLine(platformService.GetDebugString());
 #endif
-                        ipcProvider.CreateIpcJoint<IPCPlatformService>(platformService);
-                        ipcProvider.CreateIpcJoint(hostsFileService);
+                    ipcProvider.CreateIpcJoint<IPCPlatformService>(platformService);
+                    ipcProvider.CreateIpcJoint(hostsFileService);
 
-                        var s = Startup.Instance;
-                        if (s.TryGetPlugins(out var plugins))
+                    var s = Startup.Instance;
+                    if (s.TryGetPlugins(out var plugins))
+                    {
+
+                        foreach (var plugin in plugins)
                         {
-
-                            foreach (var plugin in plugins)
+                            try
                             {
-                                try
-                                {
-                                    plugin.ConfigureServices(ipcProvider!, s);
-                                }
-                                catch (Exception ex)
-                                {
-                                    //GlobalExceptionHandler.Handler(ex, $"{plugin.UniqueEnglishName}.ConfigureRequiredServices");
-                                }
+                                plugin.ConfigureServices(ipcProvider!, s);
+                            }
+                            catch (Exception ex)
+                            {
+                                //GlobalExceptionHandler.Handler(ex, $"{plugin.UniqueEnglishName}.ConfigureRequiredServices");
                             }
                         }
+                    }
 
-                    }, new[] { n, p.ToString() });
+                }, [n, p.ToString()]);
 
-                    return exitCode;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    Console.ReadLine();
-                    return 500;
-                }
-            }),
-        };
-        sudo.AddOption(new Option<string>(IPlatformService.IPCRoot.args_PipeName, "IPC 管道名"));
-        sudo.AddOption(new Option<int>(IPlatformService.IPCRoot.args_ProcessId, "主进程 Id"));
-        rootCommand.AddCommand(sudo);
+                return exitCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Console.ReadLine();
+                return 500;
+            }
+        });
+        rootCommand.Subcommands.Add(sudo);
 #endif
 
         // -clt plugins -l {AppServicesLevel} -m {插件名} -n {PipeName} -p {ProcessId} -a {插件需要解析的参数}
+        var plugins_l = new Option<uint>("-l")
+        {
+            Description = "AppServicesLevel",
+        };
+        var plugins_m = new Option<string>("-m")
+        {
+            Description = "需要加载的模块名称",
+        };
+        var plugins_a = new Option<string>("-a")
+        {
+            Description = "需要解析的参数，使用 HttpUtility.UrlDecode 解码",
+        };
+        var plugins_n = new Option<string>(IPlatformService.IPCRoot.args_PipeName)
+        {
+            Description = "IPC 管道名",
+        };
+        var plugins_p = new Option<string>(IPlatformService.IPCRoot.args_ProcessId)
+        {
+            Description = "主进程 Id",
+        };
         var plugins = new Command("plugins", "插件使用的 IPC 服务进程")
         {
-            Handler = CommandHandler.Create(async (uint l, string m, string n, string p, string a) =>
-            {
-                if (string.IsNullOrWhiteSpace(n) ||
-                    string.IsNullOrWhiteSpace(p))
-                    return (int)CommandExitCode.HttpStatusBadRequest;
-
-                var level = (AppServicesLevel)l;
-                RunUIApplication(level, loadModules: m);
-                await WaitConfiguredServices;
-
-                if (!TryGetPlugins(out var plugins))
-                    return (int)CommandExitCode.GetPluginsFail;
-
-                var plugin = plugins.FirstOrDefault(x => x.UniqueEnglishName == m);
-                if (plugin == null)
-                    return (int)CommandExitCode.GetPluginFail;
-
-                var exitCode = await plugin.RunSubProcessMainAsync(m, n, p, a);
-                return exitCode;
-            }),
+            plugins_l, plugins_m, plugins_a, plugins_n, plugins_p,
         };
-        plugins.AddOption(new Option<uint>("-l", "AppServicesLevel"));
-        plugins.AddOption(new Option<string>("-m", "需要加载的模块名称"));
-        plugins.AddOption(new Option<string>("-a", "需要解析的参数，使用 HttpUtility.UrlDecode 解码"));
-        plugins.AddOption(new Option<string>(IPlatformService.IPCRoot.args_PipeName, "IPC 管道名"));
-        plugins.AddOption(new Option<string>(IPlatformService.IPCRoot.args_ProcessId, "主进程 Id"));
-        rootCommand.AddCommand(plugins);
-
-        // -clt types
-        var types = new Command("types", "显示所有类型")
+        plugins.SetAction(async parseResult =>
         {
-            Handler = CommandHandler.Create(() =>
-            {
-                int exitCode = default;
-                using var assemblies_stream = new FileStream(Path.Combine(
-                    IOPath.CacheDirectory, "assemblies.txt"),
-                    FileMode.OpenOrCreate,
-                    FileAccess.Write,
-                    FileShare.ReadWrite | FileShare.Delete);
-                using var types_stream = new FileStream(Path.Combine(
-                    IOPath.CacheDirectory, "types.txt"),
-                    FileMode.OpenOrCreate,
-                    FileAccess.Write,
-                    FileShare.ReadWrite | FileShare.Delete);
-                try
-                {
-                    var assemblies_ = AppDomain.CurrentDomain.GetAssemblies();
-                    HashSet<Assembly> assemblies = new(assemblies_);
-                    AppDomain.CurrentDomain.AssemblyLoad += (_, args) =>
-                    {
-                        var assembly = args.LoadedAssembly;
-                        if (assemblies.Add(assembly))
-                        {
-                            ShowAssembly(assembly);
-                        }
-                    };
-                    foreach (var assembly in assemblies_)
-                    {
-                        ShowAssembly(assembly);
-                    }
+            var l = parseResult.GetValue(plugins_l);
+            string m = parseResult.GetValue(plugins_m) ?? "";
+            var a = parseResult.GetValue(plugins_a);
+            var n = parseResult.GetValue(plugins_n);
+            var p = parseResult.GetValue(plugins_p);
 
-                    void ShowAssembly(Assembly assembly)
-                    {
-                        lock (types_stream)
-                        {
-                            var assemblyName = assembly.FullName;
-                            if (!string.IsNullOrWhiteSpace(assemblyName))
-                            {
-                                assemblies_stream.Write(Encoding.UTF8.GetBytes(assemblyName));
-                                assemblies_stream.Write("\r\n"u8);
-                            }
-                            var types = assembly.GetTypes();
-                            foreach (var type in types)
-                            {
-                                var fullName = type.FullName;
-                                if (!string.IsNullOrWhiteSpace(fullName))
-                                {
-                                    types_stream.Write(Encoding.UTF8.GetBytes(fullName));
-                                    types_stream.Write("\r\n"u8);
-                                }
-                            }
-                        }
-                    }
-                    return exitCode = (int)CommandExitCode.HttpStatusCodeOk;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    return exitCode = (int)CommandExitCode.HttpStatusCodeInternalServerError;
-                }
-                finally
-                {
-                    types_stream.SetLength(types_stream.Position);
-                    types_stream.Flush();
-                    types_stream.Dispose();
-                    assemblies_stream.SetLength(assemblies_stream.Position);
-                    assemblies_stream.Flush();
-                    assemblies_stream.Dispose();
-                    Console.WriteLine($"ExitCode: {exitCode}");
-#if DEBUG
-                    Console.ReadLine();
-#endif
-                }
-            }),
-        };
-        rootCommand.AddCommand(types);
+            if (string.IsNullOrWhiteSpace(n) ||
+                string.IsNullOrWhiteSpace(p))
+                return (int)CommandExitCode.HttpStatusBadRequest;
+
+            var level = (AppServicesLevel)l;
+            RunUIApplication(level, loadModules: m);
+            await WaitConfiguredServices;
+
+            if (!TryGetPlugins(out var plugins))
+                return (int)CommandExitCode.GetPluginsFail;
+
+            var plugin = plugins.FirstOrDefault(x => x.UniqueEnglishName == m);
+            if (plugin == null)
+                return (int)CommandExitCode.GetPluginFail;
+
+            var exitCode = await plugin.RunSubProcessMainAsync(m, n, p, a);
+            return exitCode;
+        });
+        rootCommand.Subcommands.Add(plugins);
+
+        //        // -clt types
+        //        var types = new Command("types", "显示所有类型")
+        //        {
+        //            Handler = CommandHandler.Create(() =>
+        //            {
+        //                int exitCode = default;
+        //                using var assemblies_stream = new FileStream(Path.Combine(
+        //                    IOPath.CacheDirectory, "assemblies.txt"),
+        //                    FileMode.OpenOrCreate,
+        //                    FileAccess.Write,
+        //                    FileShare.ReadWrite | FileShare.Delete);
+        //                using var types_stream = new FileStream(Path.Combine(
+        //                    IOPath.CacheDirectory, "types.txt"),
+        //                    FileMode.OpenOrCreate,
+        //                    FileAccess.Write,
+        //                    FileShare.ReadWrite | FileShare.Delete);
+        //                try
+        //                {
+        //                    var assemblies_ = AppDomain.CurrentDomain.GetAssemblies();
+        //                    HashSet<Assembly> assemblies = new(assemblies_);
+        //                    AppDomain.CurrentDomain.AssemblyLoad += (_, args) =>
+        //                    {
+        //                        var assembly = args.LoadedAssembly;
+        //                        if (assemblies.Add(assembly))
+        //                        {
+        //                            ShowAssembly(assembly);
+        //                        }
+        //                    };
+        //                    foreach (var assembly in assemblies_)
+        //                    {
+        //                        ShowAssembly(assembly);
+        //                    }
+
+        //                    void ShowAssembly(Assembly assembly)
+        //                    {
+        //                        lock (types_stream)
+        //                        {
+        //                            var assemblyName = assembly.FullName;
+        //                            if (!string.IsNullOrWhiteSpace(assemblyName))
+        //                            {
+        //                                assemblies_stream.Write(Encoding.UTF8.GetBytes(assemblyName));
+        //                                assemblies_stream.Write("\r\n"u8);
+        //                            }
+        //                            var types = assembly.GetTypes();
+        //                            foreach (var type in types)
+        //                            {
+        //                                var fullName = type.FullName;
+        //                                if (!string.IsNullOrWhiteSpace(fullName))
+        //                                {
+        //                                    types_stream.Write(Encoding.UTF8.GetBytes(fullName));
+        //                                    types_stream.Write("\r\n"u8);
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                    return exitCode = (int)CommandExitCode.HttpStatusCodeOk;
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    Console.WriteLine(ex);
+        //                    return exitCode = (int)CommandExitCode.HttpStatusCodeInternalServerError;
+        //                }
+        //                finally
+        //                {
+        //                    types_stream.SetLength(types_stream.Position);
+        //                    types_stream.Flush();
+        //                    types_stream.Dispose();
+        //                    assemblies_stream.SetLength(assemblies_stream.Position);
+        //                    assemblies_stream.Flush();
+        //                    assemblies_stream.Dispose();
+        //                    Console.WriteLine($"ExitCode: {exitCode}");
+        //#if DEBUG
+        //                    Console.ReadLine();
+        //#endif
+        //                }
+        //            }),
+        //        };
+        //        rootCommand.Subcommands.Add(types);
     }
 #endif
 

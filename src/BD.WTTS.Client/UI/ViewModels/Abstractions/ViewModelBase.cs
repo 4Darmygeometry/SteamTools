@@ -1,3 +1,5 @@
+using System.Reactive.Disposables.Fluent;
+
 // ReSharper disable once CheckNamespace
 namespace BD.WTTS.UI.ViewModels.Abstractions;
 

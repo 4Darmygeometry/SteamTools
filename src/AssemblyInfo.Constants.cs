@@ -11,23 +11,25 @@ public static partial class AssemblyInfo
     /// 语义化应用程序版本
     /// https://semver.org/lang/zh-CN/
     /// </summary>
-    public const string Version = $"{Version2}.0";
+    public const string Version = $"{Version2}.{VersionBuild}";
+
+    const string VersionBuild = "1";
 
     /// <summary>
     /// 预览版本号，范围 1~9，只增不减
     /// </summary>
-    const string ver_for_preview = "0";
+    const string ver_for_preview = "1";
 
     /// <summary>
     /// RC 版本号，范围 0~9，只增不减
     /// </summary>
-    const string ver_for_rc = "16";
+    const string ver_for_rc = "0";
 
-    public const string FileVersion = $"{Version2}.{ver_for_rc}2{ver_for_preview}.0";
+    public const string FileVersion = $"{Version2}.{VersionBuild}.{ver_for_rc}2{ver_for_preview}";
 
-    //public const string InformationalVersion = Version;
+    public const string InformationalVersion = Version;
     //public const string InformationalVersion = $"{Version}-preview.{ver_for_preview}";
-    public const string InformationalVersion = $"{Version}-rc.{ver_for_rc}";
+    //public const string InformationalVersion = $"{Version}-rc.{ver_for_rc}";
 
 #if !APP_HOST
     /// <summary>

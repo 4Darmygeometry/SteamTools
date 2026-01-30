@@ -487,7 +487,7 @@ Failed to initialize FileSystem, access denied.
             var rootCommand = new RootCommand("命令行工具(Command Line Tools/CLT)");
             ConfigureCommands(rootCommand);
 
-            var exitCode = rootCommand.InvokeAsync(args).GetAwaiter().GetResult();
+            var exitCode = rootCommand.Parse(args).InvokeAsync().GetAwaiter().GetResult();
 
             if (TryGetPlugins(out var plugins))
             {

@@ -68,7 +68,7 @@ partial interface IApplication
             //builder.SetMinimumLevel(minLevel);
             //SetNLoggerMinLevel(minLevel);
 
-            builder.AddNLog(NLogManager.Configuration); // 添加 NLog 日志
+            builder.AddNLog(NLogManager.Configuration!); // 添加 NLog 日志
 #if ((WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)) && DEBUG
             builder.AddConsole(); // 添加控制台日志
 #endif

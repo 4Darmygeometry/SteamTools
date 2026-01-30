@@ -12,8 +12,4 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<DefineConstants Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">LINUX;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" />
-	</ItemGroup>
 </Project>

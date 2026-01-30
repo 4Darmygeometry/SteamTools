@@ -194,7 +194,7 @@ public static class PluginsCore
         {
         }
 
-        public Task<int> RunSubProcessMainAsync(string moduleName, string pipeName, string processId, string encodedArgs)
+        public Task<int> RunSubProcessMainAsync(string moduleName, string pipeName, string processId, string? encodedArgs)
         {
             return Task.FromResult(0);
         }

@@ -93,7 +93,7 @@ public abstract partial class PluginBase : IPlugin
         string moduleName,
         string pipeName,
         string processId,
-        string encodedArgs)
+        string? encodedArgs)
     {
         var subProcessBootConfiguration = GetSubProcessBootConfiguration(encodedArgs ?? string.Empty);
         if (subProcessBootConfiguration == default)

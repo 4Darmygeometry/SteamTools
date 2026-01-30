@@ -15,7 +15,7 @@ public sealed partial class AppSettings : IMicroServiceClient.ISettings
     [MP2Ignore]
     [N_JsonIgnore]
     [S_JsonIgnore]
-    [Obsolete("Delete", true)]
+    [Obsolete("Delete")]
     public Guid AppVersion { get; set; }
 
     /// <summary>

@@ -78,7 +78,7 @@ public partial interface IPlugin
     /// <param name="processId"></param>
     /// <param name="encodedArgs"></param>
     /// <returns></returns>
-    Task<int> RunSubProcessMainAsync(string moduleName, string pipeName, string processId, string encodedArgs);
+    Task<int> RunSubProcessMainAsync(string moduleName, string pipeName, string processId, string? encodedArgs);
 
     /// <summary>
     /// 当子进程 IPC 管道连接中

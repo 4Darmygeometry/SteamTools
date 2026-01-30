@@ -1,7 +1,11 @@
 <UserControl
+    d:DesignHeight="680"
+    d:DesignWidth="1080"
+    mc:Ignorable="d"
     x:Class="BD.WTTS.UI.Views.Pages.Settings_UI"
+    x:CompileBindings="True"
+    x:DataType="spp:SettingsPageViewModel"
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:com="https://steampp.net/common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:enum="using:BD.WTTS.Enums"
@@ -11,11 +15,7 @@
     xmlns:s="https://steampp.net/services"
     xmlns:spp="https://steampp.net/ui"
     xmlns:ui="using:FluentAvalonia.UI.Controls"
-    d:DesignHeight="680"
-    d:DesignWidth="1080"
-    x:CompileBindings="True"
-    x:DataType="spp:SettingsPageViewModel"
-    mc:Ignorable="d">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel Spacing="{StaticResource SettingsSpacing}">
         <TextBlock
             Margin="0,0,0,10"
@@ -82,125 +82,125 @@
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <RadioButton Content="{Binding Path=Res.Settings_UI_SystemDefault, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" IsChecked="{Binding Source={x:Static ms:UISettings.UseSystemThemeAccent}, Path=Value, Mode=TwoWay}" />
                     <RadioButton
-                        x:Name="AccentCustom"
                         Content="{Binding Path=Res.Settings_UI_Custom, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
-                        IsChecked="{Binding Source={x:Static ms:UISettings.UseSystemThemeAccent}, Path=!Value, Mode=OneWay}" />
+                        IsChecked="{Binding Source={x:Static ms:UISettings.UseSystemThemeAccent}, Path=!Value, Mode=OneWay}"
+                        x:Name="AccentCustom" />
                 </StackPanel>
             </spp:OptionsDisplayItem.ActionButton>
             <spp:OptionsDisplayItem.Content>
                 <StackPanel Spacing="4">
-                    <DockPanel Margin="24,0,0,6" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,0,0,6">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.Settings_UI_PreviewColor, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.Settings_UI_PreviewColor, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
 
                         <Grid
-                            HorizontalAlignment="Left"
                             ColumnDefinitions="*,*"
                             DockPanel.Dock="Right"
+                            HorizontalAlignment="Left"
                             RowDefinitions="*,*,*,*">
                             <Border
+                                Background="{DynamicResource SystemAccentColor}"
                                 Grid.ColumnSpan="2"
-                                Height="40"
-                                Background="{DynamicResource SystemAccentColor}">
+                                Height="40">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="SystemAccentColor" />
+                                    HorizontalAlignment="Center"
+                                    Text="SystemAccentColor"
+                                    VerticalAlignment="Center" />
                             </Border>
 
                             <Border
+                                Background="{DynamicResource SystemAccentColorLight1}"
+                                Grid.Column="0"
                                 Grid.Row="1"
-                                Grid.Column="0"
-                                Width="90"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorLight1}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Light1" />
+                                    HorizontalAlignment="Center"
+                                    Text="Light1"
+                                    VerticalAlignment="Center" />
                             </Border>
                             <Border
+                                Background="{DynamicResource SystemAccentColorLight2}"
+                                Grid.Column="0"
                                 Grid.Row="2"
-                                Grid.Column="0"
-                                Width="90"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorLight2}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Light2" />
+                                    HorizontalAlignment="Center"
+                                    Text="Light2"
+                                    VerticalAlignment="Center" />
                             </Border>
                             <Border
-                                Grid.Row="3"
+                                Background="{DynamicResource SystemAccentColorLight3}"
                                 Grid.Column="0"
-                                Width="90"
+                                Grid.Row="3"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorLight3}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Light3" />
+                                    HorizontalAlignment="Center"
+                                    Text="Light3"
+                                    VerticalAlignment="Center" />
                             </Border>
 
                             <Border
+                                Background="{DynamicResource SystemAccentColorDark1}"
+                                Grid.Column="1"
                                 Grid.Row="1"
-                                Grid.Column="1"
-                                Width="90"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorDark1}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Dark1" />
+                                    HorizontalAlignment="Center"
+                                    Text="Dark1"
+                                    VerticalAlignment="Center" />
                             </Border>
                             <Border
+                                Background="{DynamicResource SystemAccentColorDark2}"
+                                Grid.Column="1"
                                 Grid.Row="2"
-                                Grid.Column="1"
-                                Width="90"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorDark2}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Dark2" />
+                                    HorizontalAlignment="Center"
+                                    Text="Dark2"
+                                    VerticalAlignment="Center" />
                             </Border>
                             <Border
-                                Grid.Row="3"
+                                Background="{DynamicResource SystemAccentColorDark3}"
                                 Grid.Column="1"
-                                Width="90"
+                                Grid.Row="3"
                                 Height="40"
-                                Background="{DynamicResource SystemAccentColorDark3}">
+                                Width="90">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
                                     Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}"
-                                    Text="Dark3" />
+                                    HorizontalAlignment="Center"
+                                    Text="Dark3"
+                                    VerticalAlignment="Center" />
                             </Border>
                         </Grid>
                     </DockPanel>
 
                     <Border
+                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}"
                         Height="1"
-                        Margin="-20"
-                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}" />
+                        Margin="-20" />
 
 
                     <TextBlock Margin="24,24,0,0" Text="Windows 颜色" />
 
                     <ListBox
-                        Name="ColorListBox"
-                        MaxWidth="441"
-                        Margin="24,0,24,12"
-                        HorizontalAlignment="Left"
                         AutoScrollToSelectedItem="False"
+                        HorizontalAlignment="Left"
+                        Margin="24,0,24,12"
+                        MaxWidth="441"
+                        Name="ColorListBox"
                         SelectedItem="{Binding Source={x:Static ms:UISettings.ThemeAccent}, Converter={StaticResource ColorStringToBrushConverter}, Path=Value, Mode=TwoWay}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -218,22 +218,22 @@
                                     <ControlTemplate>
                                         <Panel>
                                             <Border
-                                                Name="Root"
                                                 BorderThickness="2"
-                                                CornerRadius="{StaticResource ControlCornerRadius}">
+                                                CornerRadius="{StaticResource ControlCornerRadius}"
+                                                Name="Root">
                                                 <Border.Background>
                                                     <SolidColorBrush Color="{Binding}" />
                                                 </Border.Background>
                                             </Border>
 
                                             <Border
-                                                Name="Check"
-                                                Width="20"
+                                                Background="{DynamicResource FocusStrokeColorOuter}"
                                                 Height="20"
-                                                Margin="0,2,2,0"
                                                 HorizontalAlignment="Right"
+                                                Margin="0,2,2,0"
+                                                Name="Check"
                                                 VerticalAlignment="Top"
-                                                Background="{DynamicResource FocusStrokeColorOuter}">
+                                                Width="20">
                                                 <ui:SymbolIcon
                                                     FontSize="18"
                                                     Foreground="{DynamicResource SystemAccentColor}"
@@ -261,26 +261,17 @@
                     </ListBox>
 
                     <Border
+                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}"
                         Height="1"
-                        Margin="-20"
-                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}" />
+                        Margin="-20" />
 
-                    <DockPanel Margin="24,6,0,0" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,6,0,0">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.Settings_UI_CustomColor, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.Settings_UI_CustomColor, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
 
-                        <ui:ColorPickerButton
-                            DockPanel.Dock="Right"
-                            IsCompact="True"
-                            IsMoreButtonVisible="True"
-                            ShowAcceptDismissButtons="True"
-                            UseColorPalette="False"
-                            UseColorTriangle="False"
-                            UseColorWheel="False"
-                            UseSpectrum="True"
-                            Color="{Binding Source={x:Static ms:UISettings.ThemeAccent}, Converter={StaticResource ColorStringToBrushConverter}, Path=Value, Mode=TwoWay}" />
+                        <ColorPicker Color="{Binding Source={x:Static ms:UISettings.ThemeAccent}, Converter={StaticResource ColorStringToBrushConverter}, Path=Value, Mode=TwoWay}" DockPanel.Dock="Right" />
                     </DockPanel>
                 </StackPanel>
             </spp:OptionsDisplayItem.Content>
@@ -298,7 +289,7 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <DataTemplate.DataType>
-                                <x:Type x:TypeArguments="x:String, x:String" TypeName="generic:KeyValuePair" />
+                                <x:Type TypeName="generic:KeyValuePair" x:TypeArguments="x:String, x:String" />
                             </DataTemplate.DataType>
                             <TextBlock Text="{Binding Value, Mode=OneWay}" />
                         </DataTemplate>
@@ -321,7 +312,7 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <DataTemplate.DataType>
-                                <x:Type x:TypeArguments="x:String, x:String" TypeName="generic:KeyValuePair" />
+                                <x:Type TypeName="generic:KeyValuePair" x:TypeArguments="x:String, x:String" />
                             </DataTemplate.DataType>
                             <TextBlock FontFamily="{Binding Value, Mode=OneWay, Converter={StaticResource NameToFontFamilyConverter}}" Text="{Binding Key, Mode=OneWay}" />
                         </DataTemplate>
@@ -360,8 +351,8 @@
             </spp:OptionsDisplayItem.Icon>
             <spp:OptionsDisplayItem.ActionButton>
                 <Slider
-                    MinWidth="250"
                     Maximum="1.0"
+                    MinWidth="250"
                     Minimum="0"
                     Value="{Binding Value, Source={x:Static ms:UISettings.WindowBackgroundOpacity}, Mode=TwoWay}" />
             </spp:OptionsDisplayItem.ActionButton>
@@ -381,72 +372,72 @@
 
             <spp:OptionsDisplayItem.Content>
                 <StackPanel Spacing="4">
-                    <DockPanel Margin="24,0,0,6" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,0,0,6">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.PreviewPictures, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.PreviewPictures, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
 
                         <Image
-                            Width="250"
+                            DockPanel.Dock="Right"
                             Height="150"
                             HorizontalAlignment="Left"
-                            DockPanel.Dock="Right"
                             RenderOptions.BitmapInterpolationMode="HighQuality"
                             Source="{Binding Source={x:Static ms:UISettings.WindowBackgroundCustomImagePath}, Path=Value, Mode=OneWay, Converter={StaticResource BitmapAssetValueConverter}}"
-                            Stretch="{Binding Source={x:Static ms:UISettings.WindowBackgroundCustomImageStretch}, Path=Value, Mode=OneWay, Converter={StaticResource EnumConverter}, ConverterParameter={x:Type Stretch}}" />
+                            Stretch="{Binding Source={x:Static ms:UISettings.WindowBackgroundCustomImageStretch}, Path=Value, Mode=OneWay, Converter={StaticResource EnumConverter}, ConverterParameter={x:Type Stretch}}"
+                            Width="250" />
                     </DockPanel>
 
                     <Border
+                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}"
                         Height="1"
-                        Margin="-20"
-                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}" />
+                        Margin="-20" />
 
 
-                    <DockPanel Margin="24,6,0,6" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,6,0,6">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.Settings_UI_BackgroundImageOpacity, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.Settings_UI_BackgroundImageOpacity, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
                         <Slider
-                            MinWidth="250"
                             DockPanel.Dock="Right"
                             Maximum="1.0"
+                            MinWidth="250"
                             Minimum="0"
                             Value="{Binding Value, Source={x:Static ms:UISettings.WindowBackgroundCustomImageOpacity}, Mode=TwoWay}" />
                     </DockPanel>
 
                     <Border
+                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}"
                         Height="1"
-                        Margin="-20"
-                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}" />
+                        Margin="-20" />
 
 
-                    <DockPanel Margin="24,6,0,6" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,6,0,6">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.SelectPicture, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.SelectPicture, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
                         <Button
-                            MinWidth="150"
                             Command="{Binding SelectImage_Click}"
                             Content="{Binding Path=Res.Settings_UI_SelectImage, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
-                            DockPanel.Dock="Right" />
+                            DockPanel.Dock="Right"
+                            MinWidth="150" />
                     </DockPanel>
 
                     <Border
+                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}"
                         Height="1"
-                        Margin="-20"
-                        Background="{DynamicResource ApplicationPageBackgroundThemeBrush}" />
+                        Margin="-20" />
 
-                    <DockPanel Margin="24,6,0,0" LastChildFill="False">
+                    <DockPanel LastChildFill="False" Margin="24,6,0,0">
                         <TextBlock
-                            VerticalAlignment="Center"
                             DockPanel.Dock="Left"
-                            Text="{Binding Path=Res.PictureZoom, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                            Text="{Binding Path=Res.PictureZoom, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
+                            VerticalAlignment="Center" />
                         <ComboBox
-                            MinWidth="150"
                             DockPanel.Dock="Right"
+                            MinWidth="150"
                             SelectedItem="{Binding Source={x:Static ms:UISettings.WindowBackgroundCustomImageStretch}, Path=Value, Mode=TwoWay}">
                             <ComboBox.Items>
                                 <spp:XamlMediaStretch>Fill</spp:XamlMediaStretch>
@@ -472,21 +463,21 @@
                                 <ListBoxItem>
                                     <Grid ColumnDefinitions="Auto,*,Auto">
                                         <ui:ImageIcon
-                                            Width="24"
                                             Height="24"
                                             Margin="8"
+                                            Source="{Binding IconKey, Converter={StaticResource BitmapAssetValueConverter}}"
                                             VerticalAlignment="Center"
-                                            Source="{Binding IconKey, Converter={StaticResource BitmapAssetValueConverter}}" />
+                                            Width="24" />
                                         <TextBlock
                                             Grid.Column="1"
-                                            VerticalAlignment="Center"
-                                            Text="{Binding Name}" />
+                                            Text="{Binding Name}"
+                                            VerticalAlignment="Center" />
                                         <Viewbox
                                             Grid.Column="2"
-                                            Width="18"
                                             Height="18"
                                             Margin="8,0"
-                                            VerticalAlignment="Center">
+                                            VerticalAlignment="Center"
+                                            Width="18">
                                             <ui:FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{StaticResource Move}" />
                                         </Viewbox>
                                     </Grid>
