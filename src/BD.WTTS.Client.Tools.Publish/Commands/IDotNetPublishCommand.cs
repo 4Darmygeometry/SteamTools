@@ -40,13 +40,13 @@ interface IDotNetPublishCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var debug = new Option<bool>("--debug", "Defines the build configuration");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
-        var force_sign = new Option<bool>("--force-sign", GetDefForceSign, "Mandatory verification must be digitally signed");
-        var hsm_sign = new Option<bool>("--hsm-sign", "");
-        var sha256 = new Option<bool>("--sha256", () => true, "Calculate file hash value");
-        var sha384 = new Option<bool>("--sha384", () => true, "Calculate file hash value");
-        var stm_upload = new Option<bool>("--stm-upload", "Steam upload zip file");
+        var debug = CommandCompat.GetOption<bool>("--debug", "Defines the build configuration");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
+        var force_sign = CommandCompat.GetOption<bool>("--force-sign", GetDefForceSign, "Mandatory verification must be digitally signed");
+        var hsm_sign = CommandCompat.GetOption<bool>("--hsm-sign", "");
+        var sha256 = CommandCompat.GetOption<bool>("--sha256", () => true, "Calculate file hash value");
+        var sha384 = CommandCompat.GetOption<bool>("--sha384", () => true, "Calculate file hash value");
+        var stm_upload = CommandCompat.GetOption<bool>("--stm-upload", "Steam upload zip file");
         var command = new Command(commandName, "DotNet publish app")
         {
            debug, rids, force_sign, sha256, sha384, stm_upload, hsm_sign,

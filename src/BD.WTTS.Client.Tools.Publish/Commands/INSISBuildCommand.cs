@@ -9,11 +9,11 @@ interface INSISBuildCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var debug = new Option<bool>("--debug", "Defines the build configuration");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
-        var timestamp = new Option<string>("--t", "Release timestamp");
-        var force_sign = new Option<bool>("--force-sign", GetDefForceSign, "Mandatory verification must be digitally signed");
-        var hsm_sign = new Option<bool>("--hsm-sign", "");
+        var debug = CommandCompat.GetOption<bool>("--debug", "Defines the build configuration");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
+        var timestamp = CommandCompat.GetOption<string>("--t", "Release timestamp");
+        var force_sign = CommandCompat.GetOption<bool>("--force-sign", GetDefForceSign, "Mandatory verification must be digitally signed");
+        var hsm_sign = CommandCompat.GetOption<bool>("--hsm-sign", "");
         var command = new Command(commandName, "NSIS build generate")
         {
            debug, rids, timestamp, force_sign, hsm_sign,
@@ -27,6 +27,31 @@ interface INSISBuildCommand : ICommand
         if (ProjectUtils.ProjPath.Contains("actions-runner"))
         {
             hsm_sign = false; // hsm 目前无法映射到 CI VM 中
+        }
+
+        var projRootPath = ProjectPath_AvaloniaApp;
+        if (string.Equals("latest", timestamp, StringComparison.OrdinalIgnoreCase))
+        {
+            // 从发布文件夹中根据文件夹名称倒序查找最新的时间戳
+            var sPath = Path.Combine(projRootPath, "bin", PublishCommandArg.GetConfiguration(debug), "Publish");
+            var query = from p in Directory.EnumerateDirectories(sPath)
+                        let s = Path.GetFileName(p).Split('_')
+                        where s.Length > 2
+                        let t = s.LastOrDefault()
+                        let d = s[^2]
+                        where !string.IsNullOrWhiteSpace(t) && !string.IsNullOrWhiteSpace(d)
+                        let tN = ulong.TryParse(t, out var tUL) ? tUL : (ulong?)null
+                        let dN = ulong.TryParse(d, out var dUL) ? dUL : (ulong?)null
+                        where tN.HasValue && dN.HasValue
+                        select new
+                        {
+                            tN,
+                            dN,
+                            p,
+                        };
+            var latest = query.OrderByDescending(x => x.tN).ThenByDescending(x => x.dN).FirstOrDefault();
+            ArgumentNullException.ThrowIfNull(latest);
+            timestamp = $"{latest.dN}_{latest.tN}";
         }
 
         releaseTimestamp = timestamp;
@@ -51,7 +76,6 @@ interface INSISBuildCommand : ICommand
             var info = DeconstructRuntimeIdentifier(rid);
             if (info == default) continue;
 
-            var projRootPath = ProjectPath_AvaloniaApp;
             var arg = SetPublishCommandArgumentList(debug, info.Platform, info.DeviceIdiom, info.Architecture);
             var publishDir = Path.Combine(projRootPath, arg.PublishDir);
             Console.WriteLine(publishDir);

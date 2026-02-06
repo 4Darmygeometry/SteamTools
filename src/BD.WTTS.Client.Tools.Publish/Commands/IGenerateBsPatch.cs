@@ -17,15 +17,15 @@ interface IGenerateBsPatch : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var type = new Option<int>("--type", "type 0:Create 1:Apply 2:UploadFile 3:传入版本号生成补丁");
+        var type = CommandCompat.GetOption<int>("--type", "type 0:Create 1:Apply 2:UploadFile 3:传入版本号生成补丁");
         //旧文件
-        var oldFile = new Option<string>("--old", "old file");
+        var oldFile = CommandCompat.GetOption<string>("--old", "old file");
         //新文件
-        var newFile = new Option<string>("--new", "new file");
+        var newFile = CommandCompat.GetOption<string>("--new", "new file");
         //保存路径
-        var patchFile = new Option<string>("--path", "new file");
+        var patchFile = CommandCompat.GetOption<string>("--path", "new file");
         //程序版本号
-        var clientPlatform = new Option<ClientPlatform>("--platform", "ClientPlatform");
+        var clientPlatform = CommandCompat.GetOption<ClientPlatform>("--platform", "ClientPlatform");
 
         var command = new Command(commandName, "Bridge csproj xml generate")
         {

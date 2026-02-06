@@ -11,8 +11,8 @@ interface IGenerateBridgeContentXml : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var debug = new Option<bool>("--debug", "Defines the build configuration");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
+        var debug = CommandCompat.GetOption<bool>("--debug", "Defines the build configuration");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
         var command = new Command(commandName, "Bridge csproj xml generate")
         {
            debug, rids,

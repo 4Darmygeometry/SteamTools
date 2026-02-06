@@ -117,7 +117,8 @@
 
 	<ItemGroup>
 		<!-- PackageReference -->
-		<PackageReference Include="BD.Common" />
+		<!--<PackageReference Include="BD.Common" />-->
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common\BD.Common.csproj" />
 		<PackageReference Include="System.CommandLine" />
 		<PackageReference Include="Squid-Box.SevenZipSharp.Lite" />
 		<PackageReference Include="SharpZipLib" />

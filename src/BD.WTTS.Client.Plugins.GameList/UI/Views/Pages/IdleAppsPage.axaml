@@ -139,7 +139,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="spp:SteamApp">
-                    <Border Margin="5" spp:Animations.EnableAnimations="True">
+                    <Border Margin="5" spp:Animations.EnableAnimations="False">
                         <spp:AppItem
                             Title="{Binding DisplayName}"
                             Height="270"

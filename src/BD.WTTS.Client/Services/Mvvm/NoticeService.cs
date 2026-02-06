@@ -1,5 +1,6 @@
 using BD.WTTS.Helpers;
 using System.Runtime.Devices;
+using System.Threading.Tasks;
 using static BD.WTTS.Services.IMicroServiceClient;
 
 // ReSharper disable once CheckNamespace
@@ -32,24 +33,33 @@ public sealed class NoticeService : ReactiveObject
 
         _timer = new Timer(_ =>
         {
-            GetNewsAsync().Wait();
+            GetNewsAsync().GetAwaiter().GetResult();
         }, null, TimeSpan.FromHours(2), TimeSpan.FromHours(2));
 
         //NoticesSource = new(x => x.Id);
         //NoticeTypes = new();
     }
 
+    public async void GetNews()
+    {
+        await GetNewsAsync();
+    }
+
     public async Task GetNewsAsync()
     {
         var client = Instance.Message;
         var result = await client.GetMessage(IApplication.ClientPlatform, OfficialMessageType.News);
-        if (result.IsSuccess && result.Content != null)
-        {
-            Notices.Clear();
-            Notices.Add(result.Content.DataSource);
-        }
 
-        VerifyNotificationsHasRead();
+        await MainThread2.InvokeOnMainThreadAsync(() =>
+        {
+            if (result.IsSuccess && result.Content != null)
+            {
+                Notices.Clear();
+                Notices.Add(result.Content.DataSource);
+            }
+
+            VerifyNotificationsHasRead();
+        });
     }
 
     public void VerifyNotificationsHasRead()

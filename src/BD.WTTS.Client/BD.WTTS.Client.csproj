@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<RootNamespace>BD.WTTS</RootNamespace>
@@ -127,8 +127,7 @@
 		<!--<PackageReference Include="Portable.BouncyCastle" />-->
 		<PackageReference Include="ReactiveUI.Fody" />
 		<PackageReference Include="dotnetCampus.Ipc" />
-		<!--<PackageReference Include="fusillade" />-->
-		<PackageReference Include="BD.Common.fusillade" />
+		<PackageReference Include="fusillade" />
 		<PackageReference Include="Splat.Drawing" />
 		<PackageReference Include="System.Drawing.Common" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" />
@@ -189,9 +188,9 @@
 			<HintPath>..\..\ref\Interop.IWshRuntimeLibrary.dll</HintPath>
 		</Reference>
 		<ProjectReference Include="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\Facepunch.Steamworks.Win64.csproj" />
-		<PackageReference Include="Aigio.Any.AppCenter" />
+		<!--<PackageReference Include="Aigio.Any.AppCenter" />
 		<PackageReference Include="Aigio.Any.AppCenter.Analytics" />
-		<PackageReference Include="Aigio.Any.AppCenter.Crashes" />
+		<PackageReference Include="Aigio.Any.AppCenter.Crashes" />-->
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' AND Exists('$(MSBuildProjectDirectory)\..\..\..\XunYouSDK\src\Sample.ConsoleApp\XunYouSDK\XunYouSDK.AppId.cs') ">
@@ -224,9 +223,9 @@
 		<!--<PackageReference Include="BD.Common.Pinyin.TinyPinyin" />-->
 		<ProjectReference Include="..\..\ref\Common\src\BD.Common.Pinyin.TinyPinyin\BD.Common.Pinyin.TinyPinyin.csproj" />
 		<ProjectReference Include="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\Facepunch.Steamworks.Posix.csproj" />
-		<PackageReference Include="Aigio.Any.AppCenter" />
+		<!--<PackageReference Include="Aigio.Any.AppCenter" />
 		<PackageReference Include="Aigio.Any.AppCenter.Analytics" />
-		<PackageReference Include="Aigio.Any.AppCenter.Crashes" />
+		<PackageReference Include="Aigio.Any.AppCenter.Crashes" />-->
 		<PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" />
 	</ItemGroup>
@@ -254,9 +253,9 @@
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' ">
 		<!-- macOS/MacCatalyst Only -->
 		<ProjectReference Include="..\..\ref\Facepunch.Steamworks\Facepunch.Steamworks\Facepunch.Steamworks.Posix.csproj" />
-		<PackageReference Include="Aigio.Any.AppCenter" />
+		<!--<PackageReference Include="Aigio.Any.AppCenter" />
 		<PackageReference Include="Aigio.Any.AppCenter.Analytics" />
-		<PackageReference Include="Aigio.Any.AppCenter.Crashes" />
+		<PackageReference Include="Aigio.Any.AppCenter.Crashes" /-->
 	</ItemGroup>
 
 	<ItemGroup>

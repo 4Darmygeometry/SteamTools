@@ -6,7 +6,7 @@ interface IHashCalcCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var debug = new Option<bool>("--debug", "Defines the build configuration");
+        var debug = CommandCompat.GetOption<bool>("--debug", "Defines the build configuration");
         var command = new Command(commandName, "Calc hash hex string")
         {
             debug,

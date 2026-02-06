@@ -100,7 +100,7 @@
             </ControlTheme>
         </ScrollViewer.Resources>
         <WrapPanel>
-            <Border spp:Animations.EnableAnimations="True">
+            <Border spp:Animations.EnableAnimations="False">
                 <Button
                     Click="GameToolsPage_Click"
                     IsEnabled="{spp:OnPlatform Windows}"
@@ -130,7 +130,7 @@
                 </Button>
             </Border>
 
-            <Border spp:Animations.EnableAnimations="True">
+            <Border spp:Animations.EnableAnimations="False">
                 <Button
                     Click="GameToolsPage_Click"
                     IsEnabled="{spp:OnPlatform Windows}"
@@ -160,7 +160,7 @@
                 </Button>
             </Border>
 			
-            <Border spp:Animations.EnableAnimations="True">
+            <Border spp:Animations.EnableAnimations="False">
                 <Button
                     Click="GameToolsPage_Click"
                     IsEnabled="{spp:OnPlatform Windows}"

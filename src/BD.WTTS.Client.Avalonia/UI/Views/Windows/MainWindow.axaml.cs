@@ -190,7 +190,7 @@ public sealed class AppSplashScreen : IApplicationSplashScreen
                     });
 
                     AdvertiseService.Current.InitAdvertise();
-                    await NoticeService.Current.GetNewsAsync();
+                    NoticeService.Current.GetNews();
 
                     var mainWindow = App.Instance.MainWindow;
                     mainWindow.ThrowIsNull();

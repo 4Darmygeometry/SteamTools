@@ -17,7 +17,7 @@ interface ILaunchAppTestCommand : ICommand
         return command;
     }
 
-    internal static void Handler(InvocationContext context)
+    internal static int Handler()
     {
         var path = DebugRuntimeConfigPath;
 
@@ -26,7 +26,7 @@ interface ILaunchAppTestCommand : ICommand
         // 测试主程序启动是否正常
         path = path[..^runtimeconfigjsonfilename.Length] + exefileName;
         if (!File.Exists(path))
-            return;
+            return 0;
         var process = Process.Start(path);
         try
         {
@@ -36,8 +36,7 @@ interface ILaunchAppTestCommand : ICommand
                 if (process.HasExited)
                 {
                     Console.WriteLine($"Test process startup failed({i}).");
-                    context.ExitCode = 500;
-                    return;
+                    return 500;
                 }
                 else
                 {
@@ -50,6 +49,7 @@ interface ILaunchAppTestCommand : ICommand
             process.KillEntireProcessTree();
         }
         Console.WriteLine($"{commandName} OK");
+        return 0;
     }
 
 #pragma warning disable CS0612 // 类型或成员已过时

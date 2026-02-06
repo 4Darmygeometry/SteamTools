@@ -9,9 +9,9 @@ partial interface IMacOSBuildingUniversalBinaryCommand : ICommand
     static Command ICommand.GetCommand()
     {
         // aspnetcore-runtime-7.0.8-osx-arm64
-        var arm64 = new Option<string>("--arm64", "Apple silicon binary directory");
+        var arm64 = CommandCompat.GetOption<string>("--arm64", "Apple silicon binary directory");
         // aspnetcore-runtime-7.0.8-osx-x64
-        var x64 = new Option<string>("--x64", "Intel-based binary directory");
+        var x64 = CommandCompat.GetOption<string>("--x64", "Intel-based binary directory");
         var command = new Command(commandName, "Create macOS apps and other executables that run natively on both Apple silicon and Intel-based Mac computers.")
         {
             arm64, x64,

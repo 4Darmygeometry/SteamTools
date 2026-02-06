@@ -71,13 +71,12 @@ See details [./doc/download-guide.en.md](./doc/download-guide.en.md)
 Read what we [milestones](https://github.com/BeyondDimension/SteamTools/milestones), and feel free to ask questions.
 
 ## ⌨️ Development Environment
-[Visual Studio 2022](https://visualstudio.microsoft.com/vs)  
-[Visual Studio 2022 for Mac](https://visualstudio.microsoft.com/vs/mac)  
+[Visual Studio 2026](https://visualstudio.microsoft.com/vs)  
 [JetBrains Rider](https://www.jetbrains.com/rider)  
 [Visual Studio Code](https://code.visualstudio.com)  
 [OpenJDK 17](https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-17)  
 [Android Studio Electric Eel Or Higher](https://developer.android.com/studio)  
-[Xcode 14 Or Higher](https://developer.apple.com/xcode)  
+[Xcode 26 Or Higher](https://developer.apple.com/xcode)  
 
 ## 🏗️ Project Structure
 See details&nbsp;&nbsp;[./src/README.md](./src/README.md) 

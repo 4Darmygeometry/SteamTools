@@ -17,11 +17,11 @@ interface ICompressedPackageCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var sevenzip = new Option<bool>("--7z", "Create 7z compressed");
-        var zip = new Option<bool>("--zip", "Create Zip compressed");
-        var tgz = new Option<bool>("--gz", "Create tgz compressed");
-        var zstd = new Option<bool>("--zstd", "Create tar.zst compressed");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
+        var sevenzip = CommandCompat.GetOption<bool>("--7z", "Create 7z compressed");
+        var zip = CommandCompat.GetOption<bool>("--zip", "Create Zip compressed");
+        var tgz = CommandCompat.GetOption<bool>("--gz", "Create tgz compressed");
+        var zstd = CommandCompat.GetOption<bool>("--zstd", "Create tar.zst compressed");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
         var command = new Command(commandName, "Create compressed package")
         {
             sevenzip, zip, tgz, zstd, rids,

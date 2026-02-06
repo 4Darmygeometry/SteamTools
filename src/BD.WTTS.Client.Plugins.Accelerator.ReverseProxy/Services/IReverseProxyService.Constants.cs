@@ -179,7 +179,7 @@ public partial interface IReverseProxySettings
     string? ServerSideProxyToken { get; set; }
 }
 
-[MP2Obj(SerializeLayout.Explicit)]
+[MP2Obj(GenerateType.VersionTolerant, SerializeLayout.Explicit)]
 public readonly partial record struct ReverseProxySettings(
     [property: MP2Key(0)]
     IReadOnlyCollection<AccelerateProjectDTO>? ProxyDomains,

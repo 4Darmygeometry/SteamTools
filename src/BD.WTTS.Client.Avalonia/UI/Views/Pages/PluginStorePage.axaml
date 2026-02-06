@@ -53,7 +53,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="spp:TabItemViewModel">
-                        <Border spp:Animations.EnableAnimations="True">
+                        <Border spp:Animations.EnableAnimations="False">
                             <Button
                                 Command="{Binding $parent[spp:PluginStorePage].((spp:PluginStorePageViewModel)DataContext).NavgationToMenuPageCommand}"
                                 CommandParameter="{Binding}"

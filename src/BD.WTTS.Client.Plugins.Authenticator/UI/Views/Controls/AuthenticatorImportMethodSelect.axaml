@@ -21,7 +21,7 @@
                 <Border
                     Width="200"
                     Margin="3"
-                    spp:Animations.EnableAnimations="True">
+                    spp:Animations.EnableAnimations="False">
                     <spp:AppItem
                         Title="{Binding Name}"
                         Classes="Vertical"

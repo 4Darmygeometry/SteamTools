@@ -7,6 +7,6 @@ public interface ICommand
     static void AddCommand<TCommand>(RootCommand rootCommand) where TCommand : ICommand
     {
         var command = TCommand.GetCommand();
-        rootCommand.AddCommand(command);
+        rootCommand.Subcommands.Add(command);
     }
 }

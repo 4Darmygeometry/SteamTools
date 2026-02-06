@@ -31,7 +31,7 @@
                 </ItemsRepeater.Layout>
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate DataType="spp:ScriptDTO">
-                        <Border spp:Animations.EnableAnimations="True">
+                        <Border spp:Animations.EnableAnimations="False">
                             <spp:AppItem
                                 Title="{Binding Name}"
                                 MaxWidth="135"

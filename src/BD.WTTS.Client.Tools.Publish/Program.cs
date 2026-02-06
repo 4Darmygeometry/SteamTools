@@ -9,4 +9,4 @@ var commands = interfaceType.Assembly.GetTypes().
     Select(x => addMethod!.MakeGenericMethod(x)).
     ToArray();
 Array.ForEach(commands, m => m.Invoke(null, new object?[] { rootCommand, }));
-return await rootCommand.InvokeAsync(args);
+return await rootCommand.Parse(args).InvokeAsync();

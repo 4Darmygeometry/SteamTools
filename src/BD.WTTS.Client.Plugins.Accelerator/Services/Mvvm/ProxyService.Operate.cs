@@ -436,7 +436,7 @@ partial class ProxyService
     {
         public static implicit operator OperateProxyServiceResult(string error) => new(error);
 
-        public static implicit operator OperateProxyServiceResult(Exception exception) => new(null, exception);
+        public static implicit operator OperateProxyServiceResult(Exception exception) => new(exception.Message, exception);
 
         /// <summary>
         /// 将返回结果使用 Toast 显示并且返回当前应设置的代理状态

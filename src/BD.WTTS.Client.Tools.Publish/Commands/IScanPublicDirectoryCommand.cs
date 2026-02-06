@@ -9,10 +9,10 @@ interface IScanPublicDirectoryCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var sha256 = new Option<bool>("--sha256", () => true, "Calculate hash sha256");
-        var sha384 = new Option<bool>("--sha384", () => true, "Calculate hash sha384");
-        var signature = new Option<bool>("--signature", () => true, "Digital signature");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
+        var sha256 = CommandCompat.GetOption<bool>("--sha256", () => true, "Calculate hash sha256");
+        var sha384 = CommandCompat.GetOption<bool>("--sha384", () => true, "Calculate hash sha384");
+        var signature = CommandCompat.GetOption<bool>("--signature", () => true, "Digital signature");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
         var command = new Command(commandName, "Scan publish directory")
         {
             sha256, sha384, signature, rids,

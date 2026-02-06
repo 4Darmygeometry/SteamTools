@@ -93,28 +93,12 @@
 查看这个 [milestones](https://github.com/BeyondDimension/SteamTools/milestones) 来了解我们下一步的开发计划，并随时提出问题。
 
 ## ⌨️ 开发环境
-[Visual Studio 2022](https://visualstudio.microsoft.com/zh-hans/vs) 或 [Visual Studio 2022 for Mac](https://visualstudio.microsoft.com/zh-hans/vs/mac)     
-- 系统要求
-	- [Windows 11 版本 21H2 或更高版本：家庭版、专业版、专业教育版、专业工作站版、企业版和教育版](https://learn.microsoft.com/zh-cn/visualstudio/releases/2022/system-requirements)
-	- [macOS Big Sur 11.0 或更高版本](https://learn.microsoft.com/zh-cn/visualstudio/releases/2022/mac-system-requirements)
-- 工作负荷
-	- Web 和云
-		- ASP.NET 和 Web 开发
-	- 桌面应用和移动应用
-		- 使用 .NET 的移动开发 / .NET Multi-platform App UI 开发
-		- .NET 桌面开发
-		- 通用 Windows 平台开发
-- 单个组件
-	- GitHub Extension for Visual Studio(可选)
-- [Visual Studio Marketplace](https://marketplace.visualstudio.com)
-	- [Avalonia for Visual Studio(可选)](https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.AvaloniaVS)  
-	- [NUnit VS Templates(可选)](https://marketplace.visualstudio.com/items?itemName=NUnitDevelopers.NUnitTemplatesforVisualStudio)  
-
+[Visual Studio 2026](https://visualstudio.microsoft.com/zh-hans/vs)     
 [JetBrains Rider](https://www.jetbrains.com/rider)  
 [Visual Studio Code](https://code.visualstudio.com)  
 [OpenJDK 17](https://learn.microsoft.com/zh-cn/java/openjdk/download#openjdk-17)  
 [Android Studio Electric Eel 或更高版本](https://developer.android.google.cn/studio)  
-[Xcode 14 或更高版本](https://developer.apple.com/xcode)  
+[Xcode 26 或更高版本](https://developer.apple.com/xcode)  
 
 ## 🏗️ [项目结构](./src/README.md)
 详见&nbsp;&nbsp;[./src/README.md](./src/README.md)  

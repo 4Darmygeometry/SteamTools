@@ -77,7 +77,7 @@ static void ConfigureServices(IServiceCollection services)
     services.AddLogging(l =>
     {
         l.ClearProviders();
-        l.AddNLog(LogManager.Configuration); // 添加 NLog 日志
+        l.AddNLog(LogManager.Configuration!); // 添加 NLog 日志
 #if DEBUG
         l.AddConsole();
 #endif

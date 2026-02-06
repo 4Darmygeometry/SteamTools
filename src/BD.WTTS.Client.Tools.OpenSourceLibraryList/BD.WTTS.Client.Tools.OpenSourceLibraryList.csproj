@@ -35,7 +35,8 @@
 
 	<ItemGroup>
 		<!-- PackageReference -->
-		<PackageReference Include="BD.Common" />
+		<!--<PackageReference Include="BD.Common" />-->
+		<ProjectReference Include="..\..\ref\Common\src\BD.Common\BD.Common.csproj" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX.props" />

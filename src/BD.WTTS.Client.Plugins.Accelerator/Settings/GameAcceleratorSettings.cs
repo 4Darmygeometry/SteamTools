@@ -11,7 +11,7 @@ internal partial class GameAcceleratorSettingsContext : JsonSerializerContext
         => instance ??= new GameAcceleratorSettingsContext(ISettings.GetDefaultOptions());
 }
 
-[MPObj, MP2Obj(SerializeLayout.Explicit)]
+[MP2Obj(SerializeLayout.Explicit)]
 public sealed partial class GameAcceleratorSettings_ : ISettings, ISettings<GameAcceleratorSettings_>
 {
     public const string Name = nameof(GameAcceleratorSettings);

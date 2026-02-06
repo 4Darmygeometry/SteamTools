@@ -14,11 +14,11 @@ interface IInstallPackageCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var rpm = new Option<bool>("--rpm", "Create CentOS/RedHat Linux installer");
-        var deb = new Option<bool>("--deb", "Create Ubuntu/Debian Linux installer");
-        var pkg = new Option<bool>("--pkg", "Create macOS installer");
-        var msi = new Option<bool>("--msi", "Create Windows Installer (msi) package");
-        var rids = new Option<string[]>("--rids", "RID is short for runtime identifier");
+        var rpm = CommandCompat.GetOption<bool>("--rpm", "Create CentOS/RedHat Linux installer");
+        var deb = CommandCompat.GetOption<bool>("--deb", "Create Ubuntu/Debian Linux installer");
+        var pkg = CommandCompat.GetOption<bool>("--pkg", "Create macOS installer");
+        var msi = CommandCompat.GetOption<bool>("--msi", "Create Windows Installer (msi) package");
+        var rids = CommandCompat.GetOption<string[]>("--rids", "RID is short for runtime identifier");
         var command = new Command(commandName, "Create install package")
         {
             rpm, deb, pkg, msi, rids,

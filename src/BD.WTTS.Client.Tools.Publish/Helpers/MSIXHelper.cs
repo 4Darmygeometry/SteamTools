@@ -6,9 +6,14 @@ static class MSIXHelper
 {
     enum WinVersion : ushort
     {
+        _14393 = 14393,
+        _15063 = 15063,
+        _16299 = 16299,
+        _17134 = 17134,
         W10_20H1 = 19041,
         W11_21H2 = 22000,
         W11_22H2 = 22621,
+        _26100 = 26100,
     }
 
     public static class MakePri

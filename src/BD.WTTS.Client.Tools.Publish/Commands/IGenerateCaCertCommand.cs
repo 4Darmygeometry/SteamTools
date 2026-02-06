@@ -11,12 +11,12 @@ interface IGenerateCaCertCommand : ICommand
 
     static Command ICommand.GetCommand()
     {
-        var type = new Option<int>("--type",
+        var type = CommandCompat.GetOption<int>("--type",
             "Generate certificate type(1 code, 2 store-code)");
-        var path = new Option<string>("--path",
+        var path = CommandCompat.GetOption<string>("--path",
             "Directory where certificate files need to be saved");
-        var cn = new Option<string>("--cn", "X500DistinguishedNameValue");
-        var password = new Option<string>("--pwd");
+        var cn = CommandCompat.GetOption<string>("--cn", "X500DistinguishedNameValue");
+        var password = CommandCompat.GetOption<string>("--pwd");
         var command = new Command(commandName, "Generate certificate")
         {
             type, path, cn, password,

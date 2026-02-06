@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "BD.WTTS.Client.Tools.Publish": {
+    "Publish(win-x64 hsm-sign)": {
       "commandName": "Project",
       "commandLineArgs": "run --rids win-x64 --hsm-sign --stm-upload",
       "commandLineArgs_release": "run --rids win-x64 --hsm-sign --stm-upload",
@@ -8,6 +8,18 @@
       "commandLineArgs_debug": "run --rids win-x64 --hsm-sign --stm-upload --debug",
       "commandLineArgs_GenerateBridgeContentXml": "csproj --rids win-x64",
       "commandLineArgs_TestUploadFile": "bs --type 2 --old \"C:\\Users\\Mossimo\\Desktop\\Steam++\\ms-test.steampp.net\""
+    },
+    "Publish(win-x64)": {
+      "commandName": "Project",
+      "commandLineArgs": "run --rids win-x64 --stm-upload"
+    },
+    "Publish Setup(win-x64 hsm-sign)": {
+      "commandName": "Project",
+      "commandLineArgs": "nsis --rids win-x64 --hsm-sign --t latest"
+    },
+    "Publish Setup(win-x64)": {
+      "commandName": "Project",
+      "commandLineArgs": "nsis --rids win-x64 --t latest"
     },
     "BD.WTTS.Client.Tools.Publish(TestUploadRc1)": {
       "commandName": "Project",
@@ -93,4 +105,4 @@
       "commandLineArgs": "bs --type 5 --old  \"D:\\BuildTest\\rc4\" --new \"D:\\BuildTest\\pacth\\rc4-rc5\" --path \"D:\\BuildTest\\3.0.407.0\\3.0.507.0.dat\""
     }
   }
-}  
+}

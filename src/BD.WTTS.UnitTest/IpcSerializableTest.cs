@@ -107,7 +107,7 @@ public sealed class IpcSerializableTest
                 {
                     TestContext.WriteLine(m.ToString());
                 }
-                Assert.Fail(item.Key.FullName);
+                Assert.Fail(item.Key.FullName ?? "item.Key.FullName is null");
             }
         }
     }

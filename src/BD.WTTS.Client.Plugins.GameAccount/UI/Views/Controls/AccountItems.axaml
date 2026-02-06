@@ -211,7 +211,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="spp:IAccount">
-                        <Border Margin="5" spp:Animations.EnableAnimations="True">
+                        <Border Margin="5" spp:Animations.EnableAnimations="False">
                             <spp:AppItem
                                 x:Name="Item"
                                 Title="{Binding DisplayName}"
