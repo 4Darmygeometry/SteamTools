@@ -1,4 +1,4 @@
-using Avalonia.Gif;
+using BD.Avalonia8.Image2;
 using BD.WTTS.UI.Views.Pages;
 using System.Threading;
 

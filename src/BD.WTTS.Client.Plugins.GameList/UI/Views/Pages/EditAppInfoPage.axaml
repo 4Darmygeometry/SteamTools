@@ -221,6 +221,7 @@
                                     FileStream="{Binding App.EditHeaderLogoStream, Mode=TwoWay}">
                                     <spp:Image2
                                         DecodeHeight="260"
+										KeepSourceStreamOpen="True"
                                         Source="{Binding App.EditHeaderLogoStream}"
                                         Stretch="Uniform" />
                                 </spp:CustomFilePicker>
@@ -275,6 +276,7 @@
                                     FileStream="{Binding App.EditLibraryGridStream, Mode=TwoWay}">
                                     <spp:Image2
                                         DecodeHeight="260"
+										KeepSourceStreamOpen="True"
                                         Source="{Binding App.EditLibraryGridStream}"
                                         Stretch="Uniform" />
                                 </spp:CustomFilePicker>
@@ -329,6 +331,7 @@
                                     FileStream="{Binding App.EditLibraryHeroStream, Mode=TwoWay}">
                                     <spp:Image2
                                         DecodeHeight="260"
+										KeepSourceStreamOpen="True"
                                         Source="{Binding App.EditLibraryHeroStream}"
                                         Stretch="Uniform" />
                                 </spp:CustomFilePicker>
@@ -381,6 +384,7 @@
                                     FileStream="{Binding App.EditLibraryLogoStream, Mode=TwoWay}">
                                     <spp:Image2
                                         DecodeWidth="220"
+										KeepSourceStreamOpen="True"
                                         Source="{Binding App.EditLibraryLogoStream}"
                                         Stretch="Uniform" />
                                 </spp:CustomFilePicker>

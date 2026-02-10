@@ -1,5 +1,6 @@
 using BD.Common.Repositories.Abstractions;
 using dotnetCampus.Ipc.CompilerServices.GeneratedProxies;
+using Windows.Win32;
 using KeyValuePair = BD.Common.Entities.KeyValuePair;
 
 const string moduleName = AssemblyInfo.Accelerator;
@@ -35,6 +36,12 @@ static bool IsProcessElevated_DEBUG_Only()
     return principal.IsInRole(WindowsBuiltInRole.Administrator);
 }
 #endif
+
+if (OSShuttingDownHelper.IsSystemShuttingDown())
+{
+    return 0;
+}
+
 try
 {
     var exitCode = await IPCSubProcessService.MainAsync(moduleName, pluginName, ConfigureServices, static ipcProvider =>

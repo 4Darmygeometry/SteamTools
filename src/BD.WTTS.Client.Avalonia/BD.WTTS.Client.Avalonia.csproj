@@ -89,7 +89,7 @@
 		<!--ProjectReference Include="..\Avalonia.Themes.Default\Avalonia.Themes.Default.csproj" />
 		<ProjectReference Include="..\Avalonia.Themes.Fluent\Avalonia.Themes.Fluent.csproj" />-->
 		<ProjectReference Include="..\Avalonia.Desktop\Avalonia.Desktop.csproj" />
-		<ProjectReference Include="..\..\ref\Avalonia.Image2\Avalonia.Gif\Avalonia.Gif.csproj" />
+		<ProjectReference Include="..\BD.Avalonia8.Image2.Compat\BD.Avalonia8.Image2.Compat.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">

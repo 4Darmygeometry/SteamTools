@@ -43,3 +43,6 @@
 [submodule "ref/Fusillade"]
 	path = ref/Fusillade
 	url = https://github.com/reactiveui/Fusillade
+[submodule "ref/Avalonia8"]
+	path = ref/Avalonia8
+	url = https://github.com/BeyondDimension/Avalonia8

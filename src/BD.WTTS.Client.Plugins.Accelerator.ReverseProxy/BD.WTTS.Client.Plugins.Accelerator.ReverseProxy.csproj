@@ -121,6 +121,8 @@
 		<ProjectReference Include="..\BD.WTTS.Client.IPC\BD.WTTS.Client.IPC.csproj" />
 	</ItemGroup>
 
+	<Import Project="..\OSShuttingDownHelper\OSShuttingDownHelper.projitems" Label="Shared" />
+
 	<!-- 此项目不使用平台 TFM ！！！ -->
 	<Import Project="..\TFM_NETX.props" />
 

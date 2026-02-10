@@ -16,9 +16,9 @@ static unsafe partial class Program
 {
     static Program()
     {
-        dotnet_version_major = "9";
+        dotnet_version_major = "10";
         dotnet_version_minor = "0";
-        dotnet_version_build = "0";
+        dotnet_version_build = "2";
         dotnet_version = $"{dotnet_version_major}.{dotnet_version_minor}.{dotnet_version_build}";
     }
 

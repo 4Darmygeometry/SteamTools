@@ -2,6 +2,7 @@ using dotnetCampus.Ipc.CompilerServices.GeneratedProxies;
 using dotnetCampus.Ipc.Context;
 using dotnetCampus.Ipc.Pipes;
 using dotnetCampus.Ipc.Utils.Logging;
+using Windows.Win32;
 using IPCLogLevel = dotnetCampus.Ipc.Utils.Logging.LogLevel;
 using MSEXLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
@@ -149,6 +150,11 @@ public sealed partial class IPCMainProcessServiceImpl : IPCMainProcessService
             true;
 #endif
 
+        if (OSShuttingDownHelper.IsSystemShuttingDown())
+        {
+            return null;
+        }
+
 #if LINUX 
         // 构建要执行的 shell 命令
         var shellStr =
@@ -262,6 +268,10 @@ public sealed partial class IPCMainProcessServiceImpl : IPCMainProcessService
                     .RetryAsync(3)
                     .ExecuteAsync(async () =>
                 {
+                    if (OSShuttingDownHelper.IsSystemShuttingDown())
+                    {
+                        return null;
+                    }
                     var process = await WindowsPlatformServiceImpl.StartAsAdministrator(processPath, arguments);
                     return process;
                 });

@@ -336,7 +336,7 @@ $"""
 
         public const string pfxFilePath_MSStore_CodeSigning = @"C:\MSStore_CodeSigning.pfx";
         public const string pfxFilePath_BeyondDimension_CodeSigning = @"C:\BeyondDimension_CodeSigning.pfx";
-        public const string pfxFilePath_HSM_CodeSigning = "DBE4005A4E9371BB8621CD481CD124F8865621C9";
+        public const string pfxFilePath_HSM_CodeSigning = "e1e00c478e41300480a63cd62d5f771d24cf903b";
 
         public static void Start(
             bool force_sign,

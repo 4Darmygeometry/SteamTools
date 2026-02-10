@@ -26,6 +26,7 @@
 		<!--<DefineConstants>REMOVE_DNS_INTERCEPT;$(DefineConstants)</DefineConstants>-->
 		<CETCompat>false</CETCompat>
 	</PropertyGroup>
+	
 	<ItemGroup>
 		<Compile Include="..\AssemblyInfo.cs">
 			<LinkBase>Properties</LinkBase>
@@ -36,5 +37,12 @@
 		<Compile Include="..\ImplicitUsings.Common.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 </Project>
