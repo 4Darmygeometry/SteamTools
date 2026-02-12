@@ -191,15 +191,21 @@ partial class Startup // 自定义控制台命令参数
         {
             Description = "打开云存档管理窗口",
         };
+        var app_silence = new Option<bool>("-silence")
+        {
+            DefaultValueFactory = _ => false,
+            Description = "挂运行服务，不加载窗口，内存占用更小",
+        };
         var run_SteamApp = new Command("app", "运行 Steam 应用")
         {
-            app_id, app_achievement, app_cloudmanager,
+            app_id, app_achievement, app_cloudmanager, app_silence,
         };
         run_SteamApp.SetAction(async parseResult =>
         {
             var id = parseResult.GetValue(app_id);
             var achievement = parseResult.GetValue(app_achievement);
             var cloudmanager = parseResult.GetValue(app_cloudmanager);
+            var silence = parseResult.GetValue(app_silence);
 
             int exitCode = default;
             if (id <= 0)
