@@ -366,35 +366,42 @@ sign /fd SHA256 /sha1 {pfxFilePath_HSM_CodeSigning} /tr {timestamp_url} /td SHA2
                 default:
                     {
                         pfxFilePath ??= pfxFilePath_BeyondDimension_CodeSigning;
-                        var pwdTxtPath = $"{pfxFilePath}.txt";
 
-                        if (!File.Exists(pwdTxtPath))
+                        if (!File.Exists(pfxFilePath))
                         {
-                            if (force_sign) throw new FileNotFoundException(null, pwdTxtPath);
-                            return; // 文件不存在则跳过代码签名
+                            // 无证书文件则跳过
+                            return;
                         }
 
-                        var parentDirPath = Path.GetDirectoryName(pfxFilePath);
-                        parentDirPath.ThrowIsNull();
+                        var pwdTxtPath = $"{pfxFilePath}.txt";
 
-                        var optionalEntropy = File.ReadAllBytes(Path.Combine(parentDirPath, "optionalEntropy.txt"));
-                        optionalEntropy.ThrowIsNull();
+                        string? pwdS = null;
 
-                        var pwd = File.ReadAllBytes(pwdTxtPath);
+                        if (File.Exists(pwdTxtPath))
+                        {
+                            var parentDirPath = Path.GetDirectoryName(pfxFilePath);
+                            parentDirPath.ThrowIsNull();
+
+                            var optionalEntropy = File.ReadAllBytes(Path.Combine(parentDirPath, "optionalEntropy.txt"));
+                            optionalEntropy.ThrowIsNull();
+
+                            var pwd = File.ReadAllBytes(pwdTxtPath);
 #pragma warning disable CA1416 // 验证平台兼容性
-                        pwd = ProtectedData.Unprotect(pwd,
-                            optionalEntropy,
-                            DataProtectionScope.LocalMachine);
+                            pwd = ProtectedData.Unprotect(pwd,
+                                optionalEntropy,
+                                DataProtectionScope.LocalMachine);
 #pragma warning restore CA1416 // 验证平台兼容性
-                        var pwdS = Encoding.UTF8.GetString(pwd);
+                            pwdS = Encoding.UTF8.GetString(pwd);
+                        }
+
                         psi = new ProcessStartInfo
                         {
                             FileName = GetSignToolPath(),
                             UseShellExecute = false,
                             Arguments =
-           $"""
-            sign /a /fd SHA256 /f "{pfxFilePath}" /p "{pwdS}" /tr {timestamp_url} /td SHA256 {fileName}
-            """,
+$"""
+sign /a /fd SHA256 /f "{pfxFilePath}"{(string.IsNullOrEmpty(pwdS) ? null : $" /p \"{pwdS}\"")} /tr {timestamp_url} /td SHA256 {fileName}
+""",
                         };
                     }
                     break;

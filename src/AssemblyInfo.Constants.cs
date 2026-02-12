@@ -25,7 +25,7 @@ public static partial class AssemblyInfo
     /// </summary>
     const string ver_for_rc = "0";
 
-    public const string FileVersion = $"{Version2}.{VersionBuild}.{ver_for_rc}2{ver_for_preview}";
+    public const string FileVersion = $"{Version2}.2{ver_for_rc}2{ver_for_preview}.0"; // msix 需要保持第四位为0
 
     public const string InformationalVersion = Version;
     //public const string InformationalVersion = $"{Version}-preview.{ver_for_preview}";

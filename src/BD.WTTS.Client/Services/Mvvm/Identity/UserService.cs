@@ -289,13 +289,15 @@ public sealed class UserService : ReactiveObject
                     if (avatarUri != null)
                     {
                         var avatarStream = await ImageSource.GetAsync(avatarUri, isCircle: false, cache: true);
-                        //CurrentSteamUser.AvatarStream = avatarStream;
-                        if (avatarStream?.Stream != null)
-                        {
-                            var avatarPath = avatarStream.Clone();
-                            avatarPath.Circle = true;
-                            AvatarPath = avatarPath;
-                        }
+                        if (avatarStream != null)
+                            AvatarPath = avatarStream;
+
+                        //if (avatarStream?.Stream != null)
+                        //{
+                        //    var avatarPath = avatarStream.Clone();
+                        //    avatarPath.Circle = true;
+                        //    AvatarPath = avatarPath;
+                        //}
                     }
                     return true;
                 }
