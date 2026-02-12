@@ -758,6 +758,11 @@ $"""
         {
             var libFileName = GetLibraryFileName(libraryName, platform);
             MoveNativeLibrary(libFileName);
+            if (libFileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+            {
+                var pdbFileName = $"{libFileName[..^4]}.pdb";
+                MoveNativeLibrary(pdbFileName);
+            }
         }
         switch (platform)
         {

@@ -6,9 +6,6 @@
 		<RootNamespace>BD.WTTS</RootNamespace>
 		<DefineConstants>AVALONIA;$(DefineConstants)</DefineConstants>
 		<ApplicationId>net.steampp.app</ApplicationId>
-		<ServerGarbageCollection>false</ServerGarbageCollection>
-		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
-		<RetainVMGarbageCollection>false</RetainVMGarbageCollection>
 		<ApplicationManifest>Properties\app.manifest</ApplicationManifest>
 	</PropertyGroup>
 
@@ -35,6 +32,18 @@
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- 👇 GC 配置 MSBuild 属性 -->
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- 👇 GC 配置 runtimeconfig.json -->
+		<RuntimeHostConfigurationOption Include="System.GC.HighMemoryPercent" Value="75" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
