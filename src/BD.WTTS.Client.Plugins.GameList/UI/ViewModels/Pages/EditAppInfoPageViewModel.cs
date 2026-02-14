@@ -122,7 +122,7 @@ public sealed class EditAppInfoPageViewModel : WindowViewModel
         #region 自定义图片保存
         //var mostRecentUser = ISteamService.Instance.GetRememberUserList().Where(s => s.MostRecent).FirstOrDefault();
         var mostRecentUser = SteamConnectService.Current.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
-        if (!(App.EditHeaderLogoStream is FileStream fs3 && fs3.Name == (await App.HeaderLogoStream)?.Name))
+        if (!(App.EditHeaderLogoStream is FileStream fs3 && (await App.HeaderLogoStream) is FileStream headerLogoStream && fs3.Name == headerLogoStream.Name))
         {
             if (!CheckCurrentSteamUserStats(mostRecentUser))
                 return;
@@ -135,7 +135,7 @@ public sealed class EditAppInfoPageViewModel : WindowViewModel
             else
                 this.RaisePropertyChanged(nameof(App.HeaderLogoStream));
         }
-        if (!(App.EditLibraryLogoStream is FileStream fs && fs.Name == (await App.LibraryLogoStream)?.Name))
+        if (!(App.EditLibraryLogoStream is FileStream fs && (await App.LibraryLogoStream) is FileStream libraryLogoStream && fs.Name == libraryLogoStream.Name))
         {
             if (!CheckCurrentSteamUserStats(mostRecentUser))
                 return;
@@ -148,7 +148,7 @@ public sealed class EditAppInfoPageViewModel : WindowViewModel
             else
                 this.RaisePropertyChanged(nameof(App.LibraryLogoStream));
         }
-        if (!(App.EditLibraryHeroStream is FileStream fs1 && fs1.Name == (await App.LibraryHeroStream)?.Name))
+        if (!(App.EditLibraryHeroStream is FileStream fs1 && (await App.LibraryHeroStream) is FileStream libraryHeroStream && fs1.Name == libraryHeroStream.Name))
         {
             if (!CheckCurrentSteamUserStats(mostRecentUser))
                 return;
@@ -161,7 +161,7 @@ public sealed class EditAppInfoPageViewModel : WindowViewModel
             else
                 this.RaisePropertyChanged(nameof(App.LibraryHeroStream));
         }
-        if (!(App.EditLibraryGridStream is FileStream fs2 && fs2.Name == (await App.LibraryGridStream)?.Name))
+        if (!(App.EditLibraryGridStream is FileStream fs2 && (await App.LibraryGridStream) is FileStream libraryGridStream && fs2.Name == libraryGridStream.Name))
         {
             if (!CheckCurrentSteamUserStats(mostRecentUser))
                 return;
@@ -246,16 +246,16 @@ public sealed class EditAppInfoPageViewModel : WindowViewModel
             switch (type)
             {
                 case SteamGridItemType.Header:
-                    App.EditHeaderLogoStream = (await App.HeaderLogoStream)?.Stream;
+                    App.EditHeaderLogoStream = (await App.HeaderLogoStream);
                     break;
                 case SteamGridItemType.Grid:
-                    App.EditLibraryGridStream = (await App.LibraryGridStream)?.Stream;
+                    App.EditLibraryGridStream = (await App.LibraryGridStream);
                     break;
                 case SteamGridItemType.Hero:
-                    App.EditLibraryHeroStream = (await App.LibraryHeroStream)?.Stream;
+                    App.EditLibraryHeroStream = (await App.LibraryHeroStream);
                     break;
                 case SteamGridItemType.Logo:
-                    App.EditLibraryLogoStream = (await App.LibraryLogoStream)?.Stream;
+                    App.EditLibraryLogoStream = (await App.LibraryLogoStream);
                     break;
             }
             return;

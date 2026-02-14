@@ -154,8 +154,9 @@ abstract class ReverseProxyServiceImpl : IReverseProxySettings
         {
             reverseProxySettings = Serializable.DMP2<ReverseProxySettings>(reverseProxySettings_);
         }
-        catch
+        catch (Exception e)
         {
+            OnException(e);
             return StartProxyResultCode.DeserializeReverseProxySettingsFail;
         }
 

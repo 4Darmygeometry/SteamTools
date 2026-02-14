@@ -538,10 +538,10 @@ public sealed partial class IPCMainProcessServiceImpl : IPCMainProcessService
     {
         if (!disposedValue)
         {
-            if (moduleNames.Any())
-            {
-                await ExitModules(moduleNames);
-            }
+            //if (moduleNames.Count != 0)
+            //{
+            //    await ExitModules(moduleNames);
+            //}
 
             // 释放托管状态(托管对象)
             try

@@ -13,6 +13,14 @@
       "commandName": "Project",
       "commandLineArgs": "run --rids win-x64 --stm-upload"
     },
+    "Publish(macos-arm64) Debug": {
+      "commandName": "Project",
+      "commandLineArgs": "run --rids osx-arm64 --debug"
+    },
+    "Publish(macos-arm64)": {
+      "commandName": "Project",
+      "commandLineArgs": "run --rids osx-arm64"
+    },
     "Publish Setup(win-x64 hsm-sign)": {
       "commandName": "Project",
       "commandLineArgs": "nsis --rids win-x64 --hsm-sign --t latest"
