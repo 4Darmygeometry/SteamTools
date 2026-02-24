@@ -37,6 +37,18 @@ cp -a $dotnetloc $(dirname $dotnetloc)/host $(dirname $dotnetloc)/shared $(dirna
 mkdir native
 cd native
 mkdir linux-loongarch64
-cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.3-preview.1.1/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
-cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.4-preview.1.1/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
-cd ../..
+cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.2/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.3/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
+cd ..
+mkdir Icons
+cp "../src/BD.WTTS.Client.Avalonia.App/Assets.xcassets/AppIcon.appiconset/Icon128.png" Icons/Watt-Toolkit.png
+mkdir script
+cp "../build/linux/environment_check.sh" script/
+cp "../build/linux/init_desktop.sh" script/
+cp "../build/linux/ISACheck.sh" script/
+cp "../build/linux/Linux.sh" script/
+cp "../build/linux/offline_init.sh" script/
+cp "../build/linux/online_install.sh" script/
+cp "../build/linux/uninstall.sh" script/
+cp "../build/linux/Steam++.sh" Steam++.sh
+cd ..
