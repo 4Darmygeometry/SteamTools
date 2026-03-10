@@ -30,6 +30,7 @@ public sealed partial class IdleCardPageViewModel
             });
 
         this.PriorityRunIdle = ReactiveCommand.CreateFromTask<IdleApp>(PriorityRunIdleGame);
+        this.ToggleBlacklistIdle = ReactiveCommand.CreateFromTask<IdleApp>(ToggleBlacklistIdleGame);
         this.IdleRunStartOrStop = ReactiveCommand.Create(IdleRunStartOrStop_Click);
         this.IdleManualRunNext = ReactiveCommand.CreateFromTask(ManualRunNext);
         this.LoginSteamCommand = ReactiveCommand.Create(async () =>
@@ -175,13 +176,49 @@ public sealed partial class IdleCardPageViewModel
     /// <returns></returns>
     public async Task PriorityRunIdleGame(IdleApp idleApp)
     {
+        if (idleApp.IsExcludedFromIdle)
+        {
+            Toast.Show(ToastIcon.Warning, "该游戏已被排除，不参与挂卡。请先取消拉黑或移除私密限制。");
+            return;
+        }
+
         using (await asyncLock.LockAsync())
         {
             StopIdle();
             PauseAutoNext(true);
             StartSoloIdle(idleApp);
-            CurrentIdleIndex = IdleGameList.IndexOf(idleApp);
+            CurrentIdleIndex = GetRunnableIdleGames().IndexOf(idleApp);
             ChangeRunTxt();
+        }
+    }
+
+    public async Task ToggleBlacklistIdleGame(IdleApp idleApp)
+    {
+        using (await asyncLock.LockAsync())
+        {
+            var blackList = SteamIdleSettings.BlacklistAppList.Value ?? [];
+            if (blackList.ContainsKey(idleApp.AppId))
+                blackList.Remove(idleApp.AppId);
+            else
+                blackList[idleApp.AppId] = idleApp.AppName;
+
+            SteamIdleSettings.BlacklistAppList.Value = blackList;
+
+            var wasRun = RunState;
+            if (wasRun)
+            {
+                StopIdle();
+                PauseAutoNext(true);
+                ResetCurrentIdle();
+            }
+
+            SteamAppsSort();
+
+            if (wasRun)
+            {
+                StartIdle();
+                ChangeRunTxt();
+            }
         }
     }
 
@@ -211,6 +248,8 @@ public sealed partial class IdleCardPageViewModel
     /// 重新加载
     /// </summary>
     private bool IsReloaded;
+
+    private HashSet<uint> PrivateGameAppIds = [];
 
     #endregion
 
@@ -375,6 +414,7 @@ public sealed partial class IdleCardPageViewModel
         HandleBadges:
             Badges.Clear();
             Badges.Add(badges!);
+            //await RefreshPrivateGameAppIds(steam_id);
             TotalCardsRemaining = 0;
             TotalCardsAvgPrice = 0;
 
@@ -382,6 +422,9 @@ public sealed partial class IdleCardPageViewModel
 
             foreach (var badge in badges)
             {
+                if (IsExcludedApp(badge.AppId))
+                    continue;
+
                 TotalCardsAvgPrice += badge.RegularAvgPrice * badge.CardsRemaining;
                 TotalCardsRemaining += badge.CardsRemaining;
             }
@@ -403,7 +446,21 @@ public sealed partial class IdleCardPageViewModel
                 IdleSequentital.Mostcards => badges.OrderByDescending(o => o.CardsRemaining).Select(s => new IdleApp(s)),
                 IdleSequentital.Mostvalue => badges.OrderByDescending(o => o.RegularAvgPrice).Select(s => new IdleApp(s)),
                 _ => badges.Select(s => new IdleApp(s)),
-            }).ToImmutableList();
+            }).ToList();
+
+            foreach (var app in apps)
+            {
+                app.IsPrivateGame = PrivateGameAppIds.Contains(app.AppId);
+                app.IsBlacklisted = IsBlacklistedApp(app.AppId);
+            }
+
+            ExcludedPrivateGameCount = apps.Count(x => x.IsPrivateGame);
+            ExcludedBlacklistGameCount = apps.Count(x => x.IsBlacklisted);
+            HasPrivateGameExcluded = ExcludedPrivateGameCount > 0;
+            PrivateGameExcludeTip = HasPrivateGameExcluded
+                ? $"检测到 {ExcludedPrivateGameCount} 个私密游戏，这些游戏将自动排除，不参与挂卡。"
+                : string.Empty;
+
             Dispatcher.UIThread.Invoke(() =>
             {
                 IdleGameList.Clear();
@@ -416,6 +473,48 @@ public sealed partial class IdleCardPageViewModel
             ex.LogAndShowT();
             return false;
         }
+    }
+
+    private bool IsBlacklistedApp(uint appId)
+    {
+        var blackList = SteamIdleSettings.BlacklistAppList.Value;
+        return blackList != null && blackList.ContainsKey(appId);
+    }
+
+    private bool IsExcludedApp(uint appId)
+    {
+        return PrivateGameAppIds.Contains(appId) || IsBlacklistedApp(appId);
+    }
+
+    private async Task RefreshPrivateGameAppIds(string steamId)
+    {
+        try
+        {
+            var (appIds, status) = await IdleCard.GetPrivateGameAppIdsAsync(steamId);
+            if (status == HttpStatusCode.OK)
+            {
+                PrivateGameAppIds = appIds.Count > 0 ? appIds.ToHashSet() : [];
+            }
+            else
+            {
+                PrivateGameAppIds.Clear();
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.LogAndShowT();
+            PrivateGameAppIds.Clear();
+        }
+    }
+
+    private List<IdleApp> GetRunnableIdleGames()
+    {
+        return IdleGameList.Where(x => !x.IsExcludedFromIdle).ToList();
+    }
+
+    private int GetRunnableCardsRemaining()
+    {
+        return GetRunnableIdleGames().Sum(s => s.Badge.CardsRemaining);
     }
 
     private async Task<bool> ReadyToGoIdle(bool isFirstStart = false)
@@ -438,8 +537,9 @@ public sealed partial class IdleCardPageViewModel
     private void StartIdle(bool isNext = false)
     {
         IdleApp idleApp;
+        var runnableGames = GetRunnableIdleGames();
 
-        if (!IdleGameList.Any())
+        if (!runnableGames.Any())
         {
             IdleComplete();
             return;
@@ -447,9 +547,9 @@ public sealed partial class IdleCardPageViewModel
 
         if (SteamIdleSettings.IdleRule.Value == IdleRule.FastMode)
         {
-            var multi = IdleGameList.Where(z => z.Badge.HoursPlayed >= SteamIdleSettings.MinRunTime.Value).ToList();
+            var multi = runnableGames.Where(z => z.Badge.HoursPlayed >= SteamIdleSettings.MinRunTime.Value).ToList();
 
-            var isLastSingle = multi.Count == 1 && IdleGameList.Count == 1; // 是否只剩最后一个游戏
+            var isLastSingle = multi.Count == 1 && runnableGames.Count == 1; // 是否只剩最后一个游戏
             if (multi.Count > 1 || isLastSingle)
             {
                 idleApp = VerifyIsNext(multi, isNext);
@@ -469,14 +569,14 @@ public sealed partial class IdleCardPageViewModel
 
             if (SteamIdleSettings.IdleRule.Value == IdleRule.OnlyOneGame)
             {
-                idleApp = VerifyIsNext(IdleGameList, isNext);
+                idleApp = VerifyIsNext(runnableGames, isNext);
                 StartSoloIdle(idleApp);
             }
             else
             {
                 if (SteamIdleSettings.IdleRule.Value == IdleRule.OneThenMany)
                 {
-                    var multi_Idles = IdleGameList.Where(z => z.Badge.HoursPlayed >= SteamIdleSettings.MinRunTime.Value).ToList();
+                    var multi_Idles = runnableGames.Where(z => z.Badge.HoursPlayed >= SteamIdleSettings.MinRunTime.Value).ToList();
                     if (multi_Idles.Count >= 1)
                     {
                         idleApp = VerifyIsNext(multi_Idles, isNext);
@@ -489,14 +589,14 @@ public sealed partial class IdleCardPageViewModel
                 }
                 else
                 {
-                    var multi_AFKs = IdleGameList.Where(z => z.Badge.HoursPlayed < SteamIdleSettings.MinRunTime.Value).ToList();
+                    var multi_AFKs = runnableGames.Where(z => z.Badge.HoursPlayed < SteamIdleSettings.MinRunTime.Value).ToList();
                     if (multi_AFKs.Count >= 2)
                     {
                         StartMultipleIdle();
                     }
                     else
                     {
-                        idleApp = VerifyIsNext(multi_AFKs.Count <= 0 ? IdleGameList : multi_AFKs, isNext);
+                        idleApp = VerifyIsNext(multi_AFKs.Count <= 0 ? runnableGames : multi_AFKs, isNext);
                         StartSoloIdle(idleApp);
                     }
                 }
@@ -533,6 +633,9 @@ public sealed partial class IdleCardPageViewModel
     /// <param name="item"></param>
     private void StartSoloIdle(IdleApp item)
     {
+        if (item.IsExcludedFromIdle)
+            return;
+
         CurrentIdle = item;
         SteamConnectService.Current.RuningSteamApps.TryGetValue(item.AppId, out var runState);
         if (runState == null)
@@ -555,17 +658,18 @@ public sealed partial class IdleCardPageViewModel
 
     private void StartMultipleIdle()
     {
-        foreach (var item in IdleGameList)
+        var runnableGames = GetRunnableIdleGames();
+        foreach (var item in runnableGames)
         {
             if (item.Badge.HoursPlayed >= SteamIdleSettings.MinRunTime.Value)
                 StopSoloIdle(item.App);
 
-            if (item.Badge.HoursPlayed < SteamIdleSettings.MinRunTime.Value && IdleGameList.Count(x => x.App.Process != null) < SteamIdleSettings.MaxIdleCount)
+            if (item.Badge.HoursPlayed < SteamIdleSettings.MinRunTime.Value && runnableGames.Count(x => x.App.Process != null) < SteamIdleSettings.MaxIdleCount)
                 StartSoloIdle(item);
         }
         ResetCurrentIdle();
 
-        if (!IdleGameList.Any(x => x.App.Process != null))
+        if (!runnableGames.Any(x => x.App.Process != null))
             StartIdle();
 
     }
@@ -682,7 +786,7 @@ public sealed partial class IdleCardPageViewModel
                 {
                     return;
                 }
-                if (IdleGameList.Sum(s => s.Badge.CardsRemaining) == 0) // 如果挂卡列表可挂卡数量为0，重新获取徽章数据挂卡
+                if (GetRunnableCardsRemaining() == 0) // 如果挂卡列表可挂卡数量为0，重新获取徽章数据挂卡
                 {
                     if (IsReloaded == false)
                     {
@@ -753,8 +857,12 @@ public sealed partial class IdleCardPageViewModel
                 uint? nextIdleAppId = null;
                 if (CurrentIdle != null)
                 {
+                    var runnableBeforeRefresh = GetRunnableIdleGames();
                     currentIdleAppId = CurrentIdle.AppId;
-                    nextIdleAppId = (IdleGameList.Count - 1) >= (++CurrentIdleIndex) ? IdleGameList[CurrentIdleIndex].AppId : null;
+                    var currentIdleIndex = runnableBeforeRefresh.FindIndex(x => x.AppId == currentIdleAppId.Value);
+                    nextIdleAppId = (currentIdleIndex >= 0 && (runnableBeforeRefresh.Count - 1) >= (currentIdleIndex + 1))
+                        ? runnableBeforeRefresh[currentIdleIndex + 1].AppId
+                        : null;
                 }
 
                 StopIdle();
@@ -763,24 +871,25 @@ public sealed partial class IdleCardPageViewModel
                 ResetCurrentIdle();
 
                 IdleApp? idleApp = null;
+                var runnableGames = GetRunnableIdleGames();
                 if (currentIdleAppId.HasValue)
                 {
 
                     if (!Badges.Any(x => x.AppId == currentIdleAppId && x.CardsRemaining > 0)) // 当前游戏挂卡完成
                     {
                         if (nextIdleAppId.HasValue) // 挂卡下一个游戏
-                            idleApp = IdleGameList.Where(x => x.AppId == nextIdleAppId).FirstOrDefault();
+                            idleApp = runnableGames.Where(x => x.AppId == nextIdleAppId).FirstOrDefault();
                     }
                     else // 继续挂卡当前游戏
-                        idleApp = IdleGameList.Where(x => x.AppId == currentIdleAppId).First();
+                        idleApp = runnableGames.Where(x => x.AppId == currentIdleAppId).FirstOrDefault();
                 }
 
-                var isMultipleIdle = IdleGameList.Count(x => x.App.Process != null) > 1;
+                var isMultipleIdle = runnableGames.Count(x => x.App.Process != null) > 1;
                 if (isMultipleIdle || idleApp == null) // 重头开始挂卡
                     StartIdle();
                 else
                 {
-                    CurrentIdleIndex = IdleGameList.IndexOf(idleApp);
+                    CurrentIdleIndex = runnableGames.IndexOf(idleApp);
                     StartSoloIdle(idleApp);
                 }
                 ChangeRunTxt();

@@ -56,7 +56,7 @@ public partial class LoginOrRegisterWindowViewModel : WindowViewModel, SendSmsUI
 
     async Task SubmitAsync()
     {
-        if (IsLoading || !this.CanSubmit()) return;
+        if (IsLoading /*|| !this.CanSubmit()*/) return;
 
         var request = new LoginOrRegisterRequest
         {
@@ -64,16 +64,24 @@ public partial class LoginOrRegisterWindowViewModel : WindowViewModel, SendSmsUI
             SmsCode = SmsCode
         };
         IsLoading = true;
-
-        var response = await IMicroServiceClient.Instance.Account.LoginOrRegister(request);
-
-        if (response.IsSuccess)
+        try
         {
-            await SuccessAsync(response.Content!, Close);
-            return;
-        }
+            var response = await IMicroServiceClient.Instance.Account.LoginOrRegister(request);
 
-        IsLoading = false;
+            if (response.IsSuccess)
+            {
+                await SuccessAsync(response.Content!, Close);
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Toast.Show(ToastIcon.Error, ex.GetAllMessage());
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
 
     async void OpenHyperlink_(string parameter)

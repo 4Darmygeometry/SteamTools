@@ -32,8 +32,8 @@ public sealed class HttpReverseProxyMiddlewareUnitTest
         Assert.That(position, Is.GreaterThan(0));
 
         var html_start = buffer[..position];
-        var script_xml_start = "<script type=\"text/javascript\" src=\"https://local.steampp.net/"u8.ToArray();
-        var script_xml_end = "\"></script>"u8.ToArray();
+        var script_xml_start = "<script type=\"text/javascript\" src=\"/.watt-toolkit-inject/"u8.ToArray();
+        var script_xml_end = ".js\"></script>"u8.ToArray();
 
         using var s = new MemoryStream();
         s.Write(html_start);

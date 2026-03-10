@@ -350,8 +350,8 @@ Actual value was {actualValue}.
                         //                        var html_start_string = encoding.GetString(html_start.Span);
                         //#endif
                         await bodyCoreWriter.WriteAsync(html_start);
-                        ReadOnlyMemory<byte> script_xml_start = "<script type=\"text/javascript\" src=\"https://local.steampp.net/"u8.ToArray();
-                        ReadOnlyMemory<byte> script_xml_end = "\"></script>"u8.ToArray();
+                        var script_xml_start = Encoding.ASCII.GetBytes($"<script type=\"text/javascript\" src=\"{IReverseProxyService.Constants.InjectScriptPathPrefix}");
+                        ReadOnlyMemory<byte> script_xml_end = ".js\"></script>"u8.ToArray();
                         foreach (var script in scripts)
                         {
                             await bodyCoreWriter.WriteAsync(script_xml_start);

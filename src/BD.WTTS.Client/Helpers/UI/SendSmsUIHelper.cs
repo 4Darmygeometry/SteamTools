@@ -109,16 +109,16 @@ public static class SendSmsUIHelper
         return response;
     }
 
-    public static bool CanSubmit(this IViewModel i)
-    {
-        if (!i.SendSmsCodeSuccess)
-        {
-            Toast.Show(ToastIcon.Error, AppResources.User_SMSCode_Error);
-            return false;
-        }
+    //public static bool CanSubmit(this IViewModel i)
+    //{
+    //    if (!i.SendSmsCodeSuccess)
+    //    {
+    //        Toast.Show(ToastIcon.Error, AppResources.User_SMSCode_Error);
+    //        return false;
+    //    }
 
-        return true;
-    }
+    //    return true;
+    //}
 
     /// <summary>
     /// 移除相关委托，在 View 层销毁时调用，因平台 View 层实现与关联 ViewModel 可能不一致，所以不能在 ViewModel 释放时调用

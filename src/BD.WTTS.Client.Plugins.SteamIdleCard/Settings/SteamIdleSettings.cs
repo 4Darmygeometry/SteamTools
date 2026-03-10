@@ -85,6 +85,12 @@ public sealed partial class SteamIdleSettings_ : ISteamIdleSettings, ISettings, 
     [MPKey(6), MP2Key(6), JsonPropertyOrder(6)]
     public double RefreshBadgesTime { get; set; } = ISteamIdleSettings.DefaultRefreshBadgesTime;
 
+    /// <summary>
+    /// 挂卡黑名单游戏列表
+    /// </summary>
+    [MPKey(7), MP2Key(7), JsonPropertyOrder(7)]
+    public Dictionary<uint, string?>? BlacklistAppList { get; set; } = ISteamIdleSettings.DefaultBlacklistAppList;
+
 }
 
 public static partial class SteamIdleSettings
@@ -130,5 +136,11 @@ public static partial class SteamIdleSettings
     /// </summary>
     public static SettingsStructProperty<double, SteamIdleSettings_> RefreshBadgesTime { get; }
         = new(DefaultRefreshBadgesTime);
+
+    /// <summary>
+    /// 挂卡黑名单游戏列表
+    /// </summary>
+    public static SettingsProperty<uint, string?, Dictionary<uint, string?>, SteamIdleSettings_> BlacklistAppList { get; }
+        = new(DefaultBlacklistAppList);
 
 }

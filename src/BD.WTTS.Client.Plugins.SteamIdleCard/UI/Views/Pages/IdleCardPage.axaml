@@ -28,7 +28,20 @@
                 Command="{Binding $parent[spp:PageBase].((spp:IdleCardPageViewModel)DataContext).PriorityRunIdle}"
                 CommandParameter="{Binding}"
                 IconSource="Play"
+                IsEnabled="{Binding !IsExcludedFromIdle}"
                 Text="优先运行此游戏" />
+            <ui:MenuFlyoutItem
+                Command="{Binding $parent[spp:PageBase].((spp:IdleCardPageViewModel)DataContext).ToggleBlacklistIdle}"
+                CommandParameter="{Binding}"
+                IconSource="Hide"
+                IsVisible="{Binding !IsBlacklisted}"
+                Text="移入挂卡黑名单" />
+            <ui:MenuFlyoutItem
+                Command="{Binding $parent[spp:PageBase].((spp:IdleCardPageViewModel)DataContext).ToggleBlacklistIdle}"
+                CommandParameter="{Binding}"
+                IconSource="Hide"
+                IsVisible="{Binding IsBlacklisted}"
+                Text="移出挂卡黑名单" />
             <ui:MenuFlyoutSeparator />
             <ui:MenuFlyoutItem
                 Command="{Binding $parent[spp:PageBase].((spp:IdleCardPageViewModel)DataContext).NavAppToSteamViewCommand}"
@@ -553,28 +566,41 @@
                                             <spp:AppItem.Status>
                                                 <Border Classes="Status">
                                                     <Panel>
-                                                        <WrapPanel IsVisible="{Binding App.Process, Converter={StaticResource IsNullConverter}, ConverterParameter=invert, Mode=OneWay}">
+                                                        <WrapPanel IsVisible="{Binding IsExcludedFromIdle}">
                                                             <Ellipse
                                                                 Width="6"
                                                                 Height="6"
                                                                 Margin="0,0,5,0"
-                                                                Fill="#47A42B" />
+                                                                Fill="#FAAD14" />
                                                             <TextBlock
                                                                 VerticalAlignment="Center"
                                                                 FontSize="12"
-                                                                Text="{Binding Path=Res.GameList_RunState, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                                                                Text="{Binding ExcludedReasonText}" />
                                                         </WrapPanel>
-                                                        <WrapPanel IsVisible="{Binding App.Process, Converter={StaticResource IsNullConverter}, Mode=OneWay}">
-                                                            <Ellipse
-                                                                Width="6"
-                                                                Height="6"
-                                                                Margin="0,0,5,0"
-                                                                Fill="#FF4F58" />
-                                                            <TextBlock
-                                                                VerticalAlignment="Center"
-                                                                FontSize="12"
-                                                                Text="{Binding Path=Res.GameList_StopState, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                                                        </WrapPanel>
+                                                        <Panel IsVisible="{Binding !IsExcludedFromIdle}">
+                                                            <WrapPanel IsVisible="{Binding App.Process, Converter={StaticResource IsNullConverter}, ConverterParameter=invert, Mode=OneWay}">
+                                                                <Ellipse
+                                                                    Width="6"
+                                                                    Height="6"
+                                                                    Margin="0,0,5,0"
+                                                                    Fill="#47A42B" />
+                                                                <TextBlock
+                                                                    VerticalAlignment="Center"
+                                                                    FontSize="12"
+                                                                    Text="{Binding Path=Res.GameList_RunState, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                                                            </WrapPanel>
+                                                            <WrapPanel IsVisible="{Binding App.Process, Converter={StaticResource IsNullConverter}, Mode=OneWay}">
+                                                                <Ellipse
+                                                                    Width="6"
+                                                                    Height="6"
+                                                                    Margin="0,0,5,0"
+                                                                    Fill="#FF4F58" />
+                                                                <TextBlock
+                                                                    VerticalAlignment="Center"
+                                                                    FontSize="12"
+                                                                    Text="{Binding Path=Res.GameList_StopState, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                                                            </WrapPanel>
+                                                        </Panel>
                                                     </Panel>
                                                 </Border>
                                             </spp:AppItem.Status>
@@ -703,6 +729,12 @@
                                     </DataTemplate>
                                 </ui:ItemsRepeater.ItemTemplate>
                             </ui:ItemsRepeater>
+                            <TextBlock
+                                Margin="0,0,0,10"
+                                HorizontalAlignment="Left"
+                                Foreground="#FAAD14"
+                                IsVisible="{Binding HasPrivateGameExcluded}"
+                                Text="{Binding PrivateGameExcludeTip}" />
                         </Panel>
                     </spp:OptionsDisplayItem.Content>
                 </spp:OptionsDisplayItem>

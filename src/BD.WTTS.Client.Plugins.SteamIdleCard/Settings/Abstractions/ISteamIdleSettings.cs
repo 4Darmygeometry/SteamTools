@@ -56,6 +56,11 @@ public partial interface ISteamIdleSettings
     double RefreshBadgesTime { get; set; }
 
     /// <summary>
+    /// 挂卡黑名单游戏列表
+    /// </summary>
+    Dictionary<uint, string?>? BlacklistAppList { get; set; }
+
+    /// <summary>
     /// 挂卡状态更新时间的默认值
     /// </summary>
     static readonly TimeSpan DefaultIdleTime = TimeSpan.FromMinutes(6);
@@ -89,5 +94,10 @@ public partial interface ISteamIdleSettings
     /// 自动刷新徽章数据时间间隔 min的默认值
     /// </summary>
     static readonly double DefaultRefreshBadgesTime = 6;
+
+    /// <summary>
+    /// 挂卡黑名单游戏列表的默认值
+    /// </summary>
+    static readonly Dictionary<uint, string?> DefaultBlacklistAppList = [];
 
 }

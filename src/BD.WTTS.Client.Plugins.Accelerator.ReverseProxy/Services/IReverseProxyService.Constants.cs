@@ -34,6 +34,11 @@ public partial interface IReverseProxyService : IDisposable
 
         public const string LocalDomain = "local.steampp.net";
 
+        /// <summary>
+        /// 同源脚本注入路径前缀，避免使用外域 script src 造成页面脚本 publicPath 污染。
+        /// </summary>
+        public const string InjectScriptPathPrefix = "/WattToolkit_Inject/";
+
         public static IPAddress DefaultProxyIp => IPAddress.Any;
     }
 

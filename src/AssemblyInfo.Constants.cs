@@ -18,7 +18,7 @@ public static partial class AssemblyInfo
     /// <summary>
     /// 预览版本号，范围 1~9，只增不减
     /// </summary>
-    const string ver_for_preview = "1";
+    const string ver_for_preview = "3";
 
     /// <summary>
     /// RC 版本号，范围 0~9，只增不减

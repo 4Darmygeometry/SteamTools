@@ -13,6 +13,8 @@ public sealed partial class IdleCardPageViewModel : TabItemViewModel
     /// </summary>
     public ICommand PriorityRunIdle { get; }
 
+    public ICommand ToggleBlacklistIdle { get; }
+
     public ICommand LoginSteamCommand { get; }
 
     public ICommand IdleRunStartOrStop { get; }
@@ -80,6 +82,18 @@ public sealed partial class IdleCardPageViewModel : TabItemViewModel
 
     [Reactive]
     public decimal TotalCardsAvgPrice { get; set; }
+
+    [Reactive]
+    public bool HasPrivateGameExcluded { get; set; }
+
+    [Reactive]
+    public int ExcludedPrivateGameCount { get; set; }
+
+    [Reactive]
+    public int ExcludedBlacklistGameCount { get; set; }
+
+    [Reactive]
+    public string PrivateGameExcludeTip { get; set; } = string.Empty;
 
     /// <summary>
     /// 当前挂卡游戏 

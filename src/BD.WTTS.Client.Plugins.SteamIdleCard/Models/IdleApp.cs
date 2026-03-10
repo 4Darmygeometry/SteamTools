@@ -5,6 +5,9 @@ namespace BD.WTTS.Models;
 
 public class IdleApp : ReactiveObject
 {
+    private bool isBlacklisted;
+    private bool isPrivateGame;
+
     public SteamApp App { get; }
 
     public Badge Badge { get; }
@@ -42,6 +45,50 @@ public class IdleApp : ReactiveObject
         get
         {
             return Strings.SteamIdle_IdleAppTags_.Format(Badge.HoursPlayed, Badge.CardsRemaining, Badge.RegularAvgPrice.ToString("0.00"));
+        }
+    }
+
+    public bool IsBlacklisted
+    {
+        get => isBlacklisted;
+        set
+        {
+            if (isBlacklisted != value)
+            {
+                this.RaiseAndSetIfChanged(ref isBlacklisted, value);
+                this.RaisePropertyChanged(nameof(IsExcludedFromIdle));
+                this.RaisePropertyChanged(nameof(ExcludedReasonText));
+            }
+        }
+    }
+
+    public bool IsPrivateGame
+    {
+        get => isPrivateGame;
+        set
+        {
+            if (isPrivateGame != value)
+            {
+                this.RaiseAndSetIfChanged(ref isPrivateGame, value);
+                this.RaisePropertyChanged(nameof(IsExcludedFromIdle));
+                this.RaisePropertyChanged(nameof(ExcludedReasonText));
+            }
+        }
+    }
+
+    public bool IsExcludedFromIdle => IsBlacklisted || IsPrivateGame;
+
+    public string ExcludedReasonText
+    {
+        get
+        {
+            if (IsPrivateGame && IsBlacklisted)
+                return "私密游戏(不掉卡) + 已拉黑";
+            if (IsPrivateGame)
+                return "私密游戏(不掉卡)";
+            if (IsBlacklisted)
+                return "已拉黑";
+            return string.Empty;
         }
     }
 

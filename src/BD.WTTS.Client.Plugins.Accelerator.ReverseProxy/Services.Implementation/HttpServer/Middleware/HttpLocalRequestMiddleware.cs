@@ -30,6 +30,12 @@ sealed class HttpLocalRequestMiddleware
     /// <returns></returns>
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
+        if (TryGetInjectScriptLocalId(context.Request.Path, out var injectScriptLid))
+        {
+            await HandleScriptRequestAsync(context, injectScriptLid);
+            return;
+        }
+
         if (HttpMethods.IsOptions(context.Request.Method) && context.Request.Headers.ContainsKey("Access-Control-Request-Private-Network"))
         {
             // https://wicg.github.io/private-network-access/
@@ -60,32 +66,48 @@ sealed class HttpLocalRequestMiddleware
                     await HandleHttpRequestAsync(context);
                     return;
                 default: //默认处理脚本匹配
-                    if (!int.TryParse(context.Request.Path.Value?.Trim('/'), out var lid) && lid <= 0)
+                    if (!int.TryParse(context.Request.Path.Value?.Trim('/'), out var lid) || lid <= 0)
                     {
                         await Handle404NotFoundAsync(context);
                         return;
                     }
-                    // TODO: Scripts
-                    if (reverseProxyConfig.TryGetScriptContent(lid, out string? content))
-                    {
-                        if (string.IsNullOrEmpty(content))
-                        {
-                            await Handle404NotFoundAsync(context);
-                            return;
-                        }
-                        context.Response.Headers.ContentType = "text/javascript;charset=UTF-8";
-                        await context.Response.WriteAsync(content);
-                        return;
-                    }
-                    else
-                    {
-                        await Handle404NotFoundAsync(context);
-                        return;
-                    }
+                    await HandleScriptRequestAsync(context, lid);
+                    return;
             }
         }
 
         await next(context);
+    }
+
+    static bool TryGetInjectScriptLocalId(PathString path, out int localId)
+    {
+        localId = default;
+        var pathValue = path.Value;
+        if (string.IsNullOrEmpty(pathValue))
+            return false;
+
+        var prefix = IReverseProxyService.Constants.InjectScriptPathPrefix;
+        if (!pathValue.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        var idPart = pathValue[prefix.Length..];
+        if (!idPart.EndsWith(".js", StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        idPart = idPart[..^3];
+        return int.TryParse(idPart, out localId) && localId > 0;
+    }
+
+    async Task HandleScriptRequestAsync(HttpContext context, int lid)
+    {
+        if (reverseProxyConfig.TryGetScriptContent(lid, out var content) && !string.IsNullOrEmpty(content))
+        {
+            context.Response.Headers.ContentType = "application/javascript;charset=UTF-8";
+            await context.Response.WriteAsync(content);
+            return;
+        }
+
+        await Handle404NotFoundAsync(context);
     }
 
     /// <summary>
