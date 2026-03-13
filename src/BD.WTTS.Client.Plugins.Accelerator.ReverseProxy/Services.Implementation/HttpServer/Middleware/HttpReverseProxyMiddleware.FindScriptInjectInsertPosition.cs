@@ -90,4 +90,122 @@ partial class HttpReverseProxyMiddleware
     notfound: insertPosition = -1;
         return false;
     }
+
+    internal static bool FindScriptInjectInsertPositionForGithub(byte[] buffer_, Encoding encoding, out ReadOnlyMemory<byte> buffer, out int insertPosition)
+    {
+        buffer = buffer_.AsMemory();
+
+        ReadOnlySpan<byte> mark = "<script"u8;
+        var lastScriptWithSrcStart = -1;
+        var span = buffer_.AsSpan();
+
+        if (span.Length >= mark.Length)
+        {
+            for (var i = 0; i <= span.Length - mark.Length; i++)
+            {
+                if (!EqualsAsciiIgnoreCase(span.Slice(i, mark.Length), mark))
+                {
+                    continue;
+                }
+
+                var afterMarkIndex = i + mark.Length;
+                if (afterMarkIndex < span.Length && IsHtmlAttributeNameChar(span[afterMarkIndex]))
+                {
+                    continue;
+                }
+
+                var tagEndOffset = span.Slice(afterMarkIndex).IndexOf((byte)'>');
+                if (tagEndOffset < 0)
+                {
+                    break;
+                }
+
+                var tagEndIndex = afterMarkIndex + tagEndOffset;
+                var scriptTag = span.Slice(i, tagEndIndex - i + 1);
+                if (ScriptTagHasSrcAttribute(scriptTag))
+                {
+                    lastScriptWithSrcStart = i;
+                }
+
+                i = tagEndIndex;
+            }
+        }
+
+        if (lastScriptWithSrcStart >= 0)
+        {
+            insertPosition = lastScriptWithSrcStart;
+            return true;
+        }
+
+        return FindScriptInjectInsertPosition(buffer_, encoding, out buffer, out insertPosition);
+    }
+
+    static bool ScriptTagHasSrcAttribute(ReadOnlySpan<byte> scriptTag)
+    {
+        ReadOnlySpan<byte> src = "src"u8;
+
+        if (scriptTag.Length < src.Length)
+            return false;
+
+        for (var i = 0; i <= scriptTag.Length - src.Length; i++)
+        {
+            if (!EqualsAsciiIgnoreCase(scriptTag.Slice(i, src.Length), src))
+                continue;
+
+            if (i > 0 && IsHtmlAttributeNameChar(scriptTag[i - 1]))
+                continue;
+
+            var j = i + src.Length;
+            while (j < scriptTag.Length && IsAsciiWhitespace(scriptTag[j]))
+            {
+                j++;
+            }
+
+            if (j < scriptTag.Length && scriptTag[j] == (byte)'=')
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static bool EqualsAsciiIgnoreCase(ReadOnlySpan<byte> left, ReadOnlySpan<byte> right)
+    {
+        if (left.Length != right.Length)
+            return false;
+
+        for (var i = 0; i < left.Length; i++)
+        {
+            var l = ToUpperAscii(left[i]);
+            var r = ToUpperAscii(right[i]);
+            if (l != r)
+                return false;
+        }
+
+        return true;
+    }
+
+    static byte ToUpperAscii(byte value)
+    {
+        if (value is >= (byte)'a' and <= (byte)'z')
+            return (byte)(value - 32);
+        return value;
+    }
+
+    static bool IsAsciiWhitespace(byte value) =>
+        value == (byte)' ' ||
+        value == (byte)'\t' ||
+        value == (byte)'\r' ||
+        value == (byte)'\n' ||
+        value == (byte)'\f';
+
+    static bool IsHtmlAttributeNameChar(byte value) =>
+        (value is >= (byte)'a' and <= (byte)'z') ||
+        (value is >= (byte)'A' and <= (byte)'Z') ||
+        (value is >= (byte)'0' and <= (byte)'9') ||
+        value == (byte)'-' ||
+        value == (byte)'_' ||
+        value == (byte)':' ||
+        value == (byte)'.';
 }

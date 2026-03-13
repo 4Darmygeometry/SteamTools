@@ -46,4 +46,55 @@ public sealed class HttpReverseProxyMiddlewareUnitTest
         var new_html = encoding.GetString(s.ToArray());
         TestContext.WriteLine(new_html);
     }
+
+    [Test]
+    public void TestFindScriptInjectInsertPositionForGithub_BeforeLastScript()
+    {
+        var html = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="utf-8">
+            <title>demo</title>
+            </head>
+            <body>
+            <script src="/first.js"></script>
+            <script src="/runtime.js"></script>
+            </body>
+            </html>
+            """;
+
+        var buffer = Encoding.UTF8.GetBytes(html);
+        var ok = HttpReverseProxyMiddleware.FindScriptInjectInsertPositionForGithub(buffer, Encoding.UTF8, out _, out var position);
+
+        Assert.That(ok, Is.True);
+        var expected = html.LastIndexOf("<script src=\"/runtime.js\">", StringComparison.OrdinalIgnoreCase);
+        Assert.That(position, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void TestFindScriptInjectInsertPositionForGithub_BeforeLastScriptWithSrc()
+    {
+        var html = """
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="utf-8">
+            </head>
+            <body>
+            <script src="/first.js"></script>
+            <script>window.__INLINE__ = true;</script>
+            <script src="/runtime.js" data-rspack="@github-ui/github-ui:runtime"></script>
+            <script>window.__AFTER_RUNTIME__ = true;</script>
+            </body>
+            </html>
+            """;
+
+        var buffer = Encoding.UTF8.GetBytes(html);
+        var ok = HttpReverseProxyMiddleware.FindScriptInjectInsertPositionForGithub(buffer, Encoding.UTF8, out _, out var position);
+
+        Assert.That(ok, Is.True);
+        var expected = html.LastIndexOf("<script src=\"/runtime.js\"", StringComparison.OrdinalIgnoreCase);
+        Assert.That(position, Is.EqualTo(expected));
+    }
 }

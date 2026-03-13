@@ -74,6 +74,9 @@ partial class ProxyService
         bool useDoh = ProxySettings.UseDoh.Value;
         string? customDohAddres = ProxySettings.CustomDohAddres2.Value;
 
+        string? proxyToken = proxyDomains.Any_Nullable(s => s.ProxyType == ProxyType.ServerAccelerate || s.Items.Any_Nullable(x => x.ProxyType == ProxyType.ServerAccelerate)) ?
+            await TryRequestServerSideProxyToken() : null;
+
         if (ProxySettings.ProxyBeforeDNSCheck.Value)
         {
             if (useDoh)
@@ -228,9 +231,6 @@ partial class ProxyService
                 return $"CheckRootCertificate, ErrCode: {checkRootCertificateCode}";
             }
         }
-
-        string? proxyToken = proxyDomains.Any_Nullable(s => s.ProxyType == ProxyType.ServerAccelerate || s.Items.Any_Nullable(x => x.ProxyType == ProxyType.ServerAccelerate)) ?
-            await TryRequestServerSideProxyToken() : null;
 
         ReverseProxySettings reverseProxySettings = new(proxyDomains, scripts,
             isEnableScript, isOnlyWorkSteamBrowser, proxyPort,

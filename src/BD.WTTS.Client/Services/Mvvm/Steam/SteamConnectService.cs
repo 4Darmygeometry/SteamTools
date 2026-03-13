@@ -383,29 +383,42 @@ public sealed class SteamConnectService
         if (apps.Any_Nullable())
         {
             SteamApps.AddOrUpdate(apps);
-
-            var modifiedApps = ISteamService.Instance.GetModifiedApps();
-            if (modifiedApps.Any_Nullable())
-            {
-                foreach (var modifiedApp in modifiedApps)
-                {
-                    modifiedApp.ReadChanges();
-
-                    if (modifiedApp.Changes != null)
-                    {
-                        var optional = SteamApps.Lookup(modifiedApp.AppId);
-                        if (optional.HasValue)
-                        {
-                            var value = optional.Value;
-                            value.ExtractReaderProperty(modifiedApp.Changes);
-                            value.OriginalData = modifiedApp.OriginalData;
-                            value.IsEdited = true;
-                            SteamApps.Refresh(value);
-                        }
-                    }
-                }
-            }
+            ApplyModifiedApps(ISteamService.Instance.GetModifiedApps());
         }
+    }
+
+    public int ApplyModifiedApps(IEnumerable<ModifiedApp>? modifiedApps)
+    {
+        var appliedCount = 0;
+        if (!modifiedApps.Any_Nullable())
+        {
+            return appliedCount;
+        }
+
+        foreach (var modifiedApp in modifiedApps)
+        {
+            modifiedApp.ReadChanges();
+
+            if (modifiedApp.Changes == null)
+            {
+                continue;
+            }
+
+            var optional = SteamApps.Lookup(modifiedApp.AppId);
+            if (!optional.HasValue)
+            {
+                continue;
+            }
+
+            var value = optional.Value;
+            value.ExtractReaderProperty(modifiedApp.Changes);
+            value.OriginalData = modifiedApp.OriginalData;
+            value.IsEdited = true;
+            SteamApps.Refresh(value);
+            appliedCount++;
+        }
+
+        return appliedCount;
     }
 
     public async void InitializeGameList()

@@ -527,7 +527,11 @@ Failed to initialize FileSystem, access denied.
 
                 try
                 {
+#if MACOS
+                    Ioc.Dispose();
+#else
                     await Ioc.DisposeAsync();
+#endif
                 }
                 catch (Exception ex)
                 {

@@ -327,7 +327,12 @@ Actual value was {actualValue}.
                     }
                 }
 
-                if (FindScriptInjectInsertPosition(buffer_, encoding, out var buffer, out var position))
+                var isGithubHost = IsGithubHost(context.Request.Host.Host);
+                var isFindPosition = isGithubHost
+                    ? FindScriptInjectInsertPositionForGithub(buffer_, encoding, out var buffer, out var position)
+                    : FindScriptInjectInsertPosition(buffer_, encoding, out buffer, out position);
+
+                if (isFindPosition)
                 {
                     using var bodyWriter = new MemoryStream();
                     using Stream? bodyCompress = GetStreamByContentCompression(bodyWriter, contentCompression, CompressionMode.Compress, true);
@@ -397,6 +402,15 @@ Actual value was {actualValue}.
                 await stream.CopyToAsync(originalBody);
                 context.Response.Body = originalBody;
             }
+        }
+
+        static bool IsGithubHost(string? host)
+        {
+            if (string.IsNullOrWhiteSpace(host))
+                return false;
+
+            return host.Equals("github.com", StringComparison.OrdinalIgnoreCase) ||
+                host.EndsWith(".github.com", StringComparison.OrdinalIgnoreCase);
         }
     }
 
