@@ -37,8 +37,8 @@ cp -a $dotnetloc $(dirname $dotnetloc)/host $(dirname $dotnetloc)/shared $(dirna
 mkdir native
 cd native
 mkdir linux-riscv64
-cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.3-preview.1.1/runtimes/linux-riscv64/native/libSkiaSharp.so linux-riscv64/
-cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.4-preview.1.1/runtimes/linux-riscv64/native/libHarfBuzzSharp.so linux-riscv64/
+cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.4-preview.1.1/runtimes/linux-riscv64/native/libSkiaSharp.so linux-riscv64/
+cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.5-preview.1.1/runtimes/linux-riscv64/native/libHarfBuzzSharp.so linux-riscv64/
 cp -a $HOME/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.11/runtimes/linux-riscv64/native/libe_sqlite3.so linux-riscv64/
 
 cd ..
