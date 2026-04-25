@@ -37,8 +37,8 @@ cp -a $dotnetloc $(dirname $dotnetloc)/host $(dirname $dotnetloc)/shared $(dirna
 mkdir native
 cd native
 mkdir linux-loongarch64
-cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.2/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
-cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.3/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/skiasharp.nativeassets.linux/3.119.4-preview.1.1/runtimes/linux-loongarch64/native/libSkiaSharp.so linux-loongarch64/
+cp -a $HOME/.nuget/packages/harfbuzzsharp.nativeassets.linux/8.3.1.5-preview.1.1/runtimes/linux-loongarch64/native/libHarfBuzzSharp.so linux-loongarch64/
 cd ..
 mkdir Icons
 cp "../src/BD.WTTS.Client.Avalonia.App/Assets.xcassets/AppIcon.appiconset/Icon128.png" Icons/Watt-Toolkit.png
