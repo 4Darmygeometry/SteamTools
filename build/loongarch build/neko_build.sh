@@ -17,10 +17,10 @@ echo "Adding explicit native package versions (overriding Central Package Manage
 
 # SkiaSharp 和 HarfBuzzSharp：官方源已有 loongarch64 支持
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
-    package SkiaSharp.NativeAssets.Linux --version 3.119.4-preview.1.1
+    package SkiaSharp.NativeAssets.Linux --version 3.119.4
 
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
-    package HarfBuzzSharp.NativeAssets.Linux --version 8.3.1.5-preview.1.1
+    package HarfBuzzSharp.NativeAssets.Linux --version 8.3.1.5
 
 # SQLite：必须从龙芯源获取 loongarch64 原生库
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
