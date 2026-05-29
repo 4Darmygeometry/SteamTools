@@ -5,10 +5,10 @@ set -e
 echo "Adding explicit native package versions (overriding Central Package Management)..."
 
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
-    package SkiaSharp.NativeAssets.Linux --version 3.119.4-preview.1.1
+    package SkiaSharp.NativeAssets.Linux --version 3.119.4
 
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
-    package HarfBuzzSharp.NativeAssets.Linux --version 8.3.1.5-preview.1.1
+    package HarfBuzzSharp.NativeAssets.Linux --version 8.3.1.5
 
 dotnet add src/BD.WTTS.Client.Avalonia.App/BD.WTTS.Client.Avalonia.App.csproj \
     package SQLitePCLRaw.lib.e_sqlite3 --version 2.1.11
