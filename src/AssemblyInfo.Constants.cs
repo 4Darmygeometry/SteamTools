@@ -13,12 +13,12 @@ public static partial class AssemblyInfo
     /// </summary>
     public const string Version = $"{Version2}.{VersionBuild}";
 
-    const string VersionBuild = "0";
+    const string VersionBuild = "1";
 
     /// <summary>
     /// 预览版本号，范围 1~9，只增不减
     /// </summary>
-    const string ver_for_preview = "5";
+    const string ver_for_preview = "1";
 
     /// <summary>
     /// RC 版本号，范围 0~9，只增不减
