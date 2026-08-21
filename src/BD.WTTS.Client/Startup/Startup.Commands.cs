@@ -449,6 +449,18 @@ partial class Startup // 自定义控制台命令参数
             if (ModuleName != IPlatformService.IPCRoot.moduleName)
                 return 402;
 
+            if (!int.TryParse(p, out var pid) || pid <= 0)
+                return (int)CommandExitCode.NotFoundMainProcessId;
+
+#if DEBUG
+            Log.Info(nameof(IPCSubProcessServiceImpl), "客户端正在校验服务端进程，{pid}", pid);
+#endif
+            // 验证要连接的服务端进程是否为自己的程序
+            var ckPid = IPCSubProcessServiceImpl.CheckBePid(pid);
+            if (!ckPid)
+                return (int)CommandExitCode.MainProcessIdIncorrect;
+
+
             RunUIApplication(AppServicesLevel.IPCRoot | AppServicesLevel.Hosts);
             await WaitConfiguredServices;
 
