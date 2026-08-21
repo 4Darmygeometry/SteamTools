@@ -67,7 +67,7 @@
                         </Style>
                     </AutoCompleteBox.Styles>
                 </AutoCompleteBox>
-                <!--<ui:FAFontIcon
+                <!--<ui:FontIcon
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource SymbolThemeFontFamily}"

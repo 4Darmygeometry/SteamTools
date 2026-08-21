@@ -2,8 +2,6 @@ namespace BD.WTTS.UI.Views.Pages;
 
 public partial class LoginOrRegisterPage : ReactiveUserControl<LoginOrRegisterWindowViewModel>
 {
-    private IActivatableLifetime? activatableLifetime;
-
     public LoginOrRegisterPage()
     {
         InitializeComponent();
@@ -47,28 +45,28 @@ public partial class LoginOrRegisterPage : ReactiveUserControl<LoginOrRegisterWi
                 this.ViewModel.Close(false);
             }
         }
-        if (activatableLifetime == null &&
-            Application.Current?.TryGetFeature<IActivatableLifetime>() is { } lifetime)
-        {
-            activatableLifetime = lifetime;
-            activatableLifetime.Activated += Current_Activated;
-        }
+        // 11.1 使用新 API  https://docs.avaloniaui.net/docs/concepts/services/activatable-lifetime#handling-uri-activation
+        //if (Application.Current.TryGetFeature<IActivatableLifetime>() is { } activatableLifetime)
+        //{
+        //    activatableLifetime.Activated += (s, a) =>
+        //    {
+        //        if (a is ProtocolActivatedEventArgs protocolArgs && protocolArgs.Kind == ActivationKind.OpenUri)
+        //        {
+        //            Console.WriteLine($"App activated via Uri: {protocolArgs.Uri}");
+        //        }
+        //    };
+        //}
+        Application.Current!.UrlsOpened += Current_UrlsOpened;
     }
 
-    private async void Current_Activated(object? sender, ActivatedEventArgs e)
+    private async void Current_UrlsOpened(object? sender, UrlOpenedEventArgs e)
     {
-        if (e is ProtocolActivatedEventArgs
-            {
-                Kind: ActivationKind.OpenUri,
-                Uri: { } uri,
-            })
+        var loginUrl = e.Urls.Where(x => x.StartsWith(Constants.UrlSchemes.Login)).FirstOrDefault();
+        if (loginUrl != null)
         {
-            var loginUrl = uri.ToString();
-            if (loginUrl.StartsWith(Constants.UrlSchemes.Login))
-            {
-                var token = loginUrl[Constants.UrlSchemes.Login.Length..];
-                await ThirdPartyLoginHelper.LoginForStr(token);
-            }
+            //var token = loginUrl.TrimStart(Constants.UrlSchemes.Login);
+            var token = loginUrl[Constants.UrlSchemes.Login.Length..];
+            await ThirdPartyLoginHelper.LoginForStr(token);
         }
     }
 
@@ -84,11 +82,7 @@ public partial class LoginOrRegisterPage : ReactiveUserControl<LoginOrRegisterWi
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        if (activatableLifetime != null)
-        {
-            activatableLifetime.Activated -= Current_Activated;
-            activatableLifetime = null;
-        }
+        Application.Current!.UrlsOpened -= Current_UrlsOpened;
         base.OnDetachedFromVisualTree(e);
         if (DataContext is LoginOrRegisterWindowViewModel vm)
         {

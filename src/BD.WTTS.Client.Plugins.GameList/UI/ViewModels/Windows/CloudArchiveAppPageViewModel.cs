@@ -86,7 +86,7 @@ public sealed class CloudArchiveAppPageViewModel : WindowViewModel
 
         _CloudArchivewSourceList
             .Connect()
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Sort(SortExpressionComparer<SteamRemoteFile>.Descending(x => x.Timestamp).ThenByAscending(x => x.Name))
             .Bind(out _CloudArchivews)
             .Subscribe(_ => this.RaisePropertyChanged(nameof(CloudArchivewCountStr)));

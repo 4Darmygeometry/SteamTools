@@ -32,8 +32,4 @@
 		</Compile>
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-		<Reference Include="System.Net.Http" />
-	</ItemGroup>
-
 </Project>

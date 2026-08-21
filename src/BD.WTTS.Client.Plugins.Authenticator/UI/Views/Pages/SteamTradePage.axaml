@@ -21,8 +21,8 @@
                 Spacing="10">
                 <StackPanel.IsVisible>
                     <MultiBinding Converter="{x:Static BoolConverters.And}">
-                        <ReflectionBinding Path="!IsLogged" />
-                        <ReflectionBinding Path="!IsLoading" />
+                        <CompiledBinding Path="!IsLogged" />
+                        <CompiledBinding Path="!IsLoading" />
                     </MultiBinding>
                 </StackPanel.IsVisible>
                 <PathIcon
@@ -53,8 +53,8 @@
             <Grid RowDefinitions="Auto,*">
                 <Grid.IsVisible>
                     <MultiBinding Converter="{x:Static BoolConverters.And}">
-                        <ReflectionBinding Path="!IsLoading" />
-                        <ReflectionBinding Path="IsLogged" />
+                        <CompiledBinding Path="!IsLoading" />
+                        <CompiledBinding Path="IsLogged" />
                     </MultiBinding>
                 </Grid.IsVisible>
                 <DockPanel Margin="10,0" IsVisible="{Binding IsLogged}">
@@ -64,33 +64,33 @@
                         Command="{Binding SelectAllCommand}"
                         Content="{Binding Path=Res.SelectAll, Mode=OneWay, Source={x:Static s:ResourceService.Current}}"
                         IsChecked="{Binding SelectedAll, Mode=OneWay}" />
-                    <ui:FACommandBar
+                    <ui:CommandBar
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         DefaultLabelPosition="Right"
                         DockPanel.Dock="Right"
                         IsSticky="False">
-                        <ui:FACommandBar.PrimaryCommands>
-                            <ui:FACommandBarButton Command="{Binding Logout}" Label="{Binding Path=Res.Logout, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-                                <ui:FACommandBarButton.IconSource>
-                                    <ui:FAFontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEDE1;" />
-                                </ui:FACommandBarButton.IconSource>
-                            </ui:FACommandBarButton>
-                            <ui:FACommandBarButton
+                        <ui:CommandBar.PrimaryCommands>
+                            <ui:CommandBarButton Command="{Binding Logout}" Label="{Binding Path=Res.Logout, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
+                                <ui:CommandBarButton.IconSource>
+                                    <ui:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEDE1;" />
+                                </ui:CommandBarButton.IconSource>
+                            </ui:CommandBarButton>
+                            <ui:CommandBarButton
                                 Command="{Binding Refresh}"
                                 IconSource="Refresh"
                                 Label="{Binding Path=Res.Refresh, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                            <ui:FACommandBarButton
+                            <ui:CommandBarButton
                                 Command="{Binding CancelAllTrade}"
                                 IconSource="Cancel"
                                 Label="{Binding Path=Res.BatchReject, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                            <ui:FACommandBarButton Command="{Binding ConfirmAllTrade}" Label="{Binding Path=Res.BatchPass, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-                                <ui:FACommandBarButton.IconSource>
-                                    <ui:FAFontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{StaticResource CheckMark}" />
-                                </ui:FACommandBarButton.IconSource>
-                            </ui:FACommandBarButton>
-                        </ui:FACommandBar.PrimaryCommands>
-                    </ui:FACommandBar>
+                            <ui:CommandBarButton Command="{Binding ConfirmAllTrade}" Label="{Binding Path=Res.BatchPass, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
+                                <ui:CommandBarButton.IconSource>
+                                    <ui:FontIconSource FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="{StaticResource CheckMark}" />
+                                </ui:CommandBarButton.IconSource>
+                            </ui:CommandBarButton>
+                        </ui:CommandBar.PrimaryCommands>
+                    </ui:CommandBar>
                 </DockPanel>
                 <Panel
                     Grid.Row="1"
@@ -110,8 +110,8 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type spp:SteamTradeConfirmationModel}">
-                                    <ui:FASettingsExpander>
-                                        <ui:FASettingsExpander.Header>
+                                    <ui:SettingsExpander>
+                                        <ui:SettingsExpander.Header>
                                             <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}">
                                                 <Grid
                                                     MaxHeight="128"
@@ -144,9 +144,9 @@
                                                     </StackPanel>
                                                 </Grid>
                                             </CheckBox>
-                                        </ui:FASettingsExpander.Header>
-                                        <ui:FASettingsExpanderItem Description="{Binding ReceiveSummary}" IsVisible="{Binding IsTrade}">
-                                            <ui:FASettingsExpanderItem.Content>
+                                        </ui:SettingsExpander.Header>
+                                        <ui:SettingsExpanderItem Description="{Binding ReceiveSummary}" IsVisible="{Binding IsTrade}">
+                                            <ui:SettingsExpanderItem.Content>
                                                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                                     <ItemsControl ItemsSource="{Binding ReceiveItemImageUrls}">
                                                         <ItemsControl.ItemsPanel>
@@ -166,10 +166,10 @@
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </ScrollViewer>
-                                            </ui:FASettingsExpanderItem.Content>
-                                        </ui:FASettingsExpanderItem>
-                                        <ui:FASettingsExpanderItem Description="{Binding SendSummary}" IsVisible="{Binding IsTrade}">
-                                            <ui:FASettingsExpanderItem.Content>
+                                            </ui:SettingsExpanderItem.Content>
+                                        </ui:SettingsExpanderItem>
+                                        <ui:SettingsExpanderItem Description="{Binding SendSummary}" IsVisible="{Binding IsTrade}">
+                                            <ui:SettingsExpanderItem.Content>
                                                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                                     <ItemsControl ItemsSource="{Binding SendItemImageUrls}">
                                                         <ItemsControl.ItemsPanel>
@@ -189,10 +189,10 @@
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </ScrollViewer>
-                                            </ui:FASettingsExpanderItem.Content>
-                                        </ui:FASettingsExpanderItem>
-                                        <ui:FASettingsExpanderItem>
-                                            <ui:FASettingsExpanderItem.Footer>
+                                            </ui:SettingsExpanderItem.Content>
+                                        </ui:SettingsExpanderItem>
+                                        <ui:SettingsExpanderItem>
+                                            <ui:SettingsExpanderItem.Footer>
                                                 <StackPanel Orientation="Horizontal" Spacing="5">
                                                     <Button
                                                         HorizontalAlignment="Left"
@@ -205,12 +205,12 @@
                                                         CommandParameter="{Binding}"
                                                         Content="{Binding Accept}" />
                                                 </StackPanel>
-                                            </ui:FASettingsExpanderItem.Footer>
-                                        </ui:FASettingsExpanderItem>
-                                        <!--<ui:FASettingsExpanderItem
+                                            </ui:SettingsExpanderItem.Footer>
+                                        </ui:SettingsExpanderItem>
+                                        <!--<ui:SettingsExpanderItem
                                         Content="This one is clickable"
                                         IsClickEnabled="True" />-->
-                                    </ui:FASettingsExpander>
+                                    </ui:SettingsExpander>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

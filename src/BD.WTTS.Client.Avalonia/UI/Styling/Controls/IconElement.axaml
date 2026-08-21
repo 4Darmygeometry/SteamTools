@@ -10,11 +10,11 @@
     </Design.PreviewWith>
 
     <!--  Add Styles Here  -->
-    <Style Selector="ui|FAFontIcon">
+    <Style Selector="ui|FontIcon">
         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
     </Style>
 
-    <Style Selector="ui|FAFontIconSource">
+    <Style Selector="ui|FontIconSource">
         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
     </Style>
 </Styles>

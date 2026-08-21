@@ -121,7 +121,7 @@ public partial class AdControl : UserControl
     {
         Dispatcher.UIThread.Post(() =>
         {
-            if (AdvertiseService.Current.IsInitialized && (x is null || !x.Cast<object>().Any()))
+            if (AdvertiseService.Current.IsInitialized && (x?.Count() is 0 or null))
             {
                 this.IsVisible = false;
             }

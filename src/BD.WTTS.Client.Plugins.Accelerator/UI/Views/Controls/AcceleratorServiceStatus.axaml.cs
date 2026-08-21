@@ -18,7 +18,7 @@ public partial class AcceleratorServiceStatus : UserControl
     {
         if (sender is Button button)
         {
-            var expander = button.FindAncestorOfType<FASettingsExpander>();
+            var expander = button.FindAncestorOfType<SettingsExpander>();
             if (expander != null) expander.IsExpanded = true;
         }
     }

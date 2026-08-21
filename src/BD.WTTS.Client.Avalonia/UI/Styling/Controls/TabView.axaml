@@ -7,15 +7,15 @@
     <Design.PreviewWith>
         <Border Padding="20">
             <!--  Add Controls for Previewer Here  -->
-            <ui:FATabView MinHeight="300">
-                <ui:FATabViewItem Header="Hello" IsSelected="True" />
-                <ui:FATabViewItem Header="Hello" />
-                <ui:FATabViewItem Header="Hello" />
-            </ui:FATabView>
+            <ui:TabView MinHeight="300">
+                <ui:TabViewItem Header="Hello" IsSelected="True" />
+                <ui:TabViewItem Header="Hello" />
+                <ui:TabViewItem Header="Hello" />
+            </ui:TabView>
         </Border>
     </Design.PreviewWith>
     <Styles.Resources>
-        <ControlTheme x:Key="{x:Type ui:FATabView}" TargetType="ui:FATabView">
+        <ControlTheme x:Key="{x:Type ui:TabView}" TargetType="ui:TabView">
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Padding" Value="{DynamicResource TabViewHeaderPadding}" />
             <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
@@ -59,7 +59,7 @@
                                 Content="{TemplateBinding TabStripHeader}"
                                 ContentTemplate="{TemplateBinding TabStripHeaderTemplate}" />
 
-                            <uip:FATabViewListView
+                            <uip:TabViewListView
                                 Name="TabListView"
                                 Grid.Column="1"
                                 Padding="{TemplateBinding Padding}"
@@ -105,16 +105,16 @@
     </Styles.Resources>
 
     <!--  Add Styles Here  -->
-    <Style Selector="ui|FATabView Button#AddButton">
+    <Style Selector="ui|TabView Button#AddButton">
         <Setter Property="FontFamily" Value="{DynamicResource SymbolThemeFontFamily}" />
     </Style>
-    <Style Selector="ui|FATabView Button#CloseButton">
+    <Style Selector="ui|TabView Button#CloseButton">
         <Setter Property="FontFamily" Value="{DynamicResource SymbolThemeFontFamily}" />
     </Style>
-    <Style Selector="ui|FATabView RepeatButton#ScrollDecreaseButton">
+    <Style Selector="ui|TabView RepeatButton#ScrollDecreaseButton">
         <Setter Property="FontFamily" Value="{DynamicResource SymbolThemeFontFamily}" />
     </Style>
-    <Style Selector="ui|FATabView RepeatButton#ScrollIncreaseButton">
+    <Style Selector="ui|TabView RepeatButton#ScrollIncreaseButton">
         <Setter Property="FontFamily" Value="{DynamicResource SymbolThemeFontFamily}" />
     </Style>
 </Styles>

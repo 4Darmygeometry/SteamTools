@@ -45,19 +45,19 @@ public sealed class CustomFilePicker : ContentControl
             e.DragEffects = e.DragEffects & (DragDropEffects.Copy | DragDropEffects.Link);
 
             // Only allow if the dragged data contains text or filenames.
-            if (!e.DataTransfer.Formats.Contains(DataFormat.Text) && !e.DataTransfer.Formats.Contains(DataFormat.File))
+            if (!e.Data.Contains(DataFormats.Text) && !e.Data.Contains(DataFormats.Files))
                 e.DragEffects = DragDropEffects.None;
         }
 
         void Drop(object? sender, DragEventArgs e)
         {
-            if (e.DataTransfer.Formats.Contains(DataFormat.Text))
+            if (e.Data.Contains(DataFormats.Text))
             {
-                FileName = e.DataTransfer.TryGetText();
+                FileName = e.Data.GetText();
             }
-            else if (e.DataTransfer.Formats.Contains(DataFormat.File))
+            else if (e.Data.Contains(DataFormats.Files))
             {
-                var files = e.DataTransfer.TryGetFiles()?
+                var files = e.Data.GetFiles()?
                     .Select(s => s.TryGetLocalPath())
                     .Where(p => !string.IsNullOrEmpty(p))
                     .OfType<string>();

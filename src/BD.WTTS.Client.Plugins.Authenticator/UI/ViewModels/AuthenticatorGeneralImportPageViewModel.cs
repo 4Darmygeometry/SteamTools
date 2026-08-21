@@ -228,8 +228,6 @@ public partial class AuthenticatorGeneralImportPageViewModel
         }
     }
 
-    public Task Import() => Import(null);
-
     public async Task Import(string? password)
     {
         if (importAuthenticatorValueDto == null)

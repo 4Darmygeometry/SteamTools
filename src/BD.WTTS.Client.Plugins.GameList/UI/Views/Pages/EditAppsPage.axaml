@@ -16,7 +16,7 @@
     Subtitle="{Binding Author, Source={x:Static s:Plugin.Instance}, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=Plugin_Author}"
     mc:Ignorable="d">
     <spp:PageBase.PreviewImage>
-        <ui:FAImageIconSource Source="{Binding Icon, Source={x:Static s:Plugin.Instance}, Mode=OneWay, Converter={StaticResource BitmapAssetValueConverter}}" />
+        <ui:ImageIconSource Source="{Binding Icon, Source={x:Static s:Plugin.Instance}, Mode=OneWay, Converter={StaticResource BitmapAssetValueConverter}}" />
     </spp:PageBase.PreviewImage>
     <spp:PageBase.ActionContent>
         <StackPanel Orientation="Horizontal" Spacing="2">
@@ -29,7 +29,7 @@
                         Width="16"
                         Height="16"
                         HorizontalAlignment="Left">
-                        <ui:FASymbolIcon Symbol="Save" />
+                        <ui:SymbolIcon Symbol="Save" />
                     </Viewbox>
                     <TextBlock
                         Margin="28,4,0,4"
@@ -48,7 +48,7 @@
                         Width="16"
                         Height="16"
                         HorizontalAlignment="Left">
-                        <ui:FASymbolIcon Symbol="Refresh" />
+                        <ui:SymbolIcon Symbol="Refresh" />
                     </Viewbox>
                     <TextBlock
                         Margin="28,4,0,4"
@@ -67,42 +67,42 @@
                 Theme="{StaticResource TransparentButton}">
                 <DropDownButton.Flyout>
                     <ui:FAMenuFlyout Placement="BottomEdgeAlignedRight">
-                        <ui:FAMenuFlyoutItem
+                        <ui:MenuFlyoutItem
                             Command="{Binding ExportSteamEditedAppsBackup}"
                             IsEnabled="{Binding !IsExportingBackup}"
                             Text="{Binding Path=Res.Export,
                                                    Mode=OneWay,
                                                    Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutItem
+                        <ui:MenuFlyoutItem
                             Command="{Binding ImportSteamEditedAppsBackup}"
                             Text="{Binding Path=Res.Import,
                                                    Mode=OneWay,
                                                    Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutSeparator />
-                        <!--<ui:FAMenuFlyoutItem
+                        <ui:MenuFlyoutSeparator />
+                        <!--<ui:MenuFlyoutItem
                             Command="{Binding DeleteAllButton_Click}"
                             IconSource="Delete"
                             Text="{Binding Path=Res.GameList_RemoveBtn,
                                                      Mode=OneWay,
                                                      Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutSeparator />-->
-                        <ui:FAMenuFlyoutItem IsEnabled="False">
-                            <ui:FAMenuFlyoutItem.Text>
+                        <ui:MenuFlyoutSeparator />-->
+                        <ui:MenuFlyoutItem IsEnabled="False">
+                            <ui:MenuFlyoutItem.Text>
                                 <MultiBinding StringFormat="{}{0}{1}">
-                                    <ReflectionBinding
+                                    <CompiledBinding
                                         Mode="OneWay"
                                         Path="Res.Plugin_Version"
                                         Source="{x:Static s:ResourceService.Current}" />
-                                    <ReflectionBinding
+                                    <CompiledBinding
                                         Mode="OneWay"
                                         Path="Version"
                                         Source="{x:Static s:Plugin.Instance}" />
                                 </MultiBinding>
-                            </ui:FAMenuFlyoutItem.Text>
-                        </ui:FAMenuFlyoutItem>
-                        <!--<ui:FAMenuFlyoutItem Text="{Binding Path=Res.ViewInStore, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutItem Text="{Binding Path=Res.UseHelp, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutItem Text="{Binding Path=Res.AboutThisPlugin, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
+                            </ui:MenuFlyoutItem.Text>
+                        </ui:MenuFlyoutItem>
+                        <!--<ui:MenuFlyoutItem Text="{Binding Path=Res.ViewInStore, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                        <ui:MenuFlyoutItem Text="{Binding Path=Res.UseHelp, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                        <ui:MenuFlyoutItem Text="{Binding Path=Res.AboutThisPlugin, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
                     </ui:FAMenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
@@ -112,17 +112,17 @@
         IsLoading="false"
         IsShowNoResultText="{Binding !!!SteamEditedApps.Count, Mode=OneWay}"
         NoResultMessage="{Binding Path=Res.SaveEditedAppInfo_AppsEmpty, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-        <ui:FAItemsRepeater ItemsSource="{Binding SteamEditedApps}">
-            <ui:FAItemsRepeater.Layout>
-                <ui:FAUniformGridLayout
+        <ui:ItemsRepeater ItemsSource="{Binding SteamEditedApps}">
+            <ui:ItemsRepeater.Layout>
+                <ui:UniformGridLayout
                     ItemsJustification="Start"
                     ItemsStretch="Uniform"
                     MinColumnSpacing="10"
                     MinItemHeight="310"
                     MinItemWidth="150"
                     MinRowSpacing="10" />
-            </ui:FAItemsRepeater.Layout>
-            <ui:FAItemsRepeater.ItemTemplate>
+            </ui:ItemsRepeater.Layout>
+            <ui:ItemsRepeater.ItemTemplate>
                 <DataTemplate DataType="spp:SteamApp">
                     <spp:AppItem
                         Title="{Binding DisplayName}"
@@ -181,7 +181,7 @@
                         </spp:AppItem.Image>
                     </spp:AppItem>
                 </DataTemplate>
-            </ui:FAItemsRepeater.ItemTemplate>
-        </ui:FAItemsRepeater>
+            </ui:ItemsRepeater.ItemTemplate>
+        </ui:ItemsRepeater>
     </spp:ContentLoader>
 </spp:PageBase>

@@ -28,7 +28,7 @@ public sealed partial class ProxyService
 
         ProxyDomains
             .Connect()
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Sort(SortExpressionComparer<AccelerateProjectGroupDTO>.Ascending(x => x.Order).ThenBy(x => x.Name))
             .Bind(out _ProxyDomainsList)
             .Subscribe(_ => SelectGroup = ProxyDomains.Items.FirstOrDefault());
@@ -64,7 +64,7 @@ public sealed partial class ProxyService
         //    });
 
         this.WhenAnyValue(v => v.ProxyDomainsList)
-              .ObserveOn(RxSchedulers.MainThreadScheduler)
+              .ObserveOn(RxApp.MainThreadScheduler)
               .Subscribe(domain => domain?
               .ToObservableChangeSet()
               .AutoRefresh(x => x.ObservableItems)
@@ -78,7 +78,7 @@ public sealed partial class ProxyService
               }));
 
         this.WhenAnyValue(v => v.ProxyScripts)
-              .ObserveOn(RxSchedulers.MainThreadScheduler)
+              .ObserveOn(RxApp.MainThreadScheduler)
               .Subscribe(script => script?
               .Connect()
               .AutoRefresh(x => x.Disable)

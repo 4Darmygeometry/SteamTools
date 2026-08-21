@@ -17,7 +17,7 @@ public sealed class DownloadPageViewModel : ViewModelBase
            .Connect()
            .Filter(p => p.IsDownloading)
            .Sort(SortExpressionComparer<SteamApp>.Ascending(x => x.AppId).ThenBy(x => x.DisplayName))
-           .ObserveOn(RxSchedulers.MainThreadScheduler)
+           .ObserveOn(RxApp.MainThreadScheduler)
            .Bind(out _DownloadingApps)
            .Subscribe();
 

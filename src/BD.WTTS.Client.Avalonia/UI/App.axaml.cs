@@ -56,6 +56,7 @@ public sealed partial class App : Application
         try
         {
             AvaloniaXamlLoader.Load(this);
+
 #if WINDOWS || LINUX || MACOS
             if (GeneralSettings.MinimizeOnStartup.Value)
                 Startup.Instance.IsMinimize = true;

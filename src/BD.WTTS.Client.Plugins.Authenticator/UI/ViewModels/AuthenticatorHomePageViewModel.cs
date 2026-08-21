@@ -67,7 +67,7 @@ public sealed partial class AuthenticatorHomePageViewModel
         this.AuthSource
             .Connect()
             .Filter(textFilter)
-            .ObserveOn(RxSchedulers.MainThreadScheduler)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Sort(SortExpressionComparer<AuthenticatorItemModel>.Ascending(x => x.AuthData.Index).ThenBy(x => x.AuthName))
             .Bind(out _Auths)
             .Subscribe();

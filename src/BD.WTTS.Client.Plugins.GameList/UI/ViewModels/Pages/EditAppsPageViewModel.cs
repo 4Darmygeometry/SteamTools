@@ -26,7 +26,7 @@ public sealed class EditAppsPageViewModel : ViewModelBase
         SteamConnectService.Current.SteamApps
           .Connect()
           .Filter(x => x.IsEdited)
-          .ObserveOn(RxSchedulers.MainThreadScheduler)
+          .ObserveOn(RxApp.MainThreadScheduler)
           .Sort(SortExpressionComparer<SteamApp>.Ascending(x => x.AppId))
           .Bind(out _SteamEditedApps)
           .Subscribe(_ => this.RaisePropertyChanged(nameof(IsSteamEditedAppsEmpty)));

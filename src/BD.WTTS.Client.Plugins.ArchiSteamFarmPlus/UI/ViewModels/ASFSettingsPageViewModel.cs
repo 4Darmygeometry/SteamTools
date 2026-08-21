@@ -27,7 +27,7 @@ public partial class ASFSettingsPageViewModel : ViewModelBase
             return;
         }
 
-        BD.Common.Models.FilePickerFileType? fileTypes;
+        FilePickerFileType? fileTypes;
         if (IApplication.IsDesktop())
         {
             fileTypes = new ValueTuple<string, string[]>[]

@@ -8,31 +8,31 @@
             Width="700"
             Height="250"
             Padding="20">
-            <ui:FASettingsExpander
+            <ui:SettingsExpander
                 ActionIconSource="Save"
                 Description="This is a description for the SettingsExpander"
                 Header="Test Header"
                 IconSource="Globe"
                 IsClickEnabled="False"
                 IsExpanded="True">
-                <ui:FASettingsExpander.Footer>
+                <ui:SettingsExpander.Footer>
                     <Button Content="FooterButton" />
-                </ui:FASettingsExpander.Footer>
+                </ui:SettingsExpander.Footer>
 
-                <ui:FASettingsExpanderItem
+                <ui:SettingsExpanderItem
                     ActionIconSource="Pin"
                     Content="Content Here"
                     IsClickEnabled="True" />
-                <ui:FASettingsExpanderItem Content="Content Here">
-                    <ui:FASettingsExpanderItem.Footer>
+                <ui:SettingsExpanderItem Content="Content Here">
+                    <ui:SettingsExpanderItem.Footer>
                         <Button Content="FooterButton" />
-                    </ui:FASettingsExpanderItem.Footer>
-                </ui:FASettingsExpanderItem>
-            </ui:FASettingsExpander>
+                    </ui:SettingsExpanderItem.Footer>
+                </ui:SettingsExpanderItem>
+            </ui:SettingsExpander>
         </Border>
     </Design.PreviewWith>
     <!--  Add Resources Here  -->
-    <ControlTheme x:Key="SettingsExpanderItem2" TargetType="ui:FASettingsExpanderItem">
+    <ControlTheme x:Key="SettingsExpanderItem2" TargetType="ui:SettingsExpanderItem">
         <Setter Property="Background" Value="{DynamicResource ExpanderHeaderBackground}" />
         <Setter Property="Padding" Value="{DynamicResource SettingsExpanderItemPadding}" />
         <Setter Property="MinHeight" Value="{DynamicResource SettingsExpanderItemMinHeight}" />

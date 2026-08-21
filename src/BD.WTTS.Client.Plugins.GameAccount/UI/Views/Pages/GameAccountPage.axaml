@@ -17,7 +17,7 @@
     xmlns:ui="using:FluentAvalonia.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <spp:PageBase.PreviewImage>
-        <ui:FAImageIconSource Source="{Binding Icon, Source={x:Static s:Plugin.Instance}, Mode=OneWay, Converter={StaticResource BitmapAssetValueConverter}}" />
+        <ui:ImageIconSource Source="{Binding Icon, Source={x:Static s:Plugin.Instance}, Mode=OneWay, Converter={StaticResource BitmapAssetValueConverter}}" />
     </spp:PageBase.PreviewImage>
     <spp:PageBase.TabContent>
         <!--<TabStrip
@@ -43,7 +43,7 @@
                         Height="16"
                         HorizontalAlignment="Left"
                         Width="16">
-                        <ui:FASymbolIcon Symbol="Add" />
+                        <ui:SymbolIcon Symbol="Add" />
                     </Viewbox>
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -63,7 +63,7 @@
                         Height="16"
                         HorizontalAlignment="Left"
                         Width="16">
-                        <ui:FASymbolIcon Symbol="Save" />
+                        <ui:SymbolIcon Symbol="Save" />
                     </Viewbox>
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -83,7 +83,7 @@
             <!--  Height="16"  -->
             <!--  HorizontalAlignment="Left"  -->
             <!--  Width="16">  -->
-            <!--             <ui:FASymbolIcon Symbol="ShareAndroid" /> -->
+            <!--             <ui:SymbolIcon Symbol="ShareAndroid" /> -->
             <!--         </Viewbox> -->
             <!--  <TextBlock  -->
             <!--  HorizontalAlignment="Left"  -->
@@ -102,7 +102,7 @@
                         Height="16"
                         HorizontalAlignment="Left"
                         Width="16">
-                        <ui:FASymbolIcon Symbol="Refresh" />
+                        <ui:SymbolIcon Symbol="Refresh" />
                     </Viewbox>
                     <TextBlock
                         HorizontalAlignment="Left"
@@ -121,39 +121,39 @@
                 VerticalContentAlignment="Center">
                 <DropDownButton.Flyout>
                     <ui:FAMenuFlyout Placement="BottomEdgeAlignedRight">
-                        <ui:FAMenuFlyoutItem
+                        <ui:MenuFlyoutItem
                             IsVisible="{Binding !IsSelectedSteam}"
                             Text="平台设置"
                             x:Name="PlatformSettingButton" />
-                        <!--<ui:FAMenuFlyoutItem x:Name="PluginSettingButton" Text="{Binding Path=Res.Settings_Plugin, Mode=OneWay,Source={x:Static s:ResourceService.Current}}" />-->
-                        <ui:FAToggleMenuFlyoutItem
+                        <!--<ui:MenuFlyoutItem x:Name="PluginSettingButton" Text="{Binding Path=Res.Settings_Plugin, Mode=OneWay,Source={x:Static s:ResourceService.Current}}" />-->
+                        <ui:ToggleMenuFlyoutItem
                             IsChecked="{Binding Source={x:Static ms:GameAccountSettings.IsShowAccountName}, Path=Value, Mode=TwoWay}"
                             IsVisible="{Binding IsSelectedSteam}"
                             Text="显示用户名" />
-                        <ui:FAMenuFlyoutSeparator IsVisible="{Binding !IsSelectedSteam}" />
-                        <ui:FAMenuFlyoutItem IsEnabled="False">
-                            <ui:FAMenuFlyoutItem.Text>
+                        <ui:MenuFlyoutSeparator IsVisible="{Binding !IsSelectedSteam}" />
+                        <ui:MenuFlyoutItem IsEnabled="False">
+                            <ui:MenuFlyoutItem.Text>
                                 <MultiBinding StringFormat="{}{0}{1}">
-                                    <ReflectionBinding
+                                    <CompiledBinding
                                         Mode="OneWay"
                                         Path="Res.Plugin_Version"
                                         Source="{x:Static s:ResourceService.Current}" />
-                                    <ReflectionBinding
+                                    <CompiledBinding
                                         Mode="OneWay"
                                         Path="Version"
                                         Source="{x:Static s:Plugin.Instance}" />
                                 </MultiBinding>
-                            </ui:FAMenuFlyoutItem.Text>
-                        </ui:FAMenuFlyoutItem>
-                        <!--<ui:FAMenuFlyoutItem Text="{Binding Path=Res.ViewInStore, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutItem Text="{Binding Path=Res.UseHelp, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
-                        <ui:FAMenuFlyoutItem Text="{Binding Path=Res.AboutThisPlugin, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
+                            </ui:MenuFlyoutItem.Text>
+                        </ui:MenuFlyoutItem>
+                        <!--<ui:MenuFlyoutItem Text="{Binding Path=Res.ViewInStore, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                        <ui:MenuFlyoutItem Text="{Binding Path=Res.UseHelp, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />
+                        <ui:MenuFlyoutItem Text="{Binding Path=Res.AboutThisPlugin, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
                     </ui:FAMenuFlyout>
                 </DropDownButton.Flyout>
             </DropDownButton>
         </StackPanel>
     </spp:PageBase.ActionContent>
-    <ui:FATabView
+    <ui:TabView
         Background="Transparent"
         CloseButtonOverlayMode="OnPointerOver"
         IsAddTabButtonVisible="False"
@@ -164,7 +164,7 @@
         TabItems="{Binding GamePlatforms}"
         TabWidthMode="Equal"
         VerticalAlignment="Stretch">
-        <ui:FATabView.TabStripFooter>
+        <ui:TabView.TabStripFooter>
             <Button
                 Content="&#xE710;"
                 FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -207,41 +207,41 @@
                         <MenuItem Header="-" IsVisible="{Binding !!AddGamePlatforms.Count}" />
                         <MenuItem Command="{Binding LoginNewCommand}" Header="{Binding Path=Res.UserChange_LoginNewAccount, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
                             <MenuItem.Icon>
-                                <ui:FASymbolIcon Symbol="Add" />
+                                <ui:SymbolIcon Symbol="Add" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <!--<ui:FAMenuFlyoutSeparator />
-                        <ui:FAMenuFlyoutSubItem Text="{Binding Path=Res.GameAccount_EndProcessWay, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-                            <ui:FARadioMenuFlyoutItem
+                        <!--<ui:MenuFlyoutSeparator />
+                        <ui:MenuFlyoutSubItem Text="{Binding Path=Res.GameAccount_EndProcessWay, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
+                            <ui:RadioMenuFlyoutItem
                                 GroupName="KillMethond"
                                 IconSource="Games"
                                 Text="TaskKill" />
 
-			 <ui:FARadioMenuFlyoutItem
+			 <ui:RadioMenuFlyoutItem
                                 GroupName="KillMethond"
                                 IconSource="Icons"
                                 Text="Direct" />
-                        </ui:FAMenuFlyoutSubItem>
-                        <ui:FAMenuFlyoutSubItem Text="{Binding Path=Res.GameAccount_StartProcessWay, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
-                            <ui:FARadioMenuFlyoutItem
+                        </ui:MenuFlyoutSubItem>
+                        <ui:MenuFlyoutSubItem Text="{Binding Path=Res.GameAccount_StartProcessWay, Mode=OneWay, Source={x:Static s:ResourceService.Current}}">
+                            <ui:RadioMenuFlyoutItem
                                 GroupName="StartMethond"
                                 IconSource="Games"
                                 Text="Explorer" />
-                            <ui:FARadioMenuFlyoutItem
+                            <ui:RadioMenuFlyoutItem
                                 GroupName="Test Group"
                                 IconSource="Icons"
                                 Text="Direct" />
-                        </ui:FAMenuFlyoutSubItem>
-                        <ui:FAMenuFlyoutSeparator />
-                        <ui:FAToggleMenuFlyoutItem IconSource="Safe" Text="{Binding Path=Res.AdministratorStartup, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
+                        </ui:MenuFlyoutSubItem>
+                        <ui:MenuFlyoutSeparator />
+                        <ui:ToggleMenuFlyoutItem IconSource="Safe" Text="{Binding Path=Res.AdministratorStartup, Mode=OneWay, Source={x:Static s:ResourceService.Current}}" />-->
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-        </ui:FATabView.TabStripFooter>
-        <ui:FATabView.Styles>
-            <Style Selector="ui|FATabViewItem" x:DataType="spp:PlatformAccount">
+        </ui:TabView.TabStripFooter>
+        <ui:TabView.Styles>
+            <Style Selector="ui|TabViewItem" x:DataType="spp:PlatformAccount">
                 <!--<Setter Property="IconSource">
-                    <ui:FAFontIconSource Glyph="{Binding Icon}" />
+                    <ui:FontIconSource Glyph="{Binding Icon}" />
                 </Setter>-->
                 <Setter Property="Content" Value="{Binding}" />
                 <Setter Property="ContentTemplate">
@@ -250,8 +250,8 @@
                     </DataTemplate>
                 </Setter>
             </Style>
-        </ui:FATabView.Styles>
-        <ui:FATabView.TabItemTemplate>
+        </ui:TabView.Styles>
+        <ui:TabView.TabItemTemplate>
             <DataTemplate DataType="spp:PlatformAccount">
                 <DockPanel>
                     <PathIcon
@@ -263,6 +263,6 @@
                     <TextBlock DockPanel.Dock="Right" Text="{Binding FullName}" />
                 </DockPanel>
             </DataTemplate>
-        </ui:FATabView.TabItemTemplate>
-    </ui:FATabView>
+        </ui:TabView.TabItemTemplate>
+    </ui:TabView>
 </spp:PageBase>

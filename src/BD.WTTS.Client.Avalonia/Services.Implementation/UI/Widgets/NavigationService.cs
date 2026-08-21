@@ -126,7 +126,7 @@ public sealed class NavigationService : INavigationService
         if ((_frame?.Content as Control)?.DataContext != dataContext)
         {
             _frame?.NavigateFromObject(dataContext,
-            new FrameNavigationOptions
+            new FluentAvalonia.UI.Navigation.FrameNavigationOptions
             {
                 IsNavigationStackEnabled = true,
                 TransitionInfoOverride = GetNavigationTransitionInfo(effect)

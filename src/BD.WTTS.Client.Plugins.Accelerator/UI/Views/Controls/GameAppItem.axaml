@@ -128,7 +128,7 @@
                             Cursor="Hand"
                             ToolTip.Tip="{x:Static spp:Strings.GameAccelerator_ChangeArea}">
                             <Viewbox Width="20" Height="20">
-                                <ui:FASymbolIcon Symbol="Switch" />
+                                <ui:SymbolIcon Symbol="Switch" />
                             </Viewbox>
                         </Button>-->
                     <Button
@@ -142,7 +142,7 @@
                         IsVisible="{Binding !IsAccelerating}"
                         ToolTip.Tip="{x:Static spp:Strings.Delete}">
                         <Viewbox Width="20" Height="20">
-                            <ui:FAFontIcon
+                            <ui:FontIcon
                                 FontFamily="{StaticResource SymbolThemeFontFamily}"
                                 Foreground="White"
                                 Glyph="{StaticResource Close}" />
@@ -286,12 +286,12 @@
                     IsVisible="{Binding Source={x:Static s:GameAcceleratorService.Current}, Path=!CurrentAcceleratorGame.IsAccelerating}">
                     <Button.Content>
                         <MultiBinding Converter="{StaticResource VisibleStringConverter}">
-                            <ReflectionBinding Mode="OneWay" Path="IsAccelerated" />
-                            <ReflectionBinding
+                            <CompiledBinding Mode="OneWay" Path="IsAccelerated" />
+                            <CompiledBinding
                                 Mode="OneWay"
                                 Path="."
                                 Source="{x:Static spp:Strings.GameAccelerator_Stop}" />
-                            <ReflectionBinding
+                            <CompiledBinding
                                 Mode="OneWay"
                                 Path="."
                                 Source="{x:Static spp:Strings.GameAccelerator_Accelerate}" />

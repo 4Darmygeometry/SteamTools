@@ -107,7 +107,7 @@
                                             Foreground="White"
                                             IsVisible="{Binding !!SelectedServer}"
                                             Text="{Binding SelectedServer.Name, StringFormat={}/ {0}}" />
-                                        <ui:FASymbolIcon Foreground="White" Symbol="Switch" />
+                                        <ui:SymbolIcon Foreground="White" Symbol="Switch" />
                                     </StackPanel>
                                 </Button>
                             </Border>

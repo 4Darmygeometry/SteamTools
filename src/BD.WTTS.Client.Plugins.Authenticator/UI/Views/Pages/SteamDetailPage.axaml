@@ -24,7 +24,7 @@
                     <ToggleButton x:Name="ShowDetail" VerticalAlignment="Center">
                         <ToggleButton.Content>
                             <StackPanel Orientation="Horizontal" Spacing="5">
-                                <ui:FAFontIcon
+                                <ui:FontIcon
                                     VerticalAlignment="Center"
                                     FontFamily="{StaticResource SymbolThemeFontFamily}"
                                     FontSize="16"

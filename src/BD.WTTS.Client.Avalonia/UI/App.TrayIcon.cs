@@ -122,7 +122,7 @@ partial class App
                         new NativeMenuItem
                         {
                             [!NativeMenuItem.HeaderProperty] = new MultiBinding {
-                                Bindings = new List<Avalonia.Data.BindingBase>()
+                                Bindings = new List<Avalonia.Data.IBinding>()
                                 {
                                     new Binding { Path = "IsRunningSteamProcess", Source = SteamConnectService.Current, Mode = BindingMode.OneWay },
                                     new Binding { Path = "Res.CloseSteam", Source = ResourceService.Current, Mode = BindingMode.OneWay },
@@ -173,9 +173,9 @@ partial class App
                                     CommandParameter = sub.CommandParameter,
                                 };
 
-                                if (sub.IsVisible is Avalonia.Data.BindingBase v)
+                                if (sub.IsVisible is Avalonia.Data.IBinding v)
                                     menu[!NativeMenuItem.IsVisibleProperty] = v;
-                                if (sub.IsEnabled is Avalonia.Data.BindingBase e)
+                                if (sub.IsEnabled is Avalonia.Data.IBinding e)
                                     menu[!NativeMenuItem.IsEnabledProperty] = e;
                                 subMenu.Add(menu);
                             }
