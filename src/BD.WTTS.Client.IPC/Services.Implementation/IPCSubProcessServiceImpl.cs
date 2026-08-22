@@ -64,29 +64,43 @@ public sealed class IPCSubProcessServiceImpl : IPCSubProcessService
 
     internal static bool CheckBePid(Process proc)
     {
-        var procPath = Environment.ProcessPath;
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(procPath);
-        procPath = Path.GetFullPath(procPath);
-
-        var fn = proc.TryGetMainModule()?.FileName;
-        var fnPath = fn == null ? null : Path.GetFullPath(fn);
-
-        if (procPath == fnPath)
+        if (proc.Id == Environment.ProcessId)
         {
             return true;
         }
 
-        var accProPath = Path.GetFullPath(Path.Combine(procPath, "..", "modules", "Accelerator",
+        var thisPath = Environment.ProcessPath;
+        ArgumentException.ThrowIfNullOrWhiteSpace(thisPath);
+        thisPath = Path.GetFullPath(thisPath);
+
+        var procPath = proc.TryGetMainModule()?.FileName;
+        procPath = procPath == null ? null : Path.GetFullPath(procPath);
+
+        if (procPath != null)
+        {
+
+            if (thisPath == procPath)
+            {
+                return true;
+            }
+
+            var accProPath = Path.GetFullPath(Path.Combine(thisPath, "..", "modules", "Accelerator",
 #if WINDOWS
-            "Steam++.Accelerator.exe"
+                "Steam++.Accelerator.exe"
 #else
-            "Steam++.Accelerator"
+                "Steam++.Accelerator"
 #endif
 
-            ));
-        if (procPath == accProPath)
-        {
-            return true;
+                ));
+            if (procPath == accProPath)
+            {
+                return true;
+            }
+
+            if (AssemblyInfo.ValidateAssembly(procPath))
+            {
+                return true;
+            }
         }
 
         return false;
@@ -94,6 +108,10 @@ public sealed class IPCSubProcessServiceImpl : IPCSubProcessService
 
     internal static bool CheckBePid(int pid)
     {
+        if (pid == Environment.ProcessId)
+        {
+            return true;
+        }
         if (!TryGetProcessById(pid, out var proc))
         {
             return false;
