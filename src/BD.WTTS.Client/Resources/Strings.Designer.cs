@@ -19,7 +19,7 @@ namespace BD.WTTS.Client.Resources {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -2088,6 +2088,15 @@ namespace BD.WTTS.Client.Resources {
         }
         
         /// <summary>
+        ///   查找类似 权限不足或端口{0}被占用，请手动授权或更换端口。 的本地化字符串。
+        /// </summary>
+        public static string Error_BindPortError_ {
+            get {
+                return ResourceManager.GetString("Error_BindPortError_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 无法连接到 Google 服务器 的本地化字符串。
         /// </summary>
         public static string Error_CannotConnectGoogleServer {
@@ -2111,6 +2120,15 @@ namespace BD.WTTS.Client.Resources {
         public static string Error_CannotFindAccountFile_ {
             get {
                 return ResourceManager.GetString("Error_CannotFindAccountFile_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 证书格式不正确或版本过旧，请在加速设置中删除并重新生成。 的本地化字符串。
+        /// </summary>
+        public static string Error_CheckRootCertificateFailed_ {
+            get {
+                return ResourceManager.GetString("Error_CheckRootCertificateFailed_", resourceCulture);
             }
         }
         
