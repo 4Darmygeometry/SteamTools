@@ -25,8 +25,7 @@ partial class LinuxPlatformServiceImpl
         {
             shellContent.AppendLine($"gsettings set org.gnome.system.proxy mode 'none'");
         }
-        IPlatformService @this = this;
-        @this.RunShell(shellContent.ToString(), false);
+        RunShell(shellContent.ToString(), false);
         return Task.FromResult(true);
     }
 }

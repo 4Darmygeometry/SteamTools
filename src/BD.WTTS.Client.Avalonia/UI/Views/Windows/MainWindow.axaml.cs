@@ -214,12 +214,12 @@ public sealed class AppSplashScreen : IApplicationSplashScreen
                         IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/bug.ico",
                     },
 #endif
-                    new MenuTabItemViewModel("Plugin_Store")
-                    {
-                        PageType = typeof(PluginStorePage),
-                        IsResourceGet = true,
-                        IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/store.ico",
-                    },
+                    // new MenuTabItemViewModel("Plugin_Store")
+                    // {
+                    //     PageType = typeof(PluginStorePage),
+                    //     IsResourceGet = true,
+                    //     IconKey = "avares://BD.WTTS.Client.Avalonia/UI/Assets/Icons/store.ico",
+                    // },
                     new MenuTabItemViewModel("Settings")
                     {
                         PageType = typeof(SettingsPage),

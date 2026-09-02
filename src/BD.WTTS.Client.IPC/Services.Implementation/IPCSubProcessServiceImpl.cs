@@ -46,16 +46,113 @@ public sealed class IPCSubProcessServiceImpl : IPCSubProcessService
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static bool TryGetProcessById(int pid, [NotNullWhen(true)] out Process? process)
+    {
+        try
+        {
+            process = Process.GetProcessById(pid);
+            return true;
+        }
+        catch
+        {
+            // 异常不记录日志
+            process = null;
+            return false;
+        }
+    }
+
+    internal static bool CheckBePid(Process proc)
+    {
+        if (proc.Id == Environment.ProcessId)
+        {
+            return true;
+        }
+
+        var thisPath = Environment.ProcessPath;
+        ArgumentException.ThrowIfNullOrWhiteSpace(thisPath);
+        thisPath = Path.GetFullPath(thisPath);
+
+        var procPath = proc.TryGetMainModule()?.FileName;
+        procPath = procPath == null ? null : Path.GetFullPath(procPath);
+
+        if (procPath != null)
+        {
+
+            if (thisPath == procPath)
+            {
+                return true;
+            }
+
+            var accProPath = Path.GetFullPath(Path.Combine(thisPath, "..", "modules", "Accelerator",
+#if WINDOWS
+                "Steam++.Accelerator.exe"
+#else
+                "Steam++.Accelerator"
+#endif
+
+                ));
+            if (procPath == accProPath)
+            {
+                return true;
+            }
+
+            if (AssemblyInfo.ValidateAssembly(procPath))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    internal static bool CheckBePid(int pid)
+    {
+        if (pid == Environment.ProcessId)
+        {
+            return true;
+        }
+        if (!TryGetProcessById(pid, out var proc))
+        {
+            return false;
+        }
+        return CheckBePid(proc);
+    }
+
+    internal static void ValidateNamedPipeClientConnection(object? s, NamedPipeClientConnectingEventArgs e)
+    {
+#if WINDOWS
+#if DEBUG
+        Log.Info(nameof(IPCSubProcessServiceImpl), "服务端正在校验命名管道客户端进程，{ClientProcessId}", e.ClientProcessId);
+#endif
+        try
+        {
+            // 验证连接的客户端进程必须是自己的程序
+            if (!e.ClientProcessId.HasValue ||
+                !CheckBePid(e.ClientProcessId.Value))
+            {
+                e.AllowConnection = false;
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(IPCSubProcessServiceImpl), ex, "IpcConfiguration.NamedPipeClientConnecting fail");
+            e.AllowConnection = false;
+        }
+#endif
+    }
+
     public async Task RunAsync(string moduleName, TaskCompletionSource tcs, string pipeName,
         Action<IpcProvider>? configureIpcProvider = null)
     {
         this.tcs = tcs;
-        ipcProvider = new IpcProvider(
-            IPCSubProcessModuleService.Constants.GetClientPipeName(moduleName, pipeName),
-            new IpcConfiguration
-            {
-                IpcLoggerProvider = _ => new IpcLogger_(loggerFactory, nameof(IPCSubProcessServiceImpl)),
-            });
+        var ipcCfg = new IpcConfiguration
+        {
+            IpcLoggerProvider = _ => new IpcLogger_(loggerFactory, nameof(IPCSubProcessServiceImpl)),
+        };
+        ipcCfg.NamedPipeClientConnecting += ValidateNamedPipeClientConnection;
+        ipcProvider = new IpcProvider(IPCSubProcessModuleService.Constants.GetClientPipeName(moduleName, pipeName), ipcCfg);
         ipcProvider.CreateIpcJoint<IPCSubProcessModuleService>(new IPCSubProcessModuleServiceImpl(this));
         configureIpcProvider?.Invoke(ipcProvider);
         ipcProvider.StartServer();

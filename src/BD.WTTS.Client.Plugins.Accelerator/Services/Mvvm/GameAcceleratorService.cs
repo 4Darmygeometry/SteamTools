@@ -81,7 +81,7 @@ public sealed partial class GameAcceleratorService
         if (XunYouSDK.IsSupported)
         {
             this.WhenValueChanged(x => x.XYAccelState, false)
-                .ObserveOn(RxApp.MainThreadScheduler)
+                .ObserveOn(RxSchedulers.MainThreadScheduler)
                 .Subscribe(x =>
                 {
                     if (x == null)
@@ -184,7 +184,7 @@ public sealed partial class GameAcceleratorService
                 });
 
             UserService.Current.WhenAnyValue(static x => x.User)
-                .ObserveOn(RxApp.MainThreadScheduler)
+                .ObserveOn(RxSchedulers.MainThreadScheduler)
                 .Subscribe(async x =>
                 {
                     string vipEndTimeString = VipEndTimeStringDef;

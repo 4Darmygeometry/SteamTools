@@ -120,7 +120,9 @@ partial class Program
 #endif
                                         .UseSkia()
                                         .LogToTrace()
-                                        .UseReactiveUI();
+                                        .UseReactiveUI(_ =>
+                                        {
+                                        });
 
                 builder.With(new FontManagerOptions
                 {
